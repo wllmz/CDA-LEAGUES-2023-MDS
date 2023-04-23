@@ -119,7 +119,6 @@ li.dropdown {
 .dropdown-content a:hover {
   color: #0592E1;
   background-color: #202434;
-  
 }
 
 
@@ -127,4 +126,8 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: grid;
   margin-left: -5%;
+}
+
+a.nav-link.active {
+  color: #0592E1;
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
-import Niveaux from "../components/Niveaux";
+import Niveaux from "../components/niveaux";
 
 
 const Home = () => {
