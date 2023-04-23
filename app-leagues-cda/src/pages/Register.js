@@ -6,6 +6,7 @@ import { isEmail } from "validator";
 import Logomobile from '../assets/img/Logomobile.png';
 
 
+
 import AuthService from "../services/auth.service";
 
 const required = (value) => {

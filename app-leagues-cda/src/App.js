@@ -14,6 +14,7 @@ import BoardAdmin from "./pages/BoardAdmin";
 import Champions from "./pages/Champions";
 import Logo from './assets/img/Logo.png';
 import Ranks from './pages/Ranks';
+import Icon from './assets/img/Icon.png';
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -96,21 +97,14 @@ const App = () => {
         {currentUser ? (
           <div className="navbar-nav-2">
 
-<li className="nav-item">
-              <NavLink to={"/user"} className="nav-link">
-                Mon profile
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-               Déconnexion 
-              </a>
-            </li>
+<li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn"> <img className="icon" src={Icon}/></a>
+    <div class="dropdown-content">
+    <li className="nav-item-dropdown"><NavLink to={"/user"} className="nav-link">Mon profile</NavLink></li>
+    <li className="nav-item-dropdown"><NavLink to={"/profile"} className="nav-link">{currentUser.username}</NavLink></li>
+    <li className="nav-item-dropdown"><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></li>
+    </div>
+  </li>
           </div>
         ) : (
           <div className="navbar-nav-3">

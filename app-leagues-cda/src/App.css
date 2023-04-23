@@ -87,7 +87,7 @@ input.form-control {
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
-input#summonerName{
+input#summonerName, #mySelect{
   border: 1px;
   border-bottom: solid 1px;
   display: block;
@@ -144,3 +144,6 @@ top: 0;
 .rank, .niveaux, .profile {
   padding-top: 10%;
 }
+
+
+
