@@ -84,12 +84,27 @@ input.form-control {
   line-height: 1.5;
   color: #495057;
   background-color: #fff;
-  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+input#summonerName{
+  border: 1px;
+  border-bottom: solid 1px;
+  display: block;
+  width: 200px;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
 
-label {
+label{
   display: block;
   margin-top: 10px;
   float: left;
@@ -126,3 +141,6 @@ position: sticky;
 top: 0;
 }
 
+.rank, .niveaux, .profile {
+  padding-top: 10%;
+}
