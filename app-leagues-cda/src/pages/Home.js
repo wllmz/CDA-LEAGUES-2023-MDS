@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <div className="container">
-        <h3>{content} </h3>
+ 
        <Niveaux/>
 
      

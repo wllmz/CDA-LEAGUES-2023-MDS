@@ -26,10 +26,10 @@ const Niveaux = () => {
 
     return (
         
-        <div className='menu'>
-            <div className='salut'>
+    
+            <div className='niveaux'>
             <h1>League of legends Player Searcher</h1>
-            <input type="text" onChange={e => setSearchText(e.target.value)}></input>
+            <input id="summonerName" type="text" onChange={e => setSearchText(e.target.value)}></input>
             <button onClick={e=> serachForPlayer(e)}> Search for player</button>
              
         
@@ -41,7 +41,6 @@ const Niveaux = () => {
            : <> <p>Veuillez entre votre nom</p></>
             
             } 
-        </div>
         </div>
         
     );
