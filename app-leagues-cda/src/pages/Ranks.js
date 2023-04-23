@@ -1,9 +1,9 @@
 import React from 'react';
-
+import Ranks from '../components/Ranks'
 const Rank = () => {
     return (
         <div>
-            <h1> salut</h1>
+            <Ranks/>
         </div>
     );
 };
