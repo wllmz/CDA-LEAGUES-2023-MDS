@@ -29,6 +29,7 @@ const Niveaux = () => {
     
             <div className='niveaux'>
             <h1>League of legends Player Searcher</h1>
+            <p> Veuillez entrer votre nom : </p>
             <input id="summonerName" type="text" onChange={e => setSearchText(e.target.value)}></input>
             <button onClick={e=> serachForPlayer(e)}> Search for player</button>
              
@@ -38,7 +39,7 @@ const Niveaux = () => {
            <img width="100" height="100" src={"http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
             <p> Summoner level {playerData.summonerLevel}</p>
              </>
-           : <> <p>Veuillez entre votre nom</p></>
+           : <> </>
             
             } 
         </div>

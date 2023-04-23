@@ -31,7 +31,6 @@ const BoardUser = () => {
   return (
     <div className="container">
       <header className="jumbotron">
-
           <Ranks/>    
       </header>
     </div>

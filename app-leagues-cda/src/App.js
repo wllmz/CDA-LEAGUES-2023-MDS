@@ -13,6 +13,7 @@ import BoardModerator from "./pages/BoardModerator";
 import BoardAdmin from "./pages/BoardAdmin";
 import Champions from "./pages/Champions";
 import Logo from './assets/img/Logo.png';
+import Ranks from './pages/Ranks';
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -69,6 +70,12 @@ const App = () => {
             </NavLink>
           </li>
 
+          <li className="nav-item">
+            <NavLink to={"/Ranks"} className="nav-link">
+            Rank 
+            </NavLink>
+          </li>
+
           {showModeratorBoard && (
             <li className="nav-item">
               <NavLink to={"/mod"} className="nav-link">
@@ -88,7 +95,7 @@ const App = () => {
           {currentUser && (
             <li className="nav-item">
               <NavLink to={"/user"} className="nav-link">
-                User
+                Profile
               </NavLink>
             </li>
           )}
@@ -128,6 +135,7 @@ const App = () => {
         <Routes>
           <Route exact path={"/"} element={<Home />} />
           <Route exact path={"/home"} element={<Home />} />
+          <Route exact path={"/ranks"} element={<Ranks />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/champions" element={<Champions />} />
           <Route exact path="/register" element={<Register />} />
