@@ -75,6 +75,7 @@ const App = () => {
             Rank 
             </NavLink>
           </li>
+        </div>
 
           {showModeratorBoard && (
             <li className="nav-item">
@@ -92,17 +93,14 @@ const App = () => {
             </li>
           )}
 
-          {currentUser && (
-            <li className="nav-item">
-              <NavLink to={"/user"} className="nav-link">
-                Profile
-              </NavLink>
-            </li>
-          )}
-        </div>
-
         {currentUser ? (
           <div className="navbar-nav-2">
+
+<li className="nav-item">
+              <NavLink to={"/user"} className="nav-link">
+                Mon profile
+              </NavLink>
+            </li>
             <li className="nav-item">
               <NavLink to={"/profile"} className="nav-link">
                 {currentUser.username}
