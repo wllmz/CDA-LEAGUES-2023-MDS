@@ -112,8 +112,8 @@ label{
   font-weight: 600;
 }
 
-button.btn {
-  margin-top: 10%;
+button.btn, button {
+  margin-top: 15px;
   color: #fff;
   background-color: #007bff;
   border-color: #007bff;
