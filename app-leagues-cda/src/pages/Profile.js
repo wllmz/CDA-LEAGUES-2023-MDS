@@ -1,11 +1,12 @@
 import React from 'react';
-import Ranks from '../components/Ranks'
+import Ranks_profile from '../components/Ranks_profile'
 
 
 const Profile = () => {
   return (
     <div>
-      <Ranks/>
+    
+      <Ranks_profile/>
     </div>
   );
 };
