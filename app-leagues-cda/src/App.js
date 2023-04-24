@@ -61,7 +61,7 @@ const App = () => {
         <div className="navbar-nav-1">
           <li className="nav-item">
             <NavLink to={"/home"} className="nav-link">
-             Home 
+             Accueil 
             </NavLink>
           </li>
 
@@ -73,7 +73,7 @@ const App = () => {
 
           <li className="nav-item">
             <NavLink to={"/Ranks"} className="nav-link">
-            Rank 
+            Classements  
             </NavLink>
           </li>
         </div>
@@ -101,7 +101,7 @@ const App = () => {
 <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn"> <img className="icon" src={Icon}/></a>
     <div class="dropdown-content">
-    <li className="nav-item-dropdown"><NavLink to={"/user"} className="nav-link">Mon profile</NavLink></li>
+    <li className="nav-item-dropdown"><NavLink to={"/user"} className="nav-link">Mon profil</NavLink></li>
   
     <li className="nav-item-dropdown"><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></li>
     </div>
