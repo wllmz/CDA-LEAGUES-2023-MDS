@@ -13,7 +13,7 @@ code {
     monospace;
 }
 
-.navbar-nav-2, .navbar-nav-3 {
+.navbar-nav-3 {
   float: right;
 }
 
@@ -69,7 +69,7 @@ li.nav-item {
 }
 
 .navbar-nav-1 {
-  margin-left: 40%;
+  margin-left: 35%;
 }
 
 img.icon{
@@ -96,7 +96,6 @@ li a, .dropbtn {
 }
 
 li.dropdown {
-  display: inline-block;
   float:right;
 }
 
