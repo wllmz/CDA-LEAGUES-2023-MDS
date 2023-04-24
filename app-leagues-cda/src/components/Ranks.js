@@ -37,7 +37,7 @@ function App() {
       <form onSubmit={handleSubmit}>
         <p>Nom d'invocateur :</p>
         <label htmlFor="summonerName"></label>
-        <input id="summonerName" type="text" value={summonerName} onChange={handleInputChange} />
+        <input id="summonerName" type="text" placeholder="Entrez un pseudo" value={summonerName} onChange={handleInputChange} />
         <button type="submit">Rechercher</button>
       </form>
       {rank && (

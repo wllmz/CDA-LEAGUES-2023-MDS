@@ -30,7 +30,7 @@ const Niveaux = () => {
             <div className='niveaux'>
             <h1>League of legends Player Searcher</h1>
             <p> Veuillez entrer votre nom : </p>
-            <input id="summonerName" type="text" onChange={e => setSearchText(e.target.value)}></input>
+            <input id="summonerName" type="text" placeholder="Entrez un pseudo" onChange={e => setSearchText(e.target.value)}></input>
             <button onClick={e=> serachForPlayer(e)}> Search for player</button>
              
         
