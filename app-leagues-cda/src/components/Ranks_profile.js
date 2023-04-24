@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import AuthService from "../services/auth.service";
 
-const API_KEY = 'RGAPI-cfca168d-453f-4cde-8961-aa3158c32398'; // Votre clé API
+
+const API_KEY = 'RGAPI-328cfb2f-fb83-48e9-973d-250cace5b104'; // Votre clé API
 
 function App() {
   const [summonerName, setSummonerName] = useState(''); // Utiliser le state pour stocker le nom d'invocateur entré
@@ -32,6 +33,9 @@ function App() {
   };
 
   const currentUser = AuthService.getCurrentUser();
+  var user = "";
+  user = currentUser.leagues;
+  console.log(user);
 
   
 
@@ -42,7 +46,7 @@ function App() {
       <form onSubmit={handleSubmit}>
         <p>Nom d'invocateur :</p>
         <label htmlFor="summonerName"></label>
-        <input id="summonerName" type="text" value={currentUser.leagues} onChange={handleInputChange} />
+        <input id="summonerName" type="text" value={user} onChange={handleInputChange} />
         <button type="submit">Rechercher</button>
       </form>
       {rank && (

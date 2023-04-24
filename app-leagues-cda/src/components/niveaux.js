@@ -6,7 +6,11 @@ import axios from 'axios';
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
+<<<<<<< Updated upstream
     const api_key = "RGAPI-cfca168d-453f-4cde-8961-aa3158c32398";
+=======
+    const api_key = "RGAPI-328cfb2f-fb83-48e9-973d-250cace5b104";
+>>>>>>> Stashed changes
     
     function serachForPlayer(event) {
         // et up the correct api call 
