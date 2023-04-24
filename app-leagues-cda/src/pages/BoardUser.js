@@ -1,38 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import AuthService from "../services/auth.service";
 
-import UserService from "../services/user.service";
-import EventBus from "../common/EventBus";
-import Ranks from "../components/Ranks";
 const BoardUser = () => {
-  const [content, setContent] = useState("");
-
-  useEffect(() => {
-    UserService.getUserBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
-      }
-    );
-  }, []);
+  const currentUser = AuthService.getCurrentUser();
 
   return (
-    <div className="container">
+    <div className="profile">
       <header className="jumbotron">
-          <Ranks/>    
+        <h3>
+          <strong>Profile:</strong> {currentUser.username}
+        </h3>
       </header>
+      <p>
+      </p>
+      <p>
+        <strong>Email:</strong> {currentUser.email}
+      </p>
+      <p>
+        <strong>Leagues:</strong> {currentUser.leagues}
+      </p>
     </div>
   );
 };
