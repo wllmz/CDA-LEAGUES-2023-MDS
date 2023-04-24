@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import AuthService from "../services/auth.service";
 
 const API_KEY = 'RGAPI-cfca168d-453f-4cde-8961-aa3158c32398'; // Votre clé API
 
@@ -30,6 +31,10 @@ function App() {
       });
   };
 
+  const currentUser = AuthService.getCurrentUser();
+
+  
+
   return (
     <div>
         <div className='rank'>
@@ -37,7 +42,7 @@ function App() {
       <form onSubmit={handleSubmit}>
         <p>Nom d'invocateur :</p>
         <label htmlFor="summonerName"></label>
-        <input id="summonerName" type="text" value={summonerName} onChange={handleInputChange} />
+        <input id="summonerName" type="text" value={currentUser.leagues} onChange={handleInputChange} />
         <button type="submit">Rechercher</button>
       </form>
       {rank && (
@@ -46,8 +51,23 @@ function App() {
           <p>{rank.wins} victoires / {rank.losses} défaites</p> {/* Afficher les statistiques de victoires/défaites */}
         </div>
       )}
+
+      
+  <h3>
+    <strong>Profile:</strong> {currentUser.username}
+  </h3>
+<p>
+</p>
+<p>
+  <strong>Email:</strong> {currentUser.email}
+</p>
+<p>
+  <strong>Leagues:</strong> {currentUser.leagues}
+</p>
     </div>
     </div>
+
+
   );
 }
 
