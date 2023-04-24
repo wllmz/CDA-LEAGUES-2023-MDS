@@ -6,7 +6,7 @@ import axios from 'axios';
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
-    const api_key = "RGAPI-cfca168d-453f-4cde-8961-aa3158c32398";
+    const api_key = "RGAPI-84e1f296-2be2-4d56-84d7-c4823e887ae8";
     
     function serachForPlayer(event) {
         // et up the correct api call 
