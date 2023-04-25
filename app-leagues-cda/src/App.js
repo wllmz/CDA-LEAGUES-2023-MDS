@@ -97,7 +97,7 @@ const App = () => {
         {currentUser ? (
           
           <div className="navbar-nav-2">
-  <li className="nav-item-dropdown"><NavLink to={"/profile"} className="nav-link">{currentUser.username}</NavLink></li>
+  <li className="nav-item-dropdown"><NavLink to={"/profile"} className="nav-link">{currentUser.leagues}</NavLink></li>
 <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn"> <img className="icon" src={Icon}/></a>
     <div class="dropdown-content">
