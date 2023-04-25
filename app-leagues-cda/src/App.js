@@ -14,6 +14,7 @@ import BoardAdmin from "./pages/BoardAdmin";
 import Champions from "./pages/Champions";
 import Logo from './assets/img/Logo.png';
 import Ranks from './pages/Ranks';
+import Test from './pages/Test';
 import Icon from './assets/img/Icon.png';
 
 // import AuthVerify from "./common/AuthVerify";
@@ -136,6 +137,7 @@ const App = () => {
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       </div>
 
