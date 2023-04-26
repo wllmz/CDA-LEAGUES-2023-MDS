@@ -24,7 +24,7 @@ const Home = () => {
 
   return (
     <div className="container">
- 
+
        <Niveaux/>
 
      
