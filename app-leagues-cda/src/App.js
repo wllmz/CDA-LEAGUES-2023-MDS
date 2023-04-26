@@ -14,8 +14,8 @@ import BoardAdmin from "./pages/BoardAdmin";
 import Champions from "./pages/Champions";
 import Logo from './assets/img/Logo.png';
 import Ranks from './pages/Ranks';
-import Test from './pages/Test';
 import Icon from './assets/img/Icon.png';
+import Test from './pages/Test';
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
