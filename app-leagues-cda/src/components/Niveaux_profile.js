@@ -3,10 +3,11 @@ import axios from 'axios';
 import AuthService from "../services/auth.service";
 
 
+
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
-    const API_KEY = "RGAPI-c8735274-1237-4c6f-976a-04e7ee6f7011";
+    const API_KEY = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
     
     const currentUser = AuthService.getCurrentUser();
 
