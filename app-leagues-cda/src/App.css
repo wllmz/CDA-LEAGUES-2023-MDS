@@ -146,3 +146,6 @@ top: 0;
   padding-top: 10%;
 }
 
+p#puuid {
+  display: none;
+}
