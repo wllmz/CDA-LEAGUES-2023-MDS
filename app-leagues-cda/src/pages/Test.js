@@ -33,14 +33,20 @@ function App() {
 
 
   return (
-    <div>
-
-      {rank && (
+    
+    <div className='rank'>
+     {rank ? (
         <div>
           <h2>{summonerName} est classé {rank.tier} {rank.rank}</h2> {/* Afficher le rang actuel */}
           <p>{rank.wins} victoires / {rank.losses} défaites</p> {/* Afficher les statistiques de victoires/défaites */}
         </div>
-      )}
+     ) : (
+      <div>
+        <h1> salut</h1>
+        </div>
+     )
+}
+
 
       
   <h3>
@@ -55,7 +61,6 @@ function App() {
   <strong>Leagues:</strong> {currentUser.leagues}
 </p>
     </div>
-
 
 
   );
