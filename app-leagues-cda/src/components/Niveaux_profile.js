@@ -6,9 +6,12 @@ import AuthService from "../services/auth.service";
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
-    const API_KEY = "RGAPI-c8735274-1237-4c6f-976a-04e7ee6f7011";
+    const API_KEY = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
     
     const currentUser = AuthService.getCurrentUser();
+
+
+
 
     function serachForPlayer(event) {
         // et up the correct api call 
@@ -50,7 +53,11 @@ const Niveaux = () => {
            <> <p>{playerData.name}</p>
            <img width="100" height="100" src={"http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
             <p> Summoner level {playerData.summonerLevel}</p>
+<<<<<<< Updated upstream
             <p> puuid : {playerData.puuid}</p>
+=======
+            <p id='puuid'> puuid : {playerData.puuid}  </p>
+>>>>>>> Stashed changes
              </>
            : <> </>
             

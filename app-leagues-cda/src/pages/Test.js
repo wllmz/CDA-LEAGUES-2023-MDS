@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import AuthService from "../services/auth.service";
+import React from 'react';
 
+<<<<<<< Updated upstream
 
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
@@ -61,3 +60,14 @@ const Niveaux = () => {
 };
 
 export default Niveaux;
+=======
+const Test = () => {
+  return (
+    <div>
+      
+    </div>
+  );
+};
+
+export default Test;
+>>>>>>> Stashed changes
