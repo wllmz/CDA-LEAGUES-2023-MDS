@@ -44,26 +44,10 @@ function App() {
       <div>
         <h1> salut</h1>
         </div>
-     )
-}
+     )}
+</div>
+  
+  )}
 
-
-      
-  <h3>
-    <strong>Profile:</strong> {currentUser.username}
-  </h3>
-<p>
-</p>
-<p>
-  <strong>Email:</strong> {currentUser.email}
-</p>
-<p>
-  <strong>Leagues:</strong> {currentUser.leagues}
-</p>
-    </div>
-
-
-  );
-}
 
 export default App;
