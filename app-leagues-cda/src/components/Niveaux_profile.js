@@ -50,7 +50,7 @@ const Niveaux = () => {
            <> <p>{playerData.name}</p>
            <img width="100" height="100" src={"http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
             <p> Summoner level {playerData.summonerLevel}</p>
-            <p> puuid : {playerData.puuid}</p>
+            <p id='puuid'> puuid : {playerData.puuid}</p>
              </>
            : <> </>
             

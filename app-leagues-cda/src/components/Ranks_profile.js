@@ -34,7 +34,7 @@ function App() {
 
   return (
     
-    <div className='rank'>
+    <div className=''>
      {rank ? (
         <div>
           <h2>{summonerName} est classé {rank.tier} {rank.rank}</h2> {/* Afficher le rang actuel */}
