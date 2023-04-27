@@ -5,8 +5,10 @@ import AuthService from "../services/auth.service";
 const App = () => {
   const [playerData, setPlayerdata ] =  useState({});
   const [matchIds, setMatchIds] = useState([]);
+  const [match, setMatch] = useState([]);
   const API_KEY = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
-  const COUNT = 20;
+  const COUNT = 10;
+ const [puuid, setPuuid] = useState("")
 
   const currentUser = AuthService.getCurrentUser();
 
@@ -14,8 +16,9 @@ const App = () => {
     if (currentUser.leagues) {
       axios.get(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentUser.leagues}?api_key=${API_KEY}`)
         .then(response => {
-          const puuid = response.data.puuid;
-          axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuid}/ids?count=${COUNT}&api_key=${API_KEY}`)
+          setPuuid(response.data.puuid)
+          const puuidId = response.data.puuid
+          axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuidId}/ids?count=${COUNT}&api_key=${API_KEY}`)
             .then(response => {
               setMatchIds(response.data);
             })
@@ -30,6 +33,25 @@ const App = () => {
     }
   }, [currentUser.leagues]);
 
+  useEffect (() => {
+    if (matchIds) {
+      matchIds.forEach(element => {
+        axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/${element}?api_key=${API_KEY}`)  
+        .then(response => {
+          const tableau = []
+          tableau.push(response.data)
+          setMatch(tableau) 
+        })
+        .catch(error => {
+          console.log(error);
+        }); 
+      
+      }); 
+ 
+    console.log(match)
+  }
+  }, [matchIds]);
+
   return (
     <div className=''>        
       <p id='puuid'> puuid : {playerData.puuid}</p>
@@ -38,6 +60,8 @@ const App = () => {
         <ul>
           {matchIds.map(matchId => (
             <li key={matchId}>{matchId}</li>
+
+
           ))}
         </ul>
       </div>
