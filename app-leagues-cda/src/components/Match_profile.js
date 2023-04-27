@@ -7,7 +7,7 @@ const App = () => {
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
   const API_KEY = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
-  const COUNT = 10;
+  const COUNT = 2;
  const [puuid, setPuuid] = useState("")
 
   const currentUser = AuthService.getCurrentUser();
@@ -35,23 +35,22 @@ const App = () => {
 
   useEffect (() => {
     if (matchIds) {
+      const matches = [];
+  
       matchIds.forEach(element => {
-        axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/${element}?api_key=${API_KEY}`)  
-        .then(response => {
-          const tableau = []
-          tableau.push(response.data)
-          setMatch(tableau) 
-        })
-        .catch(error => {
-          console.log(error);
-        }); 
-      
+        axios.get(`https://europe.api.riotgames.com/lol/match/v5/matches/${element}?api_key=${API_KEY}`)
+          .then(response => {
+            matches.push(response.data);
+            setMatch(prevState => prevState.concat(matches));
+          })
+          .catch(error => {
+            console.log(error);
+          });
       }); 
- 
-    console.log(match)
-  }
+    }
   }, [matchIds]);
-
+  
+  
   return (
     <div className=''>        
       <p id='puuid'> puuid : {playerData.puuid}</p>
@@ -61,8 +60,21 @@ const App = () => {
           {matchIds.map(matchId => (
             <li key={matchId}>{matchId}</li>
 
+          ))}   
 
-          ))}
+<div>
+  <h2>Informations des dernières parties jouées :</h2>
+  {match.map((matchData, index) => (
+    <div key={index}>
+      <p>Match ID: {matchData.metadata.matchId}</p>
+      <p>Date de début: {matchData.info.gameCreation}</p>
+      <p>Durée: {matchData.info.gameDuration}</p>
+      <p>Résultat: {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</p>
+      {/* Ajouter d'autres informations ici si nécessaire */}
+    </div>
+  ))}
+</div>
+
         </ul>
       </div>
     </div>
