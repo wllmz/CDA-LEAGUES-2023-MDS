@@ -1,13 +1,41 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 import Logomobile from '../assets/img/Logomobile.png';
-
+import axios from "axios";
 
 
 import AuthService from "../services/auth.service";
+
+
+
+const Register  = () => {
+
+  const api_key = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
+
+  const [username, setUsername] = useState("");
+  const [leagues, setLeagues] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [successful, setSuccessful] = useState(false);
+  const [message, setMessage] = useState("");
+  const [leaguesacces, setLeaguesacces] = useState(false)
+  
+  const Validleague = () => {
+    var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + api_key ; 
+      
+      // handle the api call 
+      axios.get(APICallString).then(function(response){
+          setLeaguesacces(true);
+          console.log(leaguesacces);
+      
+      }).catch(function(error) {
+          console.log("error");
+      });
+ 
+  };
 
 const required = (value) => {
   if (!value) {
@@ -60,16 +88,9 @@ const vpassword = (value) => {
   }
 };
 
-const Register = (props) => {
   const form = useRef();
   const checkBtn = useRef();
 
-  const [username, setUsername] = useState("");
-  const [leagues, setLeagues] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [successful, setSuccessful] = useState(false);
-  const [message, setMessage] = useState("");
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -94,7 +115,8 @@ const Register = (props) => {
 
   const handleRegister = (e) => {
     e.preventDefault();
-
+    Validleague()
+    if (leaguesacces){
     setMessage("");
     setSuccessful(false);
 
@@ -119,8 +141,9 @@ const Register = (props) => {
         }
       );
     }
-  };
-
+  }
+  else {window.alert("Pas de leagues")}
+  }
   return (
     <div className="col-md-12">
       <div className="card card-container">
@@ -203,6 +226,7 @@ const Register = (props) => {
       </div>
     </div>
   );
+
 };
 
 export default Register;
