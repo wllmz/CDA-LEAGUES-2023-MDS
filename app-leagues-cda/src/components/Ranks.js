@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const API_KEY = 'RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0'; // Votre clé API
+
+const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
 
 function App() {
   const [summonerName, setSummonerName] = useState(''); // Utiliser le state pour stocker le nom d'invocateur entré

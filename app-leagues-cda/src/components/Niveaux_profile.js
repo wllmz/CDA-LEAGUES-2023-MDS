@@ -7,7 +7,7 @@ import AuthService from "../services/auth.service";
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
-    const API_KEY = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
+    const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
     
     const currentUser = AuthService.getCurrentUser();
 

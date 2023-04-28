@@ -13,7 +13,7 @@ import AuthService from "../services/auth.service";
 
 const Register  = () => {
 
-  const api_key = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
+  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
 
   const [username, setUsername] = useState("");
   const [leagues, setLeagues] = useState("");
@@ -24,7 +24,7 @@ const Register  = () => {
   const [leaguesacces, setLeaguesacces] = useState(false)
   
   const Validleague = () => {
-    var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + api_key ; 
+    var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + API_KEY ; 
       
       // handle the api call 
       axios.get(APICallString).then(function(response){
