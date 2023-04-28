@@ -56,16 +56,83 @@ const App = () => {
   
 <div>
   <h2>Informations des dernières parties jouées :</h2>
-  {match.map((matchData, index) => (
-    <div key={index}>
+  {match.map((matchData) => (
+    <div>
       <p>Match ID: {matchData.metadata.matchId}</p>
       <p>Date de début: {matchData.info.gameCreation}</p>
       <p>Durée: {matchData.info.gameDuration}</p>
-      <p>Durée: {matchData.info.participants.champExperience}</p>
-      <p>Résultat: {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</p>
-      {/* Ajouter d'autres informations ici si nécessaire */}
+
+    {matchData.info.participants
+  .filter((participant) => participant.teamId === 100)
+  .map((participant) => (
+    <p>
+      {participant.summonerName} {participant.teamId} {participant.teamPosition} {participant.championName}{" "}
+
+      <img
+        width="100"
+        height="100"
+        src={
+          "https://ddragon.leagueoflegends.com/cdn/11.4.1/img/champion/" +
+          participant.championName +
+          ".png"
+        }
+        alt={`Profile icon of ${participant.summonerName}`}
+      ></img>
+
+      <img
+        width="100"
+        height="100"
+        src={
+          "http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" +
+          participant.profileIcon +
+          ".png"
+        }
+        alt={`Profile icon of ${participant.summonerName}`}
+      ></img>
+    </p>
+  ))}
+
+<p>Résultat: {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</p>
+  
+{matchData.info.participants
+  .filter((participant) => participant.teamId === 200)
+  .map((participant) => (
+    <p>
+      {participant.summonerName} {participant.teamId} {participant.teamPosition} {participant.championName}{" "}
+
+
+      <img
+        width="100"
+        height="100"
+        src={
+          "https://ddragon.leagueoflegends.com/cdn/11.4.1/img/champion/" +
+          participant.championName +
+          ".png"
+        }
+        alt={`Profile icon of ${participant.summonerName}`}
+      ></img>
+
+      <img
+        width="100"
+        height="100"
+        src={
+          "http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" +
+          participant.profileIcon +
+          ".png"
+        }
+        alt={`Profile icon of ${participant.summonerName}`}
+      ></img>
+    </p>
+  ))}
+
+    
+      <p>Résultat: {matchData.info.teams[1].win ? "Victoire" : "Défaite"}</p>
+
     </div>
   ))}
+
+
+  
 </div>
 
   );
