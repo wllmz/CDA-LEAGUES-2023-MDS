@@ -7,7 +7,7 @@ const App = () => {
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
   const API_KEY = "RGAPI-c1a6d3b3-5466-49e3-b4d3-1cbfd5dbf3c0";
-  const COUNT = 2;
+  const COUNT = 1;
  const [puuid, setPuuid] = useState("")
 
   const currentUser = AuthService.getCurrentUser();
@@ -52,16 +52,7 @@ const App = () => {
   
   
   return (
-    <div className=''>        
-      <p id='puuid'> puuid : {playerData.puuid}</p>
-      <div>
-        <h2>Liste des dernières parties jouées :</h2>
-        <ul>
-          {matchIds.map(matchId => (
-            <li key={matchId}>{matchId}</li>
-
-          ))}   
-
+  
 <div>
   <h2>Informations des dernières parties jouées :</h2>
   {match.map((matchData, index) => (
@@ -69,15 +60,13 @@ const App = () => {
       <p>Match ID: {matchData.metadata.matchId}</p>
       <p>Date de début: {matchData.info.gameCreation}</p>
       <p>Durée: {matchData.info.gameDuration}</p>
+      <p>Durée: {matchData.info.participants.champExperience}</p>
       <p>Résultat: {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</p>
       {/* Ajouter d'autres informations ici si nécessaire */}
     </div>
   ))}
 </div>
 
-        </ul>
-      </div>
-    </div>
   );
 };
 
