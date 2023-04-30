@@ -188,12 +188,14 @@ img.equipe {
   background-color: #00000082;
   opacity: 100%; 
   filter: blur(0px);
+  box-shadow: 5px 5px 5px #2d917eb8;
 }
 
 .Victoire-perso:hover {
   background-color: #2d917eb8;
   opacity: 100%; 
   filter: blur(0px);
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
 }
 
 .Victoire-perso {
@@ -218,7 +220,7 @@ img.perso-champion {
 
 .equipe-card-perso {
   text-align: start;
-
+  margin: 15px;
 }
 img.object {
   width: 12%;
@@ -232,4 +234,16 @@ button.perso {
 }
 p#perso {
   font-weight: bold;
+}
+
+.particpantpuid {
+  border: 1px solid #fff;
+  margin-right: -75px;
+}
+
+h2#perso {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid;
+  margin-right: -75px;
 }
