@@ -6,11 +6,11 @@ import axios from 'axios';
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
-    const api_key = "RGAPI-30f2c255-be67-4bc5-b862-97d7e271ce6a";
+       const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
     
     function serachForPlayer(event) {
         // et up the correct api call 
-        var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ searchText + "?api_key=" + api_key ; 
+        var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ searchText + "?api_key=" + API_KEY ; 
         
         // handle the api call 
         axios.get(APICallString).then(function(response){
