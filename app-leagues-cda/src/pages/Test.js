@@ -75,9 +75,9 @@ const App = () => {
 .filter((participant) => participant.teamId === 100)
   .map((participant) => (
     <div className= {matchData.info.teams[0].win ? "Victoire-perso" : "Défaite-perso"}> 
-    <p> Résultat : {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</p>
+    <h2> Résultat : {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</h2>
     <div className={participant.puuid ? "particpantpuid" : "none"}>
-    <img className='perso'
+    <img className='perso-champion'
         src={
           "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
           participant.championName +
@@ -87,21 +87,38 @@ const App = () => {
       ></img> 
        
     <div className="equipe-card-perso">
-    <p>{participant.summonerName}  
-    {participant.teamPosition} 
-    </p>
-    <p>
-       kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists}  {" "} 
-    </p>  
-    <img className='equipe'
-        src={
-          "http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/" +
-          participant.profileIcon +
-          ".png"
-        }
-        alt={`Profile icon of ${participant.summonerName}`}
-      ></img>
-    </div>
+    <p id='perso'>{participant.summonerName}  / Poste :  {participant.teamPosition} </p>
+    <p id='perso'> Kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists}  {" "} </p>  
+
+    <img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
+  alt={``}
+></img><br></br>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
+  alt={``}
+></img>
+
+  
+   </div>
+   <button className='perso'>Voir plus </button>
+  
     </div>
     </div>
     
@@ -114,30 +131,52 @@ const App = () => {
   .filter((participant) => participant.teamId === 200)
   .map((participant) => (
 <div className={matchData.info.teams[1].win ? "Victoire-perso" : "Défaite-perso"}>
-<p> Résultat : {matchData.info.teams[1].win ? "Victoire" : "Défaite"}</p>
+<h2> Résultat : {matchData.info.teams[1].win ? "Victoire" : "Défaite"}</h2>
     <div className={participant.puuid === puuid ? "particpantpuid" : "none"}>
     <div className="equipe-card-perso">
-    <div className='2'> </div>
-    <p>{participant.summonerName} :  {participant.teamPosition} </p>     
-     <p>  kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists} / {" "}</p> 
-     </div>
-      <img className='equipe'
+
+    <img className='perso-champion'
  
-        src={
-          "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
-          participant.championName +
-          ".png"
-        }
-        alt={`Profile icon of ${participant.summonerName}`}
-      ></img>
-      <img className='equipe'
-        src={
-          "http://ddragon.leagueoflegends.com/cdn/13.7.1/img/profileicon/" +
-          participant.profileIcon +
-          ".png"
-        }
-        alt={`Profile icon of ${participant.summonerName}`}
-      ></img>
+ src={
+   "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
+   participant.championName +
+   ".png"
+ }
+ alt={`Profile icon of ${participant.summonerName}`}
+></img>
+
+
+    <div className='2'> </div>
+    <p id='perso'>{participant.summonerName} / Poste :  {participant.teamPosition} </p>     
+     <p id='perso'>  Kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists}  {" "}</p> 
+
+     <img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
+  alt={``}
+></img><br></br>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
+  alt={``}
+></img>
+<img className='object'
+  src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
+  alt={``}
+></img>
+   
+     </div>
+     <button className='perso'>Voir plus </button>
 
 
     </div>
