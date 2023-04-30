@@ -27,6 +27,7 @@ const Register  = () => {
     var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + API_KEY ; 
       
       // handle the api call 
+
       axios.get(APICallString).then(function(response){
           setLeaguesacces(true);
           console.log(leaguesacces);
@@ -118,7 +119,7 @@ const vpassword = (value) => {
     Validleague()
     if (leaguesacces){
     setMessage("");
-    setSuccessful(false);
+    setSuccessful("false");
 
     form.current.validateAll();
 

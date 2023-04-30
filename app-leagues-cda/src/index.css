@@ -130,3 +130,65 @@ li.dropdown {
 a.nav-link.active {
   color: #0592E1;
 }
+
+/* equipe*/
+
+.equipe{
+  display: inline-flex;
+  width: 60%;
+}
+
+img.equipe {
+  height: auto;
+  width: 50px;
+  border-radius: 100%;
+  border: solid #fff;
+  margin:  5px;
+}
+
+.Victoire {
+  
+  border-radius: 10%;
+  background-color: #7ABCAB;
+  padding: 25px;
+  margin: 15px;
+  width: 60%;
+}
+
+.Défaite {
+  
+  border-radius: 10%;
+  background-color: #C96A66;
+  padding: 25px;
+  margin: 15px;
+  width: 60%;
+}
+
+
+.equipe-card {
+  border-top: 1px solid #fff ;
+  display: inline-flex;
+
+}
+
+/* equipe-perso */
+
+.Défaite-perso {
+  background-color: #C96A66;
+  width: 35%;
+  display: inline-block;
+  border-radius: 35px;
+}
+
+.Victoire-perso {
+  background-color: #7ABCAB;
+  width: 35%;
+  display: inline-block;
+  border-radius: 35px;
+}
+
+img.perso {
+  float: right;
+  border-radius: 16px;
+  margin: -70px;
+}
