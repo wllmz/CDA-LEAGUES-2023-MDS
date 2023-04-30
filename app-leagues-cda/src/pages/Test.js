@@ -75,8 +75,9 @@ const App = () => {
 .filter((participant) => participant.teamId === 100)
   .map((participant) => (
     <div className= {matchData.info.teams[0].win ? "Victoire-perso" : "Défaite-perso"}> 
-    <h2> Résultat : {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</h2>
+    <h2 id='perso'> Résultat : {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</h2>
     <div className={participant.puuid ? "particpantpuid" : "none"}>
+    <div className="equipe-card-perso">
     <img className='perso-champion'
         src={
           "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
@@ -86,7 +87,7 @@ const App = () => {
         alt={`Profile icon of ${participant.summonerName}`}
       ></img> 
        
-    <div className="equipe-card-perso">
+   
     <p id='perso'>{participant.summonerName}  / Poste :  {participant.teamPosition} </p>
     <p id='perso'> Kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists}  {" "} </p>  
 
@@ -115,9 +116,9 @@ const App = () => {
   alt={``}
 ></img>
 
-  
+<button className='perso'>Voir plus </button> 
    </div>
-   <button className='perso'>Voir plus </button>
+ 
   
     </div>
     </div>
@@ -131,7 +132,7 @@ const App = () => {
   .filter((participant) => participant.teamId === 200)
   .map((participant) => (
 <div className={matchData.info.teams[1].win ? "Victoire-perso" : "Défaite-perso"}>
-<h2> Résultat : {matchData.info.teams[1].win ? "Victoire" : "Défaite"}</h2>
+<h2 id='perso'> Résultat : {matchData.info.teams[1].win ? "Victoire" : "Défaite"}</h2>
     <div className={participant.puuid === puuid ? "particpantpuid" : "none"}>
     <div className="equipe-card-perso">
 
@@ -174,9 +175,10 @@ const App = () => {
   src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
   alt={``}
 ></img>
-   
+
+<button className='perso'>Voir plus </button>   
      </div>
-     <button className='perso'>Voir plus </button>
+
 
 
     </div>
