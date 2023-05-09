@@ -182,20 +182,15 @@ img.equipe {
   border-radius: 35px;
   padding: 30px;
   text-align: start;
-  filter: blur(1px);
 }
 .Défaite-perso:hover {
   background-color: #00000082;
   opacity: 100%; 
-  filter: blur(0px);
-  box-shadow: 5px 5px 5px #2d917eb8;
 }
 
 .Victoire-perso:hover {
   background-color: #2d917eb8;
   opacity: 100%; 
-  filter: blur(0px);
-  box-shadow: 5px 5px 5px rgb(0, 0, 0);
 }
 
 .Victoire-perso {
@@ -206,7 +201,6 @@ img.equipe {
   border-radius: 35px;
   padding: 30px;
   text-align: start;
-  filter: blur(1px);
 }
 
 
@@ -246,4 +240,25 @@ h2#perso {
   padding: 5px;
   border: 1px solid;
   margin-right: -75px;
+}
+
+.mySlides {display:none;}
+
+button.suivant {
+  margin: 4px;
+  border-radius: 100%;
+  background-color: #ffffff00;
+  border: 1px solid;
+}
+button.precedent {
+  margin: 4px;
+  border-radius: 100%;
+  background-color: #ffffff00;
+  border: 1px solid;
+}
+button.precedent:hover,button.suivant:hover {
+  transition: 0.9s;
+  border-radius: 100%;
+  background-color: #007bff;
+  border: none;
 }

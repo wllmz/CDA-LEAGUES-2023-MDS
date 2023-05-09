@@ -46,7 +46,7 @@ function Champion() {
             <div key={champion.id}>
               <h2>{champion.name}</h2>
               <p>Type: {champion.tags.join(', ')}</p>
-              <img className='champ' src={`https://ddragon.leagueoflegends.com/cdn/11.4.1/img/champion/${champion.image.full}`} alt={champion.name} />
+              <img className='champ' src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${champion.image.full}`} alt={champion.name} />
             </div>
           ))
         :   // else championsSort = nul affiche moi tout !
