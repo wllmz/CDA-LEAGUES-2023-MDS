@@ -11,6 +11,15 @@ const register = (username, email, password, leagues ) => {
   });
 };
 
+const getAllUsers = (username, email, leagues ) => {
+  return axios.get(API_URL + "getallusers", {
+    username,
+    email,
+    leagues,
+  });
+};
+
+
 const login = (username, password) => {
   return axios
     .post(API_URL + "signin", {
@@ -33,6 +42,8 @@ const logout = () => {
   });
 };
 
+
+
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
 };
@@ -41,6 +52,7 @@ const AuthService = {
   register,
   login,
   logout,
+  getAllUsers,
   getCurrentUser,
 }
 
