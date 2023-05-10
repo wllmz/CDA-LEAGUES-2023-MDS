@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
+import AuthService from "../services/auth.service";
 import EventBus from "../common/EventBus";
 
 const BoardAdmin = () => {
+  const getAllUsers = AuthService.getAllUsers();
   const [content, setContent] = useState("");
 
   useEffect(() => {
@@ -28,12 +30,11 @@ const BoardAdmin = () => {
     );
   }, []);
 
+  
   return (
-    <div className="container">
-      <header className="jumbotron">
-        <h3>{content}</h3>
-      </header>
-    </div>
+    <div className="profile">
+ <div> {getAllUsers.username}</div>
+  </div>
   );
 };
 
