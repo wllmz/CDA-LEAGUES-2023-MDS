@@ -17,6 +17,8 @@ module.exports = function(app) {
 
   app.post("/api/auth/comment", controller.createComment);
 
-  app.put("/api/auth/comment", controller.updateComment);
+  app.put("/api/auth/comment/:id", controller.updateComment);
+
+  app.delete("/api/auth/comment/:id", controller.deleteComment);
 
 };
