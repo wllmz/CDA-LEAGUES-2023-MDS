@@ -1,4 +1,5 @@
-const controller = require("../controllers/comment.controller");
+const controllerComment = require("../controllers/comment.controller");
+const { authJwt } = require("../middlewares");
 
 module.exports = function(app) {
   app.use(function(req, res, next) {
@@ -9,16 +10,14 @@ module.exports = function(app) {
     next();
   });
 
+  app.get("/api/auth/comment",[authJwt.verifyToken, authJwt.isAdmin],controllerComment.getAllComment);
 
+  app.get("/api/auth/comment/:id", [authJwt.verifyToken], controllerComment.getCommentById);
 
-  app.get("/api/auth/comment", controller.getAllComment);
+  app.post("/api/auth/comment",[authJwt.verifyToken, authJwt.isAdmin], controllerComment.createComment);
 
-  app.get("/api/auth/comment/:id", controller.getCommentById);
+  app.put("/api/auth/comment/:id",[authJwt.verifyToken, authJwt.isAdmin], controllerComment.updateComment);
 
-  app.post("/api/auth/comment", controller.createComment);
-
-  app.put("/api/auth/comment/:id", controller.updateComment);
-
-  app.delete("/api/auth/comment/:id", controller.deleteComment);
+  app.delete("/api/auth/comment/:id",[authJwt.verifyToken, authJwt.isAdmin], controllerComment.deleteComment);
 
 };
