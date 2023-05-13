@@ -18,6 +18,13 @@ const getAdminBoard = () => {
   return axios.get(API_URL + "admin");
 };
 
+const getAllComment  = (username, body ) => {
+  return axios.post(API_URL, {
+    username,
+    body
+  });
+};
+
 const UserService = {
   getPublicContent,
   getUserBoard,

@@ -23,7 +23,9 @@ const Register  = () => {
   const [message, setMessage] = useState("");
   const [leaguesacces, setLeaguesacces] = useState(false)
   
-  const Validleague = () => {
+  const Validleague = async () => {
+    console.log(888)
+
     var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + API_KEY ; 
       
       // handle the api call 
@@ -31,10 +33,16 @@ const Register  = () => {
       axios.get(APICallString).then(function(response){
           setLeaguesacces(true);
           console.log(leaguesacces);
+          console.log(888)
+          return true;
       
       }).catch(function(error) {
           console.log("error");
+          return false;
+
       });
+
+      
  
   };
 
@@ -114,36 +122,44 @@ const vpassword = (value) => {
     setPassword(password);
   };
 
-  const handleRegister = (e) => {
+  const handleRegister =  async (e) => {
     e.preventDefault();
-    Validleague()
-    if (leaguesacces){
-    setMessage("");
-    setSuccessful("false");
+ 
+  var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + API_KEY ; 
+  axios.get(APICallString).then(function(response){
+    //si league est ok
+      setLeaguesacces(true);
+      setMessage("");
+      setSuccessful("false");
+      form.current.validateAll();
+      if (checkBtn.current.context._errors.length === 0) {
+        AuthService.register(username, email, password, leagues ).then(
+          (response) => {
+            setMessage(response.data.message);
+            setSuccessful(true);
+          },
+          (error) => {
+            //si league et false ou error
+            const resMessage =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+  
+            setMessage(resMessage);
+            setSuccessful(false);
+          }
+        );
+      }
+  
+  }).catch(function(error) {
+      console.log("error");
+      window.alert("Pas de leagues")
+  });
 
-    form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
-      AuthService.register(username, email, password, leagues ).then(
-        (response) => {
-          setMessage(response.data.message);
-          setSuccessful(true);
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
 
-          setMessage(resMessage);
-          setSuccessful(false);
-        }
-      );
-    }
-  }
-  else {window.alert("Pas de leagues")}
   }
   return (
     <div className="col-md-12">
