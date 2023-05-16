@@ -34,7 +34,7 @@ function App() {
   return (
     <div>
         <div className='rank'>
-      <h1>Vérifier le rang d'un joueur de League of Legends</h1>
+      <h2>Vérifier le rang d'un joueur de League of Legends</h2>
       <form onSubmit={handleSubmit}>
         <p>Nom d'invocateur :</p>
         <label htmlFor="summonerName"></label>

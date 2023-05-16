@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 import AuthService from "./services/auth.service";
 
@@ -12,7 +14,7 @@ import BoardUser from "./pages/BoardUser";
 import BoardModerator from "./pages/BoardModerator";
 import BoardAdmin from "./pages/BoardAdmin";
 import Champions from "./pages/Champions";
-import Logo from './assets/img/Logo.png';
+import Logo from './assets/img/Logomobile.png';
 import Ranks from './pages/Ranks';
 import Icon from './assets/img/Icon.png';
 import Test from './pages/Test';
@@ -51,21 +53,20 @@ const App = () => {
   };
 
   return (
-    <div>
-      <nav className="menu">
-       <ul className="nav-list">
-      <li>
-        <NavLink to={"/"} className="navbar">
-        <img className="logo" src={Logo}/>
-        </NavLink>
-        </li>
-        <div className="navbar-nav-1">
-          <li className="nav-item">
+    <div class="container-fluid text-align-center">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<NavLink to={"/home"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+      <li className="nav-item">
             <NavLink to={"/home"} className="nav-link">
              Accueil 
             </NavLink>
           </li>
-
           <li className="nav-item">
             <NavLink to={"/Champions"} className="nav-link">
             Champions 
@@ -77,8 +78,6 @@ const App = () => {
             Classements  
             </NavLink>
           </li>
-        </div>
-
           {showModeratorBoard && (
             <li className="nav-item">
               <NavLink to={"/mod"} className="nav-link">
@@ -93,39 +92,57 @@ const App = () => {
                 Admin Board
               </NavLink>
             </li>
+    
           )}
 
-        {currentUser ? (
+
+{currentUser && (
+        <li className="nav-item"> 
+        <NavLink to={"/profile"} className="nav-link">{currentUser.leagues}
+        </NavLink>
+        </li>
+          )}
+      </ul>
+
+
+
+      {currentUser ? (
           
-          <div className="navbar-nav-2">
-  <li className="nav-item-dropdown"><NavLink to={"/profile"} className="nav-link">{currentUser.leagues}</NavLink></li>
-<li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn"> <img className="icon" src={Icon}/></a>
-    <div class="dropdown-content">
-    <li className="nav-item-dropdown"><NavLink to={"/user"} className="nav-link">Mon profil</NavLink></li>
-  
-    <li className="nav-item-dropdown"><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></li>
-    </div>
-  </li>
-          </div>
+          <ul class="navbar-nav">
+         
+ 
+      <li className="nav-item"><NavLink to={"/user"} className="nav-link">Mon profil</NavLink></li>
+      <li className="nav-item"><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></li>
+</ul>
+
+
         ) : (
-          <div className="navbar-nav-3">
-            <li className="nav-item">
+          <ul class="navbar-nav">
+            <div class="dropdown">
+  <img class="btn btn-secondary dropdown-toggle"   data-bs-toggle="dropdown" aria-expanded="false" className="icon" src={Icon}/>
+  <ul class="dropdown-menu dropdown-menu-dark">
+  <li className="nav-item">
               <NavLink to={"/login"} className="nav-link">
                 Connexion
               </NavLink>
             </li>
-
             <li className="nav-item">
               <NavLink to={"/register"} className="nav-link">
                 S'inscrire  
               </NavLink>
             </li>
-          </div>
+  </ul>
+</div>
+            </ul>
+      
         )}
-        </ul>
-      </nav>
-      <div className="container mt-3">
+ 
+ </div>
+ </nav>
+
+    
+
+
         <Routes>
           <Route exact path={"/"} element={<Home />} />
           <Route exact path={"/home"} element={<Home />} />
@@ -139,10 +156,13 @@ const App = () => {
           <Route path="/admin" element={<BoardAdmin />} />
           <Route path="/test" element={<Test />} />
         </Routes>
-      </div>
+      
 
-      {/* <AuthVerify logOut={logOut}/> */}
+      
     </div>
+
+
+
   );
 };
 
