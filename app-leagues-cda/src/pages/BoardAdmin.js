@@ -57,21 +57,39 @@ const BoardAdmin = () => {
 
   return (
     <div className="profile">
- <div> </div>
- <div>{user ? user[1].username : "Aucun utilisateurs"}</div>
- <div>{comment ? comment[1].body : "Aucun utilisateurs"}</div>
+ <div className="allcomment"> 
 
- <div className="images">
-      {user && user.map((u) => (
-        <div className="image-type">{u.username}</div>
-      ))}
+
+ {comment && comment.length > 0 ? (
+  comment.map((c) => (
+    <div className="image-type">
+      <p>{c._id} {c.body} utilisateur :  {c.userId}</p>
+    </div>
+  ))
+) : (
+  <div className="image-type">
+    <p>salut</p>
+  </div>
+)}
+
+
+ {user && user.length > 0 ? (
+  user.map((u) => (
+    <div className="image-type">
+      <p>{u.username} {u._id}</p>
+    </div>
+  ))
+) : (
+  <div className="image-type">
+    <p>salut</p>
+  </div>
+)}
     </div>
 
-    <div className="images">
-      {comment && comment.map((c) => (
-        <div className="image-type">{c.body}</div>
-      ))}
-    </div>
+
+
+
+  
   </div>
   );
 };

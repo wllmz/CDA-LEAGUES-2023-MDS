@@ -2,23 +2,23 @@ import axios from "axios";
 
 const API_URL = "http://localhost:3000/api/comment";
 
-const getAllComment  = (username, body ) => {
+const getAllComment  = () => {
     return axios.get(API_URL);
   };
 const getCommentById = () => {
-  return axios.get(API_URL);
+  return axios.get(API_URL + "/:id");
 };
 
 const createComment = () => {
-  return axios.get(API_URL);
+  return axios.post(API_URL);
 };
 
 const updateComment = () => {
-  return axios.get(API_URL);
+  return axios.update(API_URL);
 };
 
 const deleteComment = () => {
-    return axios.get(API_URL);
+    return axios.delete(API_URL + "/:id");
   };
 
 const CommentServices = {

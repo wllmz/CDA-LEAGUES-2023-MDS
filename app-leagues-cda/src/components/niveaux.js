@@ -25,26 +25,35 @@ const Niveaux = () => {
     console.log(playerData);
 
     return (
-        
+        <div className='component'>
     
             <div className='niveaux'>
-            <h1>League of legends Player Searcher</h1>
+            <div className="border">
+            <h2>Recherche de joueurs :</h2>
             <p> Veuillez entrer votre nom : </p>
             <input id="summonerName" type="text" placeholder="Entrez un pseudo" onChange={e => setSearchText(e.target.value)}></input>
-            <button onClick={e=> serachForPlayer(e)}> Search for player</button>
-             
+            </div>
+            </div>
+
+            <div className='bouttons'>
+            <button type="button" class="btn btn-outline-primary" onClick={e=> serachForPlayer(e)}> Rechercher</button>
+             </div>
         
+          
             {JSON.stringify(playerData) !='{}' ?
-           <> <p>{playerData.name}</p>
-           <img width="100" height="100" src={"http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
-            <p> Summoner level {playerData.summonerLevel}</p>
-            <p id='puuid'> puuid : {playerData.puuid}</p>
+           <>
+
+           <div className='resulat'>   
+           <h3>{playerData.name}</h3>
+               <p> Summoner level {playerData.summonerLevel}</p>
+           <img className='img-niveaux' width="100" height="100" src={"http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
+             </div>
              </>
            : <> </>
-            
+          
             } 
+
         </div>
-        
     );
 };
 

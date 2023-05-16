@@ -3,7 +3,7 @@ import Champion from '../components/Champion'
 
 const Champions = () => {
     return (
-        <div>
+        <div className="container-fluid text-center">
  <Champion/>
         </div>
     );

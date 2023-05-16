@@ -2,7 +2,7 @@ import React from 'react';
 import Ranks from '../components/Ranks'
 const Rank = () => {
     return (
-        <div>
+        <div className="container-fluid text-center">
              <Ranks/>
         </div>
     );

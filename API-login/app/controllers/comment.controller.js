@@ -14,8 +14,6 @@ exports.getAllComment = async (req, res) => {
 
 exports.createComment = async (req, res) => {
   const userId = req.body.userId;
-  console.log(userId);
-const objectId = mongoose.Types.ObjectId(userId); 
 
 const user = await User.findById(userId);
     if (!user) {
@@ -38,6 +36,8 @@ exports.getCommentById = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+
 
 exports.updateComment = async (req, res) => {
   try {

@@ -6,7 +6,7 @@ import Match_profile from '../components/Match_profile';
 
 const Profile = () => {
   return (
-    <div>
+    <div className="container-fluid text-center">
     <Niveaux_profile/>
 
       <Ranks_profile/>

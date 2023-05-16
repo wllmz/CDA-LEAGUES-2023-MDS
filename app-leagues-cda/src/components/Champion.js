@@ -27,7 +27,7 @@ function Champion() {
 
   return (
     <div>
-      <h1>Liste des champions de League of Legends</h1>
+      <h2>Liste des champions de League of Legends</h2>
       <select id="mySelect" onChange={sort}>
       <option value=""> ...</option>
   <option value="Fighter">Fighter</option>

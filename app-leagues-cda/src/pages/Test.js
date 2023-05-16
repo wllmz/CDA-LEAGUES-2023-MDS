@@ -87,7 +87,7 @@ const App = () => {
 
 
   return (
-<div>
+    <div className="container-fluid text-center">
 <div className="slideshow">
  <div className="mySlides">
       <h2>Informations des dernières parties jouées :</h2>
