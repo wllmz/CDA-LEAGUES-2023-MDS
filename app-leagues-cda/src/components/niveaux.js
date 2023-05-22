@@ -27,7 +27,7 @@ const Niveaux = () => {
     return (
         <div className='component'>
     
-            <div className='niveaux'>
+            <div className='section-bleu'>
             <div className="border">
             <h2>Recherche de joueurs :</h2>
             <p> Veuillez entrer votre nom : </p>
@@ -42,11 +42,14 @@ const Niveaux = () => {
           
             {JSON.stringify(playerData) !='{}' ?
            <>
+           <div className='container'>
 
-           <div className='resulat'>   
+           <div className='resulat'>  
+
            <h3>{playerData.name}</h3>
                <p> Summoner level {playerData.summonerLevel}</p>
            <img className='img-niveaux' width="100" height="100" src={"http://ddragon.leagueoflegends.com/cdn/13.1.1/img/profileicon/" + playerData.profileIconId + ".png"}></img>
+             </div>
              </div>
              </>
            : <> </>

@@ -37,7 +37,7 @@ function App() {
     <div className=''>
      {rank ? (
         <div>
-          <h2>{summonerName} est classé {rank.tier} {rank.rank}</h2> {/* Afficher le rang actuel */}
+          <h4>{summonerName} est classé {rank.tier} {rank.rank}</h4> {/* Afficher le rang actuel */}
           <p>{rank.wins} victoires / {rank.losses} défaites</p> {/* Afficher les statistiques de victoires/défaites */}
         </div>
      ) : (

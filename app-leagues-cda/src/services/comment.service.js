@@ -5,6 +5,7 @@ const API_URL = "http://localhost:3000/api/comment";
 const getAllComment  = () => {
     return axios.get(API_URL);
   };
+  
 const getCommentById = () => {
   return axios.get(API_URL + "/:id");
 };
