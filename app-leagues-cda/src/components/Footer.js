@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import Logo from '../assets/img/Logomobile.png';
 import { NavLink } from "react-router-dom";
+import AuthService from "../services/auth.service";
+
+// import AuthVerify from "./common/AuthVerify";
+import EventBus from "../common/EventBus";
 
 const Footer = () => {
+  const [currentUser, setCurrentUser] = useState(undefined);
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+
+    if (user) {
+      setCurrentUser(user);
+    }
+
+    EventBus.on("logout", () => {
+      logOut();
+    });
+
+    return () => {
+      EventBus.remove("logout");
+    };
+  }, []);
+
+  const logOut = () => {
+    AuthService.logout();
+    setCurrentUser(undefined);
+  };
     return (
        
       
@@ -45,14 +71,30 @@ const Footer = () => {
           <h6 class="text-uppercase fw-bold mb-4">
           Se connecter
           </h6>
-          <p>
-            <a href="#!" class="text-reset"><NavLink to={"/register"} className="nav-link">Inscription </NavLink></a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset"> <NavLink to={"/login"} className="nav-link">Connexion </NavLink></a>
-          </p>
+          {currentUser ? (
+          
+<div>   
+      <p><NavLink to={"/user"} className="nav-link">Mon profil</NavLink></p>
+      <p><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></p>
+ </div>
+
+
+        ) : (
+    <div>
+              <NavLink to={"/login"} className="nav-link">
+              <p>  Connexion </p>
+              </NavLink>
+            
+              <NavLink to={"/register"} className="nav-link">
+          <p>      Inscription </p>  
+              </NavLink>
+          
+      </div>
+        )}
         </div>
     
+
+       
 
 
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">

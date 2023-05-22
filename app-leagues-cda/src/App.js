@@ -19,6 +19,10 @@ import Ranks from './pages/Ranks';
 import Icon from './assets/img/Icon.png';
 import Test from './pages/Test';
 import Footer from './components/Footer';
+import Test_Match from "./components/Test_Match";
+
+
+
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -27,6 +31,8 @@ const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
+  
+
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -133,7 +139,7 @@ const App = () => {
             </li>
             <li className="nav-item">
               <NavLink to={"/register"} className="nav-link">
-                S'inscrire  
+                Inscription  
               </NavLink>
             </li>
   </ul>
@@ -160,6 +166,15 @@ const App = () => {
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
           <Route path="/test" element={<Test />} />
+          <Route path={"/match78"} element={<Test_Match />} />
+          <Route path={`match/:matchIds`} element={<Test_Match />} />
+          <Route path={`conseil/:matchIds`} element={<Test_Match />} />
+
+
+        
+
+      
+      
         </Routes>
       
         <Footer/>
