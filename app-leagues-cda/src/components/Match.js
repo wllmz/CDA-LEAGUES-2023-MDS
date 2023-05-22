@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AuthService from "../services/auth.service";
+import { Routes, Route } from "react-router-dom";
+import TestMatch from "../components/Test_Match";
+
+
 
 const App = () => {
   const [playerData, setPlayerdata] = useState({});
@@ -85,7 +89,17 @@ const App = () => {
     }
   }
 
+  function handleClick(matchIds) {
+    const url = `match/${matchIds}`;
+    window.location.href = url;
+  }
+  
+  function submitClick(matchIds) {
+    const url = `conseil/${matchIds}`;
+    window.location.href = url;
+  }
 
+  
   return (
     <div className="container-fluid text-center">
 <div className="slideshow">
@@ -188,8 +202,8 @@ const App = () => {
                         </div>
                         <div class="row justify-content-md-center" >
                   <div class="col col-lg-6"  >
-                  <button class="btn btn-outline-primary">Voir match </button>
-                        <button class="btn btn-outline-primary">Voir conseil </button>
+                  <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
+                  <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
                         </div>
                         <div class="col">
                         <button className ="precedent"onClick={() => plusDivs(-1)}>&#10094;</button>
@@ -287,8 +301,8 @@ const App = () => {
                         </div>
                         <div class="row justify-content-md-center" >
                   <div class="col col-lg-6"  >
-                        <button class="btn btn-outline-primary">Voir match </button>
-                        <button class="btn btn-outline-primary">Voir conseil </button>
+                  <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
+                  <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
                       </div>
                       <div class="col">  
                         <button className ="precedent"onClick={() => plusDivs(-1)}>&#10094;</button>
