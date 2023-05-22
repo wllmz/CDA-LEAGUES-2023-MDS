@@ -6,7 +6,7 @@ function Champion() {
   const [championsSort, setChampionsSort] = useState ([]) // championSort, setChampionsSort
 
   useEffect(() => {
-    axios.get(`https://ddragon.leagueoflegends.com/cdn/11.4.1/data/en_US/champion.json`)
+    axios.get(`https://ddragon.leagueoflegends.com/cdn/13.7.1/data/en_US/champion.json`)
       .then(response => {
         const championsData = response.data.data;
         const championList = Object.keys(championsData).map(key => championsData[key]);
@@ -26,8 +26,13 @@ function Champion() {
 
 
   return (
-    <div>
-      <h2>Liste des champions de League of Legends</h2>
+    <div className='champion'>
+        <div className='section-bleu-champ'>
+            <div className="border">
+         <h2 id='champion'>  Liste des champions de League of Legends </h2> 
+         </div> 
+         </div>
+         <div className='container'>
       <select id="mySelect" onChange={sort}>
       <option value=""> ...</option>
   <option value="Fighter">Fighter</option>
@@ -43,22 +48,23 @@ function Champion() {
         championsSort.length > 0  // if championsSort = resultat affiche moi valeurs !
         ?
           championsSort.map(champion => (
-            <div key={champion.id}>
-              <h2>{champion.name}</h2>
+            <div className='champ-card' key={champion.id}>
+              <h2 >{champion.name} </h2>
               <p>Type: {champion.tags.join(', ')}</p>
               <img className='champ' src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${champion.image.full}`} alt={champion.name} />
             </div>
           ))
         :   // else championsSort = nul affiche moi tout !
         champions.map(champion => (
-          <div key={champion.id}>
-            <h2>{champion.name}</h2>
+          <div className='champ-card' key={champion.id}>
+            <h2> {champion.name}</h2>
             <p>Type: {champion.tags.join(', ')}</p>
-            <img class ="champ" src={`https://ddragon.leagueoflegends.com/cdn/11.4.1/img/champion/${champion.image.full}`} alt={champion.name} />
+            <img class ="champ" src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${champion.image.full}`} alt={champion.name} />
           </div>
         ))
         
       }
+      </div>
       </div>
     </div>
   );

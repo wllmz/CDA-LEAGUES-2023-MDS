@@ -11,7 +11,7 @@ const required = (value) => {
   if (!value) {
     return (
       <div className="invalid-feedback d-block">
-        This field is required!
+   Ce champ est obligatoire !
       </div>
     );
   }
@@ -72,12 +72,15 @@ const Login = () => {
   };
 
   return (
+  
     <div className="col-md-12">
-      <div className="card card-container-login">
+      
+    <div className="inscription">
+      <div className="card card-container">
       <img className="logomobile" src={Logomobile}/>
         <Form onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Nom utilisateur : </label>
             <Input
               type="text"
               className="form-control"
@@ -91,7 +94,7 @@ const Login = () => {
     
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Mot de passe : </label>
             <Input
               type="password"
               className="form-control"
@@ -103,7 +106,8 @@ const Login = () => {
           </div>
 
           <div className="form-group">
-            <button className="btn btn-primary btn-block" disabled={loading}>
+            <br></br>
+            <button className="btn btn-primary" disabled={loading}>
               {loading && (
                 <span className="spinner-border spinner-border-sm"></span>
               )}
@@ -121,7 +125,9 @@ const Login = () => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
+      </div>
     </div>
+
   );
 };
 

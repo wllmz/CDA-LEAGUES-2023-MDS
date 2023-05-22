@@ -1,5 +1,6 @@
 import React from "react";
 import AuthService from "../services/auth.service";
+import Niveaux_profile from '../components/Niveaux_profile'
 
 
 const BoardUser = () => {
@@ -7,6 +8,7 @@ const BoardUser = () => {
   
   return (
     <div className="container-fluid text-center">
+      <div className="user">
       <header className="jumbotron">
         <h3>
           <strong>Profile:</strong> {currentUser.username}
@@ -20,7 +22,10 @@ const BoardUser = () => {
       <p>
         <strong>Leagues:</strong> {currentUser.leagues}
       </p>
+      <Niveaux_profile/>
 
+
+</div>
     </div>
   );
 };

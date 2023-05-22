@@ -18,6 +18,7 @@ import Logo from './assets/img/Logomobile.png';
 import Ranks from './pages/Ranks';
 import Icon from './assets/img/Icon.png';
 import Test from './pages/Test';
+import Footer from './components/Footer';
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
@@ -110,9 +111,13 @@ const App = () => {
           
           <ul class="navbar-nav">
          
- 
+         <div class="dropdown">
+  <img class="btn btn-secondary dropdown-toggle"   data-bs-toggle="dropdown" aria-expanded="false" className="icon" src={Icon}/>
+  <ul class="dropdown-menu dropdown-menu-dark">
       <li className="nav-item"><NavLink to={"/user"} className="nav-link">Mon profil</NavLink></li>
       <li className="nav-item"><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></li>
+      </ul>
+      </div>
 </ul>
 
 
@@ -157,7 +162,7 @@ const App = () => {
           <Route path="/test" element={<Test />} />
         </Routes>
       
-
+        <Footer/>
       
     </div>
 

@@ -50,7 +50,7 @@ const required = (value) => {
   if (!value) {
     return (
       <div className="invalid-feedback d-block">
-        This field is required!
+        Ce champ est obligatoire !
       </div>
     );
   }
@@ -60,7 +60,7 @@ const validEmail = (value) => {
   if (!isEmail(value)) {
     return (
       <div className="invalid-feedback d-block">
-        This is not a valid email.
+      Cet e-mail n'est pas valide.
       </div>
     );
   }
@@ -70,7 +70,7 @@ const vusername = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="invalid-feedback d-block">
-        The username must be between 3 and 20 characters.
+       Le nom d'utilisateur doit comporter entre 3 et 20 caractères.
       </div>
     );
   }
@@ -80,7 +80,7 @@ const vleagues = (value) => {
   if (value.length < 3 || value.length > 20) {
     return (
       <div className="invalid-feedback d-block">
-        The username must be between 3 and 20 characters.
+     Le nom d'utilisateur  leagues n'est pas valide.
       </div>
     );
   }
@@ -91,7 +91,7 @@ const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <div className="invalid-feedback d-block">
-        The password must be between 6 and 40 characters.
+    Le mot de passe doit comporter entre 6 et 40 caractères.
       </div>
     );
   }
@@ -163,6 +163,7 @@ const vpassword = (value) => {
   }
   return (
     <div className="col-md-12">
+      <div className="inscription">
       <div className="card card-container">
          <img className="logomobile" src={Logomobile}/>
       
@@ -171,7 +172,7 @@ const vpassword = (value) => {
           {!successful && (
             <div>
               <div className="form-group">
-                <label htmlFor="username">Username :</label>
+                <label htmlFor="username">Nom utilisateur :</label>
                 <Input
                   type="text"
                   className="form-control"
@@ -179,12 +180,13 @@ const vpassword = (value) => {
                   value={username}
                   onChange={onChangeUsername}
                   validations={[required, vusername]}
+                
                 />
               </div>
 
           
               <div className="form-group">
-                <label htmlFor="leagues">Leagues name :</label>
+                <label htmlFor="leagues">Nom utilisateur leagues :</label>
                 <Input
                   type="text"
                   className="form-control"
@@ -192,6 +194,7 @@ const vpassword = (value) => {
                   value={leagues}
                   onChange={onChangeLeagues}
                   validations={[required, vleagues]}
+    
                 />
               </div>
 
@@ -204,12 +207,13 @@ const vpassword = (value) => {
                   value={email}
                   onChange={onChangeEmail}
                   validations={[required, validEmail]}
+       
                 />
               </div>
 
 
               <div className="form-group">
-                <label htmlFor="password">Password :</label>
+                <label htmlFor="password">Mot de passe :</label>
                 <Input
                   type="password"
                   className="form-control"
@@ -217,11 +221,13 @@ const vpassword = (value) => {
                   value={password}
                   onChange={onChangePassword}
                   validations={[required, vpassword]}
+     
                 />
               </div>
 
               <div className="form-group">
-                <button className="btn">S'inscrire</button>
+                <br></br>
+                <button  class="btn btn-primary">S'inscrire</button>
               </div>
             </div>
           )}
@@ -241,6 +247,7 @@ const vpassword = (value) => {
           <CheckButton style={{ display: "none" }} ref={checkBtn} />
         </Form>
       </div>
+    </div>
     </div>
   );
 

@@ -22,6 +22,9 @@ const BoardAdmin = () => {
         setComment(value.data.data);
       });
     }
+
+
+    
     if(!user) {
       let test2 = AuthService.getAllUsers()
       const promise2 = Promise.resolve(test2);
