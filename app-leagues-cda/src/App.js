@@ -19,7 +19,8 @@ import Ranks from './pages/Ranks';
 import Icon from './assets/img/Icon.png';
 import Test from './pages/Test';
 import Footer from './components/Footer';
-import Test_Match from "./components/Test_Match";
+import Review_Match from "./components/Review_Match";
+import Review_Conseil from "./components/Review_Conseil";
 
 
 
@@ -166,9 +167,8 @@ const App = () => {
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
           <Route path="/test" element={<Test />} />
-          <Route path={"/match78"} element={<Test_Match />} />
-          <Route path={`match/:matchIds`} element={<Test_Match />} />
-          <Route path={`conseil/:matchIds`} element={<Test_Match />} />
+          <Route path={`match/:matchIds`} element={<Review_Match />} />
+          <Route path={`conseil/:matchIds`} element={<Review_Conseil />} />
 
 
         
