@@ -108,7 +108,7 @@ const App = () => {
       <button class="btn btn-primary" onClick={() => plusDivs(1)}> Commencer </button> 
 </div>
 </div>
-  
+  <div class="">
         {match.map((matchData) => (
           <div className="slideshow">
             <div className="mySlides">
@@ -317,6 +317,7 @@ const App = () => {
             </div>
           </div>
         ))}
+      </div>
       </div>
   );
 };

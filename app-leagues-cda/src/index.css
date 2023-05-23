@@ -477,13 +477,20 @@ h2#match {
 /* user-perso */
 
 
-element.style {
-}
 .user {
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
+/* review match */ 
+
+
+img.equipe {
+  width: 30%;
+}
+#equipe-participant {
+  margin: 5%;
+}
 
 /* jsp */ 
 
