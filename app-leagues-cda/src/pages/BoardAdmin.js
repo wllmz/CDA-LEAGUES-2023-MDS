@@ -7,6 +7,7 @@ import CommentServices from "../services/comment.service";
 
 
 const BoardAdmin = () => {
+  const currentUser = AuthService.getCurrentUser();
   const [content, setContent] = useState();
   const [comment, setComment] = useState();
   const [user, setUser] = useState();
@@ -22,6 +23,16 @@ const BoardAdmin = () => {
         setComment(value.data.data);
       });
     }
+    
+    if(!comment) {
+      let test3 = CommentServices.getCommentById(currentUser.id)
+      const promise3 = Promise.resolve(test3);
+      promise3.then((value) => {
+      setComment(value.data.data);
+      console.log(value);
+      });
+    }
+
 
 
     
@@ -89,10 +100,34 @@ const BoardAdmin = () => {
 )}
     </div>
 
+    <p>
+        <strong>Id:</strong> {currentUser.id}
+      </p>
 
-
-
+      {user && user.length > 0 ? (
+  user.map((u) => (
+    <div className="image-type">
+      <p>{u.b} {u._id}</p>
+    </div>
+  ))
+) : (
+  <div className="image-type">
+    <p>salut</p>
+  </div>
+)}
+    
   
+ {comment && comment.length > 0 ? (
+  comment.map((c) => (
+    <div className="image-type">
+      <p>{c.body} </p>
+    </div>
+  ))
+) : (
+  <div className="image-type">
+    <p>salut</p>
+  </div>
+)}
   </div>
   );
 };

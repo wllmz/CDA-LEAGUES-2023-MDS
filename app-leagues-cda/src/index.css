@@ -469,7 +469,7 @@ button.suivant:hover {
 .match-profile {
   margin: 25px;
 }
-h2#match {
+#match {
   color: #082A69 !important;
   margin: 15px;
 } 
@@ -492,6 +492,19 @@ img.equipe {
   margin: 5%;
 }
 
+
+/*review conseil */
+
+#salut {
+  margin: 5%;
+  width: auto;
+
+}
+.img-conseil {
+  border-radius: 20px;
+  width: 100px;
+  margin-left: 86%;
+}
 /* jsp */ 
 
 
@@ -507,6 +520,7 @@ button.perso {
 }
 p#perso {
   font-weight: bold;
+  margin: 0px;
 }
 
 .particpantpuid {

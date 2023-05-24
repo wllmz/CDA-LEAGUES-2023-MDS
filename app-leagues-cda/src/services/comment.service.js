@@ -6,13 +6,13 @@ const getAllComment  = () => {
     return axios.get(API_URL);
   };
   
-const getCommentById = () => {
-  return axios.get(API_URL + "/:id");
+const getCommentById = (id) => {
+  return axios.get(API_URL + "/" + id);
 };
 
 const createComment = () => {
   return axios.post(API_URL);
-};
+};  
 
 const updateComment = () => {
   return axios.update(API_URL);
