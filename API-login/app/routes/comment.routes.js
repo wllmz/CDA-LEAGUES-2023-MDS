@@ -12,7 +12,10 @@ module.exports = function(app) {
 
   app.get("/api/comment",[authJwt.verifyToken, authJwt.isAdmin],controllerComment.getAllComment);
 
-  app.get("/api/comment/:id", [authJwt.verifyToken], controllerComment.getCommentById);
+  // app.get("/api/comment/:id", [authJwt.verifyToken], controllerComment.getCommentByIdComment);
+
+  
+  app.get("/api/comment/:userId/:gameId", [authJwt.verifyToken], controllerComment.getCommentById);
 
   app.post("/api/comment",[authJwt.verifyToken, authJwt.isAdmin], controllerComment.createComment);
 
