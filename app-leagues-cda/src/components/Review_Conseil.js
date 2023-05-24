@@ -48,7 +48,7 @@ const Review_Conseil = () => {
 
   useEffect(() => {
   if(!comment) {
-    let test3 = CommentServices.getCommentById(currentUser.id)
+    let test3 = CommentServices.getCommentById(currentUser.id + `/${matchIds}`)
     const promise3 = Promise.resolve(test3);
     promise3.then((value) => {
     setComment(value.data.data);
@@ -80,7 +80,7 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h2 id="result">
                         {" "}
@@ -111,7 +111,7 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h3>KDA :</h3>
                       <p id="perso">
@@ -129,37 +129,37 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h3> OBJET : </h3>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
                         alt={``}
                       ></img>
                       <br></br>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
                         alt={``}
                       ></img>
@@ -172,7 +172,7 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h3> RECAP : </h3>
 
@@ -205,9 +205,9 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
-                      <div className="border-profile">
+        
                         <h3> CONSEIL : </h3>
 
                         {comment && comment.length > 0 ? (
@@ -218,7 +218,7 @@ const Review_Conseil = () => {
   ))
 ) : (
   <div className="image-type">
-    <p>salut</p>
+    <p>Pas encore de commentaire attribué </p>
   </div>
 )}
         
@@ -227,7 +227,7 @@ const Review_Conseil = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+      
             ))}
  {matchData.info.participants
             .filter((participant) => participant.puuid === puuid)
@@ -242,7 +242,7 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h2 id="result">
                         {" "}
@@ -273,7 +273,7 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h3>KDA :</h3>
                       <p id="perso">
@@ -281,6 +281,7 @@ const Review_Conseil = () => {
                         Kill : {participant.kills} <br></br>
                         Death : {participant.deaths} <br></br>
                         Assists : {participant.assists} <br></br>
+                        
                       </p>
                     </div>
                   </div>
@@ -291,37 +292,37 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h3> OBJET : </h3>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
                         alt={``}
                       ></img>
                       <br></br>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
                         alt={``}
                       ></img>
                       <img
-                        className="object"
+                        className="object-conseil"
                         src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
                         alt={``}
                       ></img>
@@ -334,7 +335,7 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
                       <h3> RECAP : </h3>
 
@@ -367,9 +368,9 @@ const Review_Conseil = () => {
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="salut"
+                      id="review"
                     >
-                      <div className="border-profile">
+                     
                         <h3> CONSEIL : </h3>
 
                         {comment && comment.length > 0 ? (
@@ -380,14 +381,14 @@ const Review_Conseil = () => {
   ))
 ) : (
   <div className="image-type">
-    <p>salut</p>
+    <p>Pas encore de commentaire attribué</p>
   </div>
 )}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+          
             ))}
         </div>
       ))}

@@ -28,14 +28,28 @@ const user = await User.findById(userId);
 
 };
  
+// exports.getCommentByIdComment = async (req, res) => {
+//   try {
+//     const comments = await ComentServices.getCommentByIdComment(req.params.id);
+//     res.json({ data: comments, status: "success" });
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// };
+
 exports.getCommentById = async (req, res) => {
   try {
-    const comments = await ComentServices.getCommentById(req.params.id);
+    const userId = req.params.userId;
+    const gameId = req.params.gameId;
+
+    const comments = await ComentServices.getCommentById(userId, gameId);
+
     res.json({ data: comments, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 
 
 
