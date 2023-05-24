@@ -31,9 +31,9 @@ const Review_Match = () => {
             {matches.map((matchData, index) => (
                 <div key={index}>
     
-                <h2 >Informations des dernières parties jouées :</h2>
-                <p>Match ID: {matchData.metadata.matchId}</p>
-          <p>Durée: {matchData.info.gameDuration}</p>
+    <h2 id="match">Informations des dernières parties jouées :</h2>
+                <p id='match'>Match ID: {matchData.metadata.matchId}</p>
+          <p id='match'>Durée: {matchData.info.gameDuration}</p>
                 <br></br>
        
               

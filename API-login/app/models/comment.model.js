@@ -5,7 +5,8 @@ const Comment = mongoose.model(
   new mongoose.Schema({
     username:{type: String, required: true},
     body:{type : String, required: true},
-    userId: {type : String, required: true}
+    userId: {type : String, required: true},
+    IdGame: {type : String, required: true}
   })
 );
 

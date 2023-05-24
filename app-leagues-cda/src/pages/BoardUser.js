@@ -22,6 +22,9 @@ const BoardUser = () => {
       <p>
         <strong>Leagues:</strong> {currentUser.leagues}
       </p>
+      <p>
+        <strong>Id:</strong> {currentUser.id}
+      </p>
       <Niveaux_profile/>
 
 

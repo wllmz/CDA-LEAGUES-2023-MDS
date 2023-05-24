@@ -8,8 +8,9 @@ exports.createComment = async (comment) => {
   return await CommentModel.create(comment);
 };
 exports.getCommentById = async (id) => {
-  return await CommentModel.findById(id);
+  return await CommentModel.find({ userId: id });
 };
+
 
 exports.updateComment = async (id, comment) => {
   return await CommentModel.findByIdAndUpdate(id, comment);

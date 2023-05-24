@@ -19,8 +19,8 @@ import Ranks from './pages/Ranks';
 import Icon from './assets/img/Icon.png';
 import Test from './pages/Test';
 import Footer from './components/Footer';
-import Review_Match from "./components/Review_Match";
-import Review_Conseil from "./components/Review_Conseil";
+import Review_Match from "./pages/Review_M";
+import Review_Conseil from "./pages/Review_C";
 
 
 
