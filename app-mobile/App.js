@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from './pages/Home_connexion'
 import Connexion from './pages/Connexion'
 import Inscription from './pages/Inscription'
+import Profile from './pages/Profile'
 
 
 
@@ -52,7 +53,6 @@ function MyStack() {
             },
           }}
          
-         
         
       />
       <Stack.Screen
@@ -75,7 +75,20 @@ function MyStack() {
           },
         }}
       />
+
+<Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ 
+          headerTitle: (props) => <LogoTitle {...props}  />,
+          headerStyle: {
+            backgroundColor: '#0C284D',
+          },
+        }}
+      />
     </Stack.Navigator>
+
+    
   );
 }
 
