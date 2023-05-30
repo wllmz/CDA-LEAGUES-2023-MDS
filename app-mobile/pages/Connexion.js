@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Button, Alert, StyleSheet } from "react-native";
 import AuthService from "../services/auth.service";
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const Login = () => {
@@ -20,28 +22,46 @@ const Login = () => {
     setPassword(text);
   };
 
-  const handleLogin = () => {
 
+  const handleLogin = () => {
     setMessage("");
     setLoading(true);
-
+  
     if (!username || !password) {
       Alert.alert("Erreur", "Veuillez remplir tous les champs");
       setLoading(false);
       return;
-
     }
-
+  
     AuthService.login(username, password)
-      .then(() => {
+      .then((response) => {
         setUsername("");
         setPassword("");
-        nav.navigate("Profile");        
+  
+        if (response && response.data && response.data.username) {
+          AsyncStorage.setItem('username', response.data.username)
+            .then(() => {
+              console.log('Nom d\'utilisateur enregistré avec succès.');
+              nav.navigate("");
+            })
+            .catch((error) => {
+              console.log('Erreur lors de l\'enregistrement du nom d\'utilisateur :', error);
+              nav.navigate("Profile");
+              console.log(error);
+            });
+        } else {
+          console.log('Le nom d\'utilisateur n\'a pas été trouvé dans la réponse.');
+          // Afficher un message d'erreur approprié à l'utilisateur
+          nav.navigate("Profile");
+        }
       })
       .catch((error) => {
-        Alert.alert("Erreur", error.response.data.message);
+        console.log('Erreur lors de la connexion :', error);
+        // Afficher un message d'erreur approprié à l'utilisateur
       });
-  };
+  
+  
+  
 
   return (
     <View style={styles.container}>
@@ -107,7 +127,7 @@ const styles = StyleSheet.create({
       width: '70%',
       marginLeft : 30,     
     },
-  
-});
 
+});
+}
 export default Login;

@@ -1,53 +1,28 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import AuthService from '../services/auth.service';
+import React, { useEffect, useState } from "react";
+import { View, Text } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const Profile = () => {
+  const [username, setUsername] = useState("");
 
-const BoardUser = () => {
-  const currentUser = AuthService.getCurrentUser();
+  useEffect(() => {
+    AsyncStorage.getItem('username')
+      .then((username) => {
+        if (username) {
+          setUsername(username);
+        }
+      })
+      .catch((error) => {
+        console.log('Erreur lors de la récupération du nom d\'utilisateur :', error);
+      });
+  }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.user}>
-        <Text style={styles.title}>
-          Profile: {currentUser.username}
-        </Text>
-      </View>
-      <View style={styles.profileInfo}>
-        <Text style={styles.info}>
-          Email: {currentUser.email}
-        </Text>
-        <Text style={styles.info}>
-          Leagues: {currentUser.leagues}
-        </Text>
-        <Text style={styles.info}>
-          Id: {currentUser.id}
-        </Text>
-      </View>
-  
+    <View>
+      <Text>Nom d'utilisateur : {username}</Text>
+      {/* Autres informations de profil */}
     </View>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  user: {
-    marginBottom: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  profileInfo: {
-    marginBottom: 20,
-  },
-  info: {
-    fontSize: 18,
-  },
-});
-
-export default BoardUser;
+export default Profile;
