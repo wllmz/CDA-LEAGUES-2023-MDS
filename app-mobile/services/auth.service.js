@@ -1,13 +1,13 @@
 import axios from "axios";
 
-const API_URL = "http://10.57.133.88:8080/api/auth/";
+const API_URL = "http://192.168.1.126:8080/api/auth/";
 
 const register = (username, email, password, leagues, id ) => {
   return axios.post(API_URL + "signup", {
     username,
     email,
     password,
-    leagues,
+    leagues, 
     id,
   });
 };
@@ -22,6 +22,7 @@ const getAllUsers = (username, email, leagues ) => {
 
 
 const login = (username, password) => {
+  console.log(username);
   return axios
     .post(API_URL + "signin", {
       username,
@@ -31,7 +32,6 @@ const login = (username, password) => {
       // if (response.data.username) {
       //   localStorage.setItem("user", JSON.stringify(response.data));
       // }
-
       return response.data.username;
     });
 };

@@ -35,21 +35,7 @@ export default function Button({ label, theme }) {
     );
   }
 
-  if (theme === "CONNECTER") {
-    return (
-      <View
-      style={[styles.buttonContainer]}
-      >
-           <Pressable
-          style={[styles.button, { backgroundColor: "#1D6ADE" }]}
-
-        >
-      
-          <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
-        </Pressable>
-    </View>
-    );
-  }
+  
   if (theme === "INSCRIPTION") {
     return (
       <View
@@ -57,7 +43,7 @@ export default function Button({ label, theme }) {
       >
            <Pressable
           style={[styles.button, { backgroundColor: "#1D6ADE" }]}
-          onPress={() => navigation.navigate('2')}
+          onPress={() => navigation.navigate('')}
         >
       
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
