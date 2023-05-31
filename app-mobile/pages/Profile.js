@@ -21,7 +21,9 @@ const Profile = () => {
     <View>
       <Text>Nom d'utilisateur : {username}</Text>
       {/* Autres informations de profil */}
+
     </View>
+    
   );
 };
 
