@@ -22,6 +22,7 @@ const Login = () => {
   const checkBtn = useRef();
 
   const [username, setUsername] = useState("");
+  const [leagues, setLeagues] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -33,7 +34,11 @@ const Login = () => {
     setUsername(username);
   };
 
-  
+  const onChangeLeagues = (e) => {
+    const leagues = e.target.value;
+    setLeagues(leagues);
+  };
+
 
   const onChangePassword = (e) => {
     const password = e.target.value;
@@ -49,7 +54,7 @@ const Login = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username, password).then(
+      AuthService.login(username,leagues, password).then(
         () => {
           navigate("/profile");
           window.location.reload();
@@ -91,6 +96,17 @@ const Login = () => {
             />
           </div>
 
+          <div className="form-group">
+            <label htmlFor="password">Nom d'utilisateur leagues : </label>
+            <Input
+              type="Leagues"
+              className="form-control"
+              name="Leagues"
+              value={leagues}
+              onChange={onChangeLeagues}
+              validations={[required]}
+            />
+          </div>
     
 
           <div className="form-group">

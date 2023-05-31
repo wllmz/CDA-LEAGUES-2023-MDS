@@ -36,16 +36,15 @@ export default function Button({ label, theme }) {
   }
 
   
-  if (theme === "INSCRIPTION") {
+  if (theme === "Match") {
     return (
       <View
-      style={[styles.buttonContainer]}
+      style={[styles.buttonContainer, { color: "#fff", borderRadius: 18 }]}
       >
-           <Pressable
-          style={[styles.button, { backgroundColor: "#1D6ADE" }]}
-          onPress={() => navigation.navigate('')}
+            <Pressable
+          style={[styles.button, { backgroundColor: "#002465" }]}
+          onPress={() => navigation.navigate('Profile')}
         >
-      
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
         </Pressable>
     </View>
@@ -63,7 +62,7 @@ export default function Button({ label, theme }) {
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    width: 140,
+    width: 150,
     height: 60,
     alignItems: 'center',
     justifyContent: 'center',

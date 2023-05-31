@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
   const [username, setUsername] = useState("");
+  const [leagues, setLeagues] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -19,7 +20,7 @@ const Login = () => {
     setMessage("");
     setLoading(true);
 
-    if (!username || !password) {
+    if (!username || !password  || !leagues) {
       Alert.alert("Erreur", "Veuillez remplir tous les champs");
       setLoading(false);
       return;
@@ -27,12 +28,14 @@ const Login = () => {
 
     try {
       await AsyncStorage.setItem('username', username);
+      await AsyncStorage.setItem('leagues', leagues);
       await AsyncStorage.setItem('password', password);
-      AuthService.login(username, password)
+      AuthService.login(username,leagues, password)
         .then(() => {
           setUsername("");
+          setLeagues("");
           setPassword("");
-          nav.navigate("Profile");
+          nav.navigate("Detail");
         })
         .catch((error) => {
           Alert.alert("Erreur", error.response.data.message);
@@ -53,6 +56,15 @@ const Login = () => {
           name="username"
           value={username}
           onChangeText={setUsername}
+        />
+      </View>
+
+      <View style= {styles.section} >
+        <Text>Nom utilisateur :</Text>
+        <TextInput style={styles.label}
+          name="leagues"
+          value={leagues}
+          onChangeText={setLeagues}
         />
       </View>
 
@@ -87,7 +99,7 @@ const styles = StyleSheet.create({
     padding: 50,
     borderRadius: '20',
     width: '80%',
-    height: '45%',
+    height: '60%',
     marginTop: 150, 
     backgroundColor: '#CFCCCC',
     }, 
