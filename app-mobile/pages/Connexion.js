@@ -14,52 +14,33 @@ const Login = () => {
 
  const nav =useNavigation()
 
-  const onChangeUsername = (text) => {
-    setUsername(text);
-  };
-
-  const onChangePassword = (text) => {
-    setPassword(text);
-  };
-
-
-  const handleLogin = () => {
+ 
+  const handleLogin = async () => {
     setMessage("");
     setLoading(true);
-  
+
     if (!username || !password) {
       Alert.alert("Erreur", "Veuillez remplir tous les champs");
       setLoading(false);
       return;
     }
-  
-    AuthService.login(username, password)
-      .then((response) => {
-        setUsername("");
-        setPassword("");
-  
-        if (response && response.data && response.data.username) {
-          AsyncStorage.setItem('username', response.data.username)
-            .then(() => {
-              console.log('Nom d\'utilisateur enregistré avec succès.');
-              nav.navigate("");
-            })
-            .catch((error) => {
-              console.log('Erreur lors de l\'enregistrement du nom d\'utilisateur :', error);
-              nav.navigate("Profile");
-              console.log(error);
-            });
-        } else {
-          console.log('Le nom d\'utilisateur n\'a pas été trouvé dans la réponse.');
-          // Afficher un message d'erreur approprié à l'utilisateur
+
+    try {
+      await AsyncStorage.setItem('username', username);
+      await AsyncStorage.setItem('password', password);
+      AuthService.login(username, password)
+        .then(() => {
+          setUsername("");
+          setPassword("");
           nav.navigate("Profile");
-        }
-      })
-      .catch((error) => {
-        console.log('Erreur lors de la connexion :', error);
-        // Afficher un message d'erreur approprié à l'utilisateur
-      });
-  
+        })
+        .catch((error) => {
+          Alert.alert("Erreur", error.response.data.message);
+        });
+    } catch (error) {
+      Alert.alert("Erreur", "Une erreur s'est produite lors du stockage des données.");
+    }
+  };
   
   
 
@@ -71,7 +52,7 @@ const Login = () => {
         <TextInput style={styles.label}
           name="username"
           value={username}
-          onChangeText={onChangeUsername}
+          onChangeText={setUsername}
         />
       </View>
 
@@ -80,12 +61,13 @@ const Login = () => {
         <TextInput style={styles.label}
           name="password"
           value={password}
-          onChangeText={onChangePassword}
+          onChangeText={setPassword}
           secureTextEntry
         />
       </View>
       <View style={styles.btn}>
-      <Button title ="Se connecter" onPress={handleLogin}> </Button>
+      <Button title="Se connecter" onPress={handleLogin} />
+
 </View>
       {message && <Text>{message}</Text>}
     </View>
@@ -129,5 +111,5 @@ const styles = StyleSheet.create({
     },
 
 });
-}
+
 export default Login;

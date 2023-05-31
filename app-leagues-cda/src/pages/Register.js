@@ -23,28 +23,7 @@ const Register  = () => {
   const [message, setMessage] = useState("");
   const [leaguesacces, setLeaguesacces] = useState(false)
   
-  const Validleague = async () => {
-    console.log(888)
 
-    var APICallString ="https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ leagues + "?api_key=" + API_KEY ; 
-      
-      // handle the api call 
-
-      axios.get(APICallString).then(function(response){
-          setLeaguesacces(true);
-          console.log(leaguesacces);
-          console.log(888)
-          return true;
-      
-      }).catch(function(error) {
-          console.log("error");
-          return false;
-
-      });
-
-      
- 
-  };
 
 const required = (value) => {
   if (!value) {
