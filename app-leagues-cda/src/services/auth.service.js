@@ -21,10 +21,11 @@ const getAllUsers = (username, email, leagues ) => {
 };
 
 
-const login = (username, password) => {
+const login = (username, leagues ,password) => {
   return axios
     .post(API_URL + "signin", {
       username,
+      leagues,
       password,
     })
     .then((response) => {

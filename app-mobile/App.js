@@ -7,7 +7,9 @@ import Home from './pages/Home_connexion'
 import Connexion from './pages/Connexion'
 import Inscription from './pages/Inscription'
 import Profile from './pages/Profile'
-
+import Detail from './pages/Home_Detail'
+import ReviewMatch from './pages/ReviewMatch'
+import ReviewConseil from './pages/ReviewConseil';
 
 
 function LogoTitle() {
@@ -86,7 +88,43 @@ function MyStack() {
           },
         }}
       />
+
+<Stack.Screen
+         name="ReviewMatch"
+        component={ReviewMatch}
+        options={{ 
+          headerTitle: (props) => <LogoTitle {...props}  />,
+          headerStyle: {
+            backgroundColor: '#0C284D',
+          },
+        }}
+      />
+<Stack.Screen
+         name="ReviewConseil"
+        component={ReviewConseil}
+        options={{ 
+          headerTitle: (props) => <LogoTitle {...props}  />,
+          headerStyle: {
+            backgroundColor: '#0C284D',
+          },
+        }}
+      />
+      
+
+      
+<Stack.Screen
+        name="Detail"
+        component={Detail}
+        options={{ 
+          headerTitle: (props) => <LogoTitle {...props}  />,
+          headerStyle: {
+            backgroundColor: '#0C284D',
+          },
+        }}
+      />
     </Stack.Navigator>
+
+    
 
     
   );
