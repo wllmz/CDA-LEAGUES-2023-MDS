@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 export default function Button({ label, theme }) {
     const navigation = useNavigation();
 
+
+
   if (theme === "primary") {
     return (
       <View
@@ -50,6 +52,9 @@ export default function Button({ label, theme }) {
     </View>
     );
   }
+
+    
+
 
   return (
     <View style={styles.buttonContainer}>

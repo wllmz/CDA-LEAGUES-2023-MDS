@@ -8,7 +8,7 @@ const Niveaux = () => {
   const [playerData, setPlayerData] = useState({});
   const [rank, setRank] = useState(null); 
 
-  const API_KEY = "RGAPI-21942840-f365-4ad9-b11b-48909ed810ed"; // Your API key
+  const API_KEY = "RGAPI-189b6337-2a38-4b97-a290-95cbb503fff9"; // Your API key
 
   useEffect(() => {
     AsyncStorage.getItem('leagues')
@@ -102,7 +102,6 @@ const Niveaux = () => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '100%',
     alignItems: 'center',
   }, 
   txt:{
@@ -116,6 +115,7 @@ const styles = StyleSheet.create({
   marginTop: 30,
   borderRadius: 10, 
   alignItems: 'center', 
+  width: 380,
   }
 })
 
