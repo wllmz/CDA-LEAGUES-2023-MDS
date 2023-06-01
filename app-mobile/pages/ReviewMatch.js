@@ -6,7 +6,7 @@ const ReviewMatch = ({ route }) => {
   const { matchId } = route.params;
   const [matches, setMatches] = useState([]);
 
-  const API_KEY = "RGAPI-21942840-f365-4ad9-b11b-48909ed810ed"; // Your API key
+  const API_KEY = "RGAPI-189b6337-2a38-4b97-a290-95cbb503fff9"; // Your API key
 
   useEffect(() => {
     if (matchId) {
@@ -28,11 +28,11 @@ const ReviewMatch = ({ route }) => {
     {matches.map((matchData, index) => (
       <View key={index}>
         <Text style={styles.heading}>Informations des dernières parties jouées :</Text>
-        <Text style={styles.matchId}>Match ID: {matchData.metadata.matchId}</Text>
-        <Text style={styles.duration}>Durée: {matchData.info.gameDuration}</Text>
         <View style={styles.teamsContainer}>
           <View style={styles.teamContainer}>
-            <Text style={styles.result}>{matchData.info.teams[0].win ? "Victoire" : "Défaite"}</Text>
+          <Text style={matchData.info.teams[0].win ? styles.victoireText : styles.defaiteText}>
+            {matchData.info.teams[0].win  ? 'Victoire' : 'Défaite'}
+          </Text>
             {matchData.info.participants
               .filter((participant) => participant.teamId === 100)
               .map((participant, index) => (
@@ -40,11 +40,18 @@ const ReviewMatch = ({ route }) => {
                 key={index}
                 style={matchData.info.teams[0].win ? styles.victoryPlayer : styles.defeatPlayer}
               >
+                
                   <View style={styles.playerContainer}>
                     <Text style={styles.playerText}>
                       Champions : {participant.championName}{'\n'}
                       Roles : {participant.teamPosition}
                     </Text>
+                    <Image
+                    style={styles.championImage}
+                    source={{
+                      uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
+                    }}
+                  />
                     <Text style={styles.playerText}>
                       Kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists}
                     </Text>
@@ -75,17 +82,15 @@ const ReviewMatch = ({ route }) => {
                       source={{ uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png` }}
                     />
                   </View>
-                  <Image
-                    style={styles.championImage}
-                    source={{
-                      uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
-                    }}
-                  />
+             
                 </View>
+                
               ))}
           </View>
           <View style={styles.teamContainer}>
-            <Text style={styles.result}>{matchData.info.teams[1].win ? "Victoire" : "Défaite"}</Text>
+          <Text style={matchData.info.teams[1].win ? styles.victoireText : styles.defaiteText}>
+            {matchData.info.teams[1].win  ? 'Victoire' : 'Défaite'}
+          </Text>
             {matchData.info.participants
               .filter((participant) => participant.teamId === 200)
               .map((participant, index) => (
@@ -98,6 +103,12 @@ const ReviewMatch = ({ route }) => {
                       Champions : {participant.championName}{'\n'}
                       Roles : {participant.teamPosition}
                     </Text>
+                         <Image
+                    style={styles.championImage}
+                    source={{
+                      uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
+                    }}
+                  />
                     <Text style={styles.playerText}>
                       Kill : {participant.kills} / Death : {participant.deaths} / Assists : {participant.assists}
                     </Text>
@@ -129,17 +140,12 @@ const ReviewMatch = ({ route }) => {
                     />
                     
                   </View>
-                  <Image
-                    style={styles.championImage}
-                    source={{
-                      uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
-                    }}
-                  />
+                 
                 </View>
               ))}
           </View>
         </View>
-      </View>
+        </View>
     ))}
   </View>
   </ScrollView>
@@ -147,26 +153,34 @@ const ReviewMatch = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
-container: {
-  flex: 1,
-  alignItems: 'center',
-  width: '100%',
-},
+  container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginLeft: 30
+  },
+
 heading: {
   fontSize: 20,
   fontWeight: 'bold',
   marginTop: 20,
-  marginBottom: 10,
+  marginBottom: 0,
   textAlign: 'center',
+  paddingTop: 10,
+  padding: 50,
+  paddingBottom: 10,
+  color: '#1D2752',
 },
 matchId: {
   fontSize: 16,
   textAlign: 'center',
+  color: '#1D2752',
+    marginBottom: 10,
 },
 duration: {
   fontSize: 16,
   textAlign: 'center',
-  marginBottom: 10,
+  marginBottom: 50,
+  color: '#1D2752',
 },
 teamsContainer: {
   justifyContent: 'space-between',
@@ -174,47 +188,95 @@ teamsContainer: {
 teamContainer: {
   alignItems: 'center',
   marginHorizontal: 5,
+  justifyContent: 'space-between',
 },
-result: {
+
+defaiteText: {
   fontSize: 20,
   fontWeight: 'bold',
   textAlign: 'center',
-  marginBottom: 10,
+  margin: 60,
+  marginBottom: 20,
+  padding: 30, 
+  color: '#1D2752',
+  borderColor: '#1D2752',
+  borderWidth: 5,
+  borderRadius: 10,
+},
+
+victoireText: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  margin: 60,
+  marginBottom: 20,
+  padding: 30, 
+  color: '#1D6ADE',
+  borderColor: '#1D6ADE',
+  borderWidth: 5,
+  borderRadius: 10,
 },
 victoryPlayer: {
   backgroundColor: '#1D6ADE',
-  padding: 10,
+  padding: 5,
   marginVertical: 10,
-  borderRadius: 5,
+  width: '100%',
+  borderRadius: 20,
 },
 defeatPlayer: {
   backgroundColor: '#1D2752',
-  padding: 10,
+  padding: 5, 
+  width: '100%',
   marginVertical: 10,
-  borderRadius: 5,
-
+  borderRadius: 20,
+  
+  
 },
 playerContainer: {
-  marginBottom: 5,
+  marginBottom: 0,
+  borderWidth: 1,
+  borderColor: 'white',
+  margin: 10,
+  borderRadius: 20,
+  alignContent: 'center',
 },
 playerText: {
   color: 'white',
-  marginBottom: 5,
+  textAlign: 'center',
+  margin: 10, 
+  fontWeight: 'bold',
+  padding: 0,
 },
+
+
 itemContainer: {
   flexDirection: 'row',
   justifyContent: 'center',
   marginBottom: 10,
+ padding: 10,
+ borderWidth: 1,
+ borderColor: 'white',
+ margin: 20,
+ borderRadius: 20,
+ alignContent: 'center',
 },
 itemImage: {
-  width: 30,
-  height: 30,
+  width: 40,
+  height: 40,
   marginHorizontal: 2,
+  borderRadius: 10,
+  borderWidth: 1,
+  borderColor: 'white',
+
 },
 championImage: {
-  width: 30,
-  height: 30,
+  width: 50,
+  height: 50,
   alignSelf: 'center',
+  borderRadius: 10,
+  borderWidth: 1,
+  borderColor: 'white',
+
 },
 });
 export default ReviewMatch;
