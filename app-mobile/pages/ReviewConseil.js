@@ -4,7 +4,7 @@ import CommentServices from "../services/comment.service";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_KEY = "RGAPI-189b6337-2a38-4b97-a290-95cbb503fff9"; // Your API key
+const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
 
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
@@ -82,7 +82,7 @@ const ReviewConseil = ({ route }) => {
                         styles.reviewContainer,
                         matchData.info.teams[0].win
                           ? styles.victory
-                          : styles.defeat,
+                          : styles.defeat, styles.shadowProp
                       ]}
                     >
                       <Text style={styles.resultText}>
@@ -109,6 +109,7 @@ const ReviewConseil = ({ route }) => {
                           matchData.info.teams[0].win
                             ? styles.victory
                             : styles.defeat,
+                            styles.shadowProp
                         ]}
                       >
                         <Text style={styles.kdaTitle}>KDA :</Text>
@@ -124,6 +125,7 @@ const ReviewConseil = ({ route }) => {
                           matchData.info.teams[0].win
                             ? styles.victory
                             : styles.defeat,
+                            styles.shadowProp
                         ]}
                       >
                         <Text style={styles.itemTitle}>OBJET :</Text>
@@ -179,6 +181,7 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[0].win
                           ? styles.victory
                           : styles.defeat,
+                          styles.shadowProp
                       ]}
                     >
                       <Text style={styles.recapTitle}>RECAP :</Text>
@@ -201,6 +204,152 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[0].win
                           ? styles.victory
                           : styles.defeat,
+                          styles.shadowProp
+                      ]}
+                    >
+                      <Text style={styles.conseilTitle}>CONSEIL :</Text>
+                    </View>
+                  </View>
+                ))}
+            </View>
+            <View>
+              {matchData.info.participants
+                .filter((participant) => participant.puuid === puuid)
+                .filter((participant) => participant.teamId === 200)
+                .map((participant) => (
+                  <View
+                    key={participant.puuid}
+                    style={styles.participantContainer}
+                  >
+                    <View
+                      style={[
+                        styles.reviewContainer,
+                        matchData.info.teams[1].win
+                          ? styles.victory
+                          : styles.defeat,
+                          styles.shadowProp
+                      ]}
+                    >
+                      <Text style={styles.resultText}>
+                        {matchData.info.teams[1].win ? "VICTOIRE" : "DEFAITE"}
+                      </Text>
+                      <Text style={styles.personalText}>
+                        Champions : {participant.championName}
+                        {"   "}
+                        {"\n"}
+                        Roles : {participant.teamPosition}
+                      </Text>
+                      <Image
+                        style={styles.championImage}
+                        source={{
+                          uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
+                        }}
+                        alt={`Profile icon of ${participant.championName}`}
+                      />
+                    </View>
+                    <View style={styles.kdaContainer}>
+                      <View
+                        style={[
+                          styles.kdaInfoContainer,
+                          matchData.info.teams[1].win
+                            ? styles.victory
+                            : styles.defeat,
+                            styles.shadowProp
+                        ]}
+                      >
+                        <Text style={styles.kdaTitle}>KDA :</Text>
+                        <Text style={styles.kdaText}>
+                          Kill : {participant.kills} {"\n"}
+                          Death : {participant.deaths} {"\n"}
+                          Assists : {participant.assists} {"\n"}
+                        </Text>
+                      </View>
+                      <View
+                        style={[
+                          styles.itemInfoContainer,
+                          matchData.info.teams[1].win
+                            ? styles.victory
+                            : styles.defeat,
+                            styles.shadowProp
+                        ]}
+                      >
+                        <Text style={styles.itemTitle}>OBJET :</Text>
+                        <View style={styles.itemImagesContainer}>
+                          <Image
+                            style={styles.itemImage}
+                            source={{
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`,
+                            }}
+                            alt={``}
+                          />
+                          <Image
+                            style={styles.itemImage}
+                            source={{
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`,
+                            }}
+                            alt={``}
+                          />
+                          <Image
+                            style={styles.itemImage}
+                            source={{
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`,
+                            }}
+                            alt={``}
+                          />
+                          <Image
+                            style={styles.itemImage}
+                            source={{
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`,
+                            }}
+                            alt={``}
+                          />
+                          <Image
+                            style={styles.itemImage}
+                            source={{
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`,
+                            }}
+                            alt={``}
+                          />
+                          <Image
+                            style={styles.itemImage}
+                            source={{
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`,
+                            }}
+                            alt={``}
+                          />
+                        </View>
+                      </View>
+                    </View>
+                    <View
+                      style={[
+                        styles.recapInfoContainer,
+                        matchData.info.teams[1].win
+                          ? styles.victory
+                          : styles.defeat,
+                          styles.shadowProp
+                      ]}
+                    >
+                      <Text style={styles.recapTitle}>RECAP :</Text>
+                      <Text style={styles.recapText}>
+                        Dommage envoyé :{" "}
+                        {participant.totalDamageDealtToChampions} {"\n"}
+                        Dommage reçu : {participant.totalDamageTaken} {"\n"}
+                        Score vision : {participant.visionScore} {"\n"}
+                        Minions :{" "}
+                        {participant.totalMinionsKilled +
+                          participant.totalAllyJungleMinionsKilled +
+                          participant.totalEnemyJungleMinionsKilled}
+                        {"\n"}
+                        Gold : {participant.goldEarned} {"\n"}
+                      </Text>
+                    </View>
+                    <View
+                      style={[
+                        styles.conseilInfoContainer,
+                        matchData.info.teams[1].win
+                          ? styles.victory
+                          : styles.defeat,
+                          styles.shadowProp
                       ]}
                     >
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
@@ -362,6 +511,12 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 8,
     textAlign: "center",
+  },
+  shadowProp: {
+    shadowColor: '#AFAFAF',
+    shadowOffset: {width: 5, height: 5},
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
 });
 

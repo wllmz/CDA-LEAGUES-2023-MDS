@@ -8,7 +8,7 @@ const Niveaux = () => {
   const [playerData, setPlayerData] = useState({});
   const [rank, setRank] = useState(null); 
 
-  const API_KEY = "RGAPI-189b6337-2a38-4b97-a290-95cbb503fff9"; // Your API key
+  const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
 
   useEffect(() => {
     AsyncStorage.getItem('leagues')
@@ -66,7 +66,8 @@ const Niveaux = () => {
 
   return (
     <View style={styles.container} >
-        <View style={styles.section} >
+        <View style={[styles.section, styles.shadowProp]} >
+        <View style={styles.section2} >
       {Object.keys(playerData).length !== 0 ? (
         <>
           <Image
@@ -95,6 +96,7 @@ const Niveaux = () => {
     </View>
     </View>
     </View>
+    </View>
   );
 };
 
@@ -105,18 +107,36 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   }, 
   txt:{
-    fontSize: 20,
+    fontSize: 15,
     color: 'white',
     margin: 5, 
+    textAlign: 'center',
   }, 
   section: {
-  backgroundColor: '#1D6ADE', 
-  padding : 30,
-  marginTop: 30,
+  backgroundColor: '#0C284D', 
+  padding : 20,
+  marginTop: 20,
   borderRadius: 10, 
   alignItems: 'center', 
-  width: 380,
-  }
+  width: 350,
+  marginBottom: 20,
+  },
+  section2: {
+    backgroundColor: '#0C284D', 
+    alignItems: 'center', 
+    padding: 10,
+    width: 250,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 10,
+
+    },
+    shadowProp: {
+      shadowColor: '#AFAFAF',
+      shadowOffset: {width: 8, height: 8},
+      shadowOpacity: 1,
+      shadowRadius: 1,
+    },
 })
 
 export default Niveaux;

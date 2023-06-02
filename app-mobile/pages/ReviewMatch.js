@@ -6,7 +6,7 @@ const ReviewMatch = ({ route }) => {
   const { matchId } = route.params;
   const [matches, setMatches] = useState([]);
 
-  const API_KEY = "RGAPI-189b6337-2a38-4b97-a290-95cbb503fff9"; // Your API key
+  const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
 
   useEffect(() => {
     if (matchId) {
@@ -38,7 +38,7 @@ const ReviewMatch = ({ route }) => {
               .map((participant, index) => (
                 <View
                 key={index}
-                style={matchData.info.teams[0].win ? styles.victoryPlayer : styles.defeatPlayer}
+                style={[matchData.info.teams[0].win ? styles.victoryPlayer : styles.defeatPlayer, styles.shadowProp]}
               >
                 
                   <View style={styles.playerContainer}>
@@ -49,7 +49,7 @@ const ReviewMatch = ({ route }) => {
                     <Image
                     style={styles.championImage}
                     source={{
-                      uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
+                      uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/${participant.championName}.png`,
                     }}
                   />
                     <Text style={styles.playerText}>
@@ -96,7 +96,7 @@ const ReviewMatch = ({ route }) => {
               .map((participant, index) => (
                 <View
                   key={index}
-                  style={matchData.info.teams[1].win ? styles.victoryPlayer : styles.defeatPlayer}
+                  style={[matchData.info.teams[1].win ? styles.victoryPlayer : styles.defeatPlayer, styles.shadowProp ]}
                 >
                   <View style={styles.playerContainer}>
                     <Text style={styles.playerText}>
@@ -106,7 +106,7 @@ const ReviewMatch = ({ route }) => {
                          <Image
                     style={styles.championImage}
                     source={{
-                      uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/${participant.championName}.png`,
+                      uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/${participant.championName}.png`,
                     }}
                   />
                     <Text style={styles.playerText}>
@@ -277,6 +277,12 @@ championImage: {
   borderWidth: 1,
   borderColor: 'white',
 
+},
+shadowProp: {
+  shadowColor: '#AFAFAF',
+  shadowOffset: {width: 8, height: 8},
+  shadowOpacity: 1,
+  shadowRadius: 1,
 },
 });
 export default ReviewMatch;

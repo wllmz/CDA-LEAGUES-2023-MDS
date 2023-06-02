@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, Alert, StyleSheet } from "react-native";
+import { View, Text, TextInput, Button, Alert, StyleSheet, Pressable } from "react-native";
 import AuthService from "../services/auth.service";
 import { useNavigation } from '@react-navigation/native';
 import { isEmail } from 'validator';
@@ -70,52 +70,62 @@ const Inscription = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.form}>
+      <View style={[styles.form, styles.shadowProp]}>
         <View style={styles.section}>
-          <Text>Nom utilisateur :</Text>
+        <Text style= {styles.Text}>Nom utilisateur :</Text>
           <TextInput
             style={styles.label}
             name="username"
             minLength={8}
             value={username}
+            placeholder="Entrer nom utilisateur :"
             onChangeText={setUsername}
           />
         </View>
 
         <View style={styles.section}>
-          <Text>Email :</Text>
+        <Text style= {styles.Text}>Email :</Text>
           <TextInput
             style={styles.label}
             name="email"
             value={email}
+            placeholder="Entrer email:"
             onChangeText={setEmail}
           />
         </View>
 
         <View style={styles.section}>
-          <Text>Nom utilisateur leagues :</Text>
+        <Text style= {styles.Text}>Nom utilisateur leagues :</Text>
           <TextInput
             style={styles.label}
             name="leagues"
             value={leagues}
+            placeholder="Entrer nom utilisateur leagues :"
             onChangeText={setLeagues}
           />
         </View>
 
         <View style={styles.section}>
-          <Text>Mot de passe :</Text>
+        <Text style= {styles.Text}>Mot de passe :</Text>
           <TextInput
             style={styles.label}
             name="password"
             value={password}
+            placeholder="Entrer mot de passe :"
             onChangeText={setPassword}
             secureTextEntry
           />
         </View>
-
-        <View style={styles.btn}>
-          <Button title="S'inscrire" onPress={handleRegister} />
-        </View>
+        <View
+      style={styles.btn}
+      >
+        <Pressable
+          style={[styles.button]}
+          onPress={handleRegister}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}> INSCRIPTION </Text>
+        </Pressable>
+    </View>
       </View>
     </View>
   );
@@ -133,27 +143,47 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     width: '85%',
     height: '65%',
-    marginTop: 100,
-    backgroundColor: '#CFCCCC',
+    marginTop: 40,
+    backgroundColor: '#fff', 
+    borderRadius: 20, 
+
   },
-  label: {
-    margin: 5,
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 10,
+  label: { 
+    padding: 10, 
+    borderBottomWidth: 2,
+    borderColor: '#002465', 
+
   },
   section: {
     marginTop: 20,
-    marginBottom: 10,
   },
   btn: {
-    marginTop: 30,
-    backgroundColor: '#1D6ADE',
-    padding: 10,
-    borderRadius: 20,
-    width: '70%',
-    marginLeft: 45,
+    marginTop: 50, 
+    padding : 15,
+    borderRadius: 10,
+    width: '60%',
+    marginLeft : 55,     
+    borderColor: "#002465", 
+    backgroundColor:  "#002465", 
   },
+  Text: {
+    fontSize: 15, 
+    fontWeigh: "bold",
+    color: "#002465",
+    paddingBottom: 5, 
+  }, 
+  buttonLabel: {
+    textAlign: "center", 
+    fontWeight: "bold",
+    fontSize: 15, 
+  }, 
+  shadowProp: {
+    shadowColor: '#171717',
+    shadowOffset: {width: 20, height: 30},
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+  },
+
 });
 
 export default Inscription;

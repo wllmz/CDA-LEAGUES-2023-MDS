@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, Button, Alert, StyleSheet } from "react-native";
+import { View, Text, TextInput, Alert, StyleSheet, Pressable } from "react-native";
 import AuthService from "../services/auth.service";
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -49,41 +49,53 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-        <View style={styles.form}>
+        <View style={[styles.form, styles.shadowProp]}>
         <View style= {styles.section} >
-        <Text>Nom utilisateur :</Text>
+        <Text style= {styles.Text}>Nom utilisateur :</Text>
         <TextInput style={styles.label}
           name="username"
           value={username}
           onChangeText={setUsername}
+          placeholder="Entrer nom d'utilisateur :"
         />
       </View>
 
       <View style= {styles.section} >
-        <Text>Nom utilisateur :</Text>
+      <Text style= {styles.Text}>Nom utilisateur leagues :</Text>
         <TextInput style={styles.label}
           name="leagues"
           value={leagues}
           onChangeText={setLeagues}
+          placeholder="Entrer nom utilisateur leagues :"
         />
       </View>
 
       <View style= {styles.section} >
-        <Text>Mot de passe :</Text>
+        <Text style= {styles.Text}>Mot de passe :</Text>
         <TextInput style={styles.label}
           name="password"
           value={password}
           onChangeText={setPassword}
+          placeholder="Entrer mot de passe :"
           secureTextEntry
         />
       </View>
-      <View style={styles.btn}>
-      <Button title="Se connecter" onPress={handleLogin} />
+
+      <View
+      style={styles.btn}
+      >
+        <Pressable
+          style={[styles.button]}
+          onPress={handleLogin}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}> CONNEXION </Text>
+        </Pressable>
+    </View>
 
 </View>
       {message && <Text>{message}</Text>}
     </View>
-    </View>
+  
     
   );
 };
@@ -96,18 +108,20 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   form: {
+    paddingTop: 20,
     padding: 50,
-    borderRadius: '20',
     width: '80%',
     height: '60%',
-    marginTop: 150, 
-    backgroundColor: '#CFCCCC',
+    marginTop: 40, 
+    backgroundColor: '#FAFAFA',
+    borderRadius: 20, 
+
     }, 
-    label: {
-      margin: 5, 
-      padding: 10,
-      backgroundColor: 'white', 
-      borderRadius: 10, 
+    label: { 
+      padding: 10, 
+      borderBottomWidth: 2,
+      borderColor: '#002465', 
+
     },
     section : {
   marginTop: 20,
@@ -115,13 +129,31 @@ const styles = StyleSheet.create({
     }, 
     btn: {
       marginTop: 30, 
-      backgroundColor: '#1D6ADE',
-      padding : 10,
-      borderRadius: 20,
+      padding : 15,
+      borderRadius: 10,
       width: '70%',
       marginLeft : 30,     
+      borderColor: "#002465", 
+      backgroundColor:  "#002465", 
+      
     },
-
+    Text: {
+      fontSize: 15, 
+      fontWeigh: "bold",
+      color: "#002465",
+      paddingBottom: 5, 
+    }, 
+    buttonLabel: {
+      textAlign: "center", 
+      fontWeight: "bold",
+    }, 
+    shadowProp: {
+      shadowColor: '#171717',
+      shadowOffset: {width: 20, height: 40},
+      shadowOpacity: 0.2,
+      shadowRadius: 3,
+    },
+  
 });
 
 export default Login;
