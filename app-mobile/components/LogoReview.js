@@ -12,6 +12,7 @@ export default function LogoImage({ LogoImageSource }) {
 const styles = StyleSheet.create({
   image: {
   resizeMode: 'contain',
-width: 300,
+width: 300, 
+
   },
 });

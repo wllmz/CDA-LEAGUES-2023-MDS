@@ -37,7 +37,7 @@ const Home = () => {
       </View>
   
       <View style={styles.boutonContainer}>
-        <Button theme="Match" label="Voir détail match"  />
+        <Button theme="Match" label="VOIR DÉTAIL"  />
       </View>
       <View style={styles.imageContainer-2}>
         <ImageViewer placeholderImageSource={PlaceholderImage} />

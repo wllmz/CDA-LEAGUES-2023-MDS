@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Button,
   ScrollView,
+  Pressable
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
@@ -21,7 +22,7 @@ const Profile = () => {
 
   const navigation = useNavigation();
 
-  const API_KEY = "RGAPI-189b6337-2a38-4b97-a290-95cbb503fff9"; // Your API key
+  const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
@@ -109,23 +110,17 @@ const Profile = () => {
         </View>
 
         {match.map((matchData) => (
+         
           <View style={{ marginVertical: 10 }}>
             {matchData.info.participants
               .filter((participant) => participant.puuid === puuid)
               .filter((participant) => participant.teamId === 100)
               .map((participant) => (
                 <View
-                  style={{
-                    backgroundColor: matchData.info.teams[0].win
-                      ? "#1D6ADE"
-                      : "#1D2752",
-                    padding: 10,
-                    width: 380,
-                    borderRadius: 20,
-                  }}
-                >
-                  <Text style={styles.perso}>
-                    {matchData.info.teams[0].win ? "Victoire" : "Défaite"}
+                style={[matchData.info.teams[0].win ? styles.victoryPlayer : styles.defeatPlayer, styles.shadowProp ]}
+              >
+                  <Text style={styles.resulat}>
+                    {matchData.info.teams[0].win ? "VICTOIRE" : "DEFAITE"}
                   </Text>
                   <View
                     style={
@@ -145,11 +140,6 @@ const Profile = () => {
                             {"\n"}
                             Roles : {participant.teamPosition}
                           </Text>
-                          <Text style={styles.perso}>
-                            Kill : {participant.kills} / Death :{" "}
-                            {participant.deaths} / Assists :{" "}
-                            {participant.assists}
-                          </Text>
                         </View>
                         <Image
                           style={styles.imgNiveaux}
@@ -159,55 +149,29 @@ const Profile = () => {
                         />
                       </View>
 
-                      <View style={styles.items}>
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`,
-                          }}
-                        />
-                      </View>
+                  
                     </View>
-                    <View style={styles.btn}>
-                      <Button
-                        title="Voir match"
-                        onPress={() => submitClick(matchData.metadata.matchId)}
-                      />
-                      <Button
-                        style={styles.button}
-                        title="Voir conseil"
-                        onPress={() => handleClick(matchData.metadata.matchId)}
-                      />
+                    <View style={styles.btncontainer}>
+                    <View
+      style={styles.btn}
+      >
+        <Pressable
+          style={[styles.button]}
+          onPress={() => submitClick(matchData.metadata.matchId)}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}> VOIR MATCH </Text>
+        </Pressable>
+    </View>
+    <View
+      style={styles.btn}
+      >
+        <Pressable
+          style={[styles.button]}
+          onPress={() => handleClick(matchData.metadata.matchId)}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}> VOIR CONSEIL </Text>
+        </Pressable>
+    </View>
                     </View>
                   </View>
                 </View>
@@ -217,26 +181,13 @@ const Profile = () => {
               .filter((participant) => participant.puuid === puuid)
               .filter((participant) => participant.teamId === 200)
               .map((participant) => (
-                <View
-                  style={{
-                    backgroundColor: matchData.info.teams[1].win
-                      ? "#1D6ADE"
-                      : "#1D2752",
-                    padding: 10,
-                    width: 380,
-                    borderRadius: 20,
-                  }}
+          
+                 <View
+                  style={[matchData.info.teams[1].win ? styles.victoryPlayer : styles.defeatPlayer, styles.shadowProp ]}
                 >
-                  <Text style={styles.perso}>
-                    {matchData.info.teams[1].win ? "Victoire" : "Défaite"}
+                   <Text style={styles.resulat}>
+                    {matchData.info.teams[0].win ? "VICTOIRE" : "DEFAITE"}
                   </Text>
-                  <View
-                    style={
-                      matchData.info.teams[1].win
-                        ? styles.victoirePerso
-                        : styles.defaitePerso
-                    }
-                  >
                     <View
                       style={participant.puuid ? styles.container : styles.none}
                     >
@@ -248,11 +199,6 @@ const Profile = () => {
                             {"\n"}
                             Roles : {participant.teamPosition}
                           </Text>
-                          <Text style={styles.perso}>
-                            Kill : {participant.kills} / Death :{" "}
-                            {participant.deaths} / Assists :{" "}
-                            {participant.assists}
-                          </Text>
                         </View>
                         <Image
                           style={styles.imgNiveaux}
@@ -261,59 +207,31 @@ const Profile = () => {
                           }}
                         />
                       </View>
-
-                      <View style={styles.items}>
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`,
-                          }}
-                        />
-                        <Image
-                          style={styles.item}
-                          source={{
-                            uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`,
-                          }}
-                        />
-                      </View>
                     </View>
-                    <View style={styles.btn}>
-                      <Button
-                        style={styles.item}
-                        title="Voir match"
-                        onPress={() => submitClick(matchData.metadata.matchId)}
-                      />
-                      <Button
-                        title="Voir conseil"
-                        onPress={() => handleClick(matchData.metadata.matchId)}
-                      />
+                    <View style={styles.btncontainer}>
+                    <View
+      style={styles.btn}
+      >
+        <Pressable
+          style={[styles.button]}
+          onPress={() => submitClick(matchData.metadata.matchId)}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}> VOIR MATCH </Text>
+        </Pressable>
+    </View>
+    <View
+      style={styles.btn}
+      >
+        <Pressable
+          style={[styles.button]}
+          onPress={() => handleClick(matchData.metadata.matchId)}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}> VOIR CONSEIL </Text>
+        </Pressable>
+    </View>
                     </View>
                   </View>
-                </View>
+       
               ))}
           </View>
         ))}
@@ -325,55 +243,74 @@ const Profile = () => {
 export default Profile;
 
 const styles = StyleSheet.create({
-  items: {
-    margin: 20,
-    flexDirection: "row",
-    padding: 5,
-    flexWrap: "wrap",
-    borderWidth: 1,
-    borderRadius: 20,
-    borderColor: "#FFFFFF",
-    padding: 20,
-  },
-  item: {
-    width: 30,
-    height: 30,
-    margin: 5,
-    borderRadius: 6,
-    marginLeft: 10,
-    borderWidth: 1,
-    borderColor: 'white',
-  },
+
   imgNiveaux: {
     width: 85,
     height: 85,
-    marginLeft: 5,
+    marginLeft: 60,
     borderWidth: 1,
     borderRadius: 20,
     borderColor: "#FFFFFF",
     marginTop: 5,
+    alignContent: "center"
   },
   perso: {
     fontSize: 15,
     color: "white",
     margin: 5,
     fontWeight: "bold",
+    textAlign: "center",
   },
   recap: {
-    flexDirection: "row",
-    width: "100%",
-    flexWrap: "wrap",
+    width: "80%",
+    borderWidth: 1,
+    borderRadius: 20,
+    borderColor: "#FFFFFF",
+    padding: 15,
+    marginLeft: 30,
+
   },
-  btn: {
+  btncontainer: {
     flexDirection: "row",
-    marginHorizontal: 80,
     color: "white",
   },
   recapKDA: {
     padding: 5,
-    borderWidth: 1,
-    borderRadius: 20,
-    borderColor: "#FFFFFF",
     margin: 5,
+  },
+  btn: {
+    marginTop: 20, 
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: "#fff", 
+    borderWidth: 1,
+
+  },
+  resulat:{
+    color: "#fff",
+    fontWeight: "bold",
+    textAlign: "center",
+    padding: 10,
+  },
+  victoryPlayer: {
+    backgroundColor: '#1D6ADE',
+    padding: 10,
+    marginVertical: 10,
+    width: '100%',
+    borderRadius: 20,
+  },
+  defeatPlayer: {
+    backgroundColor: '#1D2752',
+    padding: 10, 
+    width: '100%',
+    marginVertical: 10,
+    borderRadius: 20,    
+  },
+  shadowProp: {
+    shadowColor: '#AFAFAF',
+    shadowOffset: {width: 5, height: 5},
+    shadowOpacity: 1,
+    shadowRadius: 1,
   },
 });

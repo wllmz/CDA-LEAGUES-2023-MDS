@@ -15,8 +15,10 @@ const Home = () => {
   return (
     <View style={styles.container}>
                <View style={styles.imageContainer}>
-                <Text>Bienvenue sur </Text>
+               <Text style={styles.bienvenue}>Bienvenue sur </Text>   
+               <View style={styles.image}> 
         <LogoReview LogoImageSource={LogoImage} />
+        </View>
       </View>
   
       <View style={styles.boutonContainer}>
@@ -34,9 +36,11 @@ const styles = StyleSheet.create({
     container: {
       backgroundColor: '#1D6ADE',
       alignItems: 'center',
+      height: '100%',
     },
     imageContainer: {
-      paddingTop : 200,
+      paddingTop : 100,
+  
     },
     boutonContainer: {
       alignItems: 'center',
@@ -44,6 +48,16 @@ const styles = StyleSheet.create({
       justifyContent: "center",
       padding : 50,
     },
+    bienvenue: {
+      fontSize : 30,
+      color: 'white',
+        }, 
+        image: {
+          borderWidth: 1,
+          borderColor: 'white',
+          borderRadius: 30, 
+          padding: 10,
+        }
   });
   
   
