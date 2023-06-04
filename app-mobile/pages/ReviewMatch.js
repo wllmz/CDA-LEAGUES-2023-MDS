@@ -1,13 +1,16 @@
 import { View, Text, Image, StyleSheet, ScrollView  } from "react-native";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Swiper from 'react-native-swiper';
+
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 const ReviewMatch = ({ route }) => {
   const { matchId } = route.params;
   const [matches, setMatches] = useState([]);
 
-  const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
-
+ 
   useEffect(() => {
     if (matchId) {
       axios
@@ -23,19 +26,23 @@ const ReviewMatch = ({ route }) => {
   }, [matchId]);
   // Utilisez l'ID du match pour afficher les détails du match ou effectuer d'autres actions
   return (
-    <ScrollView>
+            <ScrollView>
     <View style={styles.container}>
     {matches.map((matchData, index) => (
       <View key={index}>
-        <Text style={styles.heading}>Informations des dernières parties jouées :</Text>
-        <View style={styles.teamsContainer}>
+        <Swiper showsButtons={true} style={styles.swipper}>
           <View style={styles.teamContainer}>
+          <ScrollView
+           showsVerticalScrollIndicator={false}
+           showsHorizontalScrollIndicator={false}
+           >
           <Text style={matchData.info.teams[0].win ? styles.victoireText : styles.defaiteText}>
             {matchData.info.teams[0].win  ? 'Victoire' : 'Défaite'}
           </Text>
             {matchData.info.participants
               .filter((participant) => participant.teamId === 100)
               .map((participant, index) => (
+   
                 <View
                 key={index}
                 style={[matchData.info.teams[0].win ? styles.victoryPlayer : styles.defeatPlayer, styles.shadowProp]}
@@ -84,10 +91,16 @@ const ReviewMatch = ({ route }) => {
                   </View>
              
                 </View>
-                
+           
               ))}
-          </View>
+               </ScrollView>
+ </View>
+ 
           <View style={styles.teamContainer}>
+          <ScrollView
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                >
           <Text style={matchData.info.teams[1].win ? styles.victoireText : styles.defaiteText}>
             {matchData.info.teams[1].win  ? 'Victoire' : 'Défaite'}
           </Text>
@@ -143,12 +156,16 @@ const ReviewMatch = ({ route }) => {
                  
                 </View>
               ))}
+               </ScrollView>
+              </View>
+    </Swiper>
           </View>
-        </View>
-        </View>
+
+
     ))}
   </View>
   </ScrollView>
+
 );
 };
 
@@ -156,7 +173,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginLeft: 30
+    backgroundColor: 'transparent',
+
   },
 
 heading: {
@@ -189,6 +207,7 @@ teamContainer: {
   alignItems: 'center',
   marginHorizontal: 5,
   justifyContent: 'space-between',
+  height: 750, 
 },
 
 defaiteText: {
@@ -202,6 +221,7 @@ defaiteText: {
   borderColor: '#1D2752',
   borderWidth: 5,
   borderRadius: 10,
+  marginTop: 20,
 },
 
 victoireText: {
@@ -215,6 +235,7 @@ victoireText: {
   borderColor: '#1D6ADE',
   borderWidth: 5,
   borderRadius: 10,
+  marginTop: 20,
 },
 victoryPlayer: {
   backgroundColor: '#1D6ADE',
@@ -222,6 +243,7 @@ victoryPlayer: {
   marginVertical: 10,
   width: '100%',
   borderRadius: 20,
+  marginBottom: 20
 },
 defeatPlayer: {
   backgroundColor: '#1D2752',
@@ -229,8 +251,7 @@ defeatPlayer: {
   width: '100%',
   marginVertical: 10,
   borderRadius: 20,
-  
-  
+  marginBottom: 20
 },
 playerContainer: {
   marginBottom: 0,
@@ -278,12 +299,11 @@ championImage: {
   borderColor: 'white',
 
 },
-shadowProp: {
-  shadowColor: '#AFAFAF',
-  shadowOffset: {width: 8, height: 8},
-  shadowOpacity: 1,
-  shadowRadius: 1,
-},
+swipper: {
+  height: "100%",
+}
+
+
 });
 export default ReviewMatch;
 

@@ -39,10 +39,10 @@ const user = await User.findById(userId);
 
 exports.getCommentById = async (req, res) => {
   try {
-    const userId = req.params.userId;
+    const leagues = req.params.leagues;
     const gameId = req.params.gameId;
 
-    const comments = await ComentServices.getCommentById(userId, gameId);
+    const comments = await ComentServices.getCommentById(leagues, gameId);
 
     res.json({ data: comments, status: "success" });
   } catch (err) {

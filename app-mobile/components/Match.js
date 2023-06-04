@@ -12,17 +12,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const Profile = () => {
   const [leagues, setLeagues] = useState("");
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const COUNT = 3;
+  const COUNT = 2;
   const [puuid, setPuuid] = useState("");
 
-  const navigation = useNavigation();
 
-  const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
+  const navigation = useNavigation();
+ 
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")

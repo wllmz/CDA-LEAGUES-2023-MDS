@@ -12,8 +12,8 @@ exports.createComment = async (comment) => {
 //   return await CommentModel.find(id);
 // };
 
-exports.getCommentById = async (userId, gameId) => {
-  return await CommentModel.find({ userId: userId, gameId: gameId });
+exports.getCommentById = async (leagues, gameId) => {
+  return await CommentModel.find({ leagues: leagues, gameId: gameId });
 };
 
 

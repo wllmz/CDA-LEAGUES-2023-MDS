@@ -6,6 +6,7 @@ const Comment = mongoose.model(
     username:{type: String, required: true},
     body:{type : String, required: true},
     userId: {type : String, required: true},
+    leagues: {type : String, required: true},
     gameId: {type : String, required: true}
   })
 );

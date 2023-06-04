@@ -4,13 +4,15 @@ import CommentServices from "../services/comment.service";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_KEY = "RGAPI-a8c4cd4c-ecc2-488c-8e1e-7cc66a346830"; // Your API key
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
   const { matchId } = route.params;
   const [puuid, setPuuid] = useState("");
   const [matches, setMatches] = useState([]);
+  const [comment, setComment] = useState(null);
+
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
@@ -59,8 +61,23 @@ const ReviewConseil = ({ route }) => {
         });
     }
   }, [matchId]);
-
+ 
   
+    useEffect(() => {
+      if (!comment) {
+        let test3 = CommentServices.getCommentById(leagues + `/${matchId}`);
+        const promise3 = Promise.resolve(test3);
+        promise3
+          .then((value) => {
+            setComment(value.data.data);
+            console.log(value);
+          })
+          .catch((error) => {
+            console.log("Erreur lors de l'appel à l'API :", error);
+          });
+      }
+    }, [comment, leagues, matchId]);
+    
 
 
   return (
@@ -208,6 +225,21 @@ const ReviewConseil = ({ route }) => {
                       ]}
                     >
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
+                      <View style={styles.container}>
+                      {comment && comment.length > 0 ? (
+  comment.map((c) => (
+  
+      <Text  style={styles.recapText}>{c.body} </Text>
+
+  ))
+) : (
+
+    <Text  style={styles.recapText}>Pas encore de commentaire attribué </Text>
+
+)}
+          
+  </View>
+
                     </View>
                   </View>
                 ))}
@@ -353,6 +385,19 @@ const ReviewConseil = ({ route }) => {
                       ]}
                     >
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
+                      <View style={styles.container}>
+                      {comment && comment.length > 0 ? (
+  comment.map((c) => (
+  
+      <Text  style={styles.recapText}>{c.body} </Text>
+
+  ))
+) : (
+
+    <Text  style={styles.recapText}>Pas encore de commentaire attribué </Text>
+
+)}
+</View>
                     </View>
                   </View>
                 ))}
