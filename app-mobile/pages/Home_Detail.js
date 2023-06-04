@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Button from '../components/Button'; 
 import ImageViewer from '../components/ImageViewer';
+import { text } from "body-parser";
 
 
 const PlaceholderImage = require("../assets/img/Jinx-user.png");
@@ -31,7 +32,7 @@ const Home = () => {
     <View style={styles.container}>
                <View style={styles.imageContainer}>
                 <Text style={styles.bienvenue}>Bienvenue </Text>    
-      <Text style={styles.username}>{leagues}</Text>
+      <Text style={styles.username }>{leagues}</Text>
       {/* Autres informations de profil */}
 
       </View>
@@ -51,6 +52,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1D6ADE',
     alignItems: 'center',
     height: '100%',
+    width: '100%',
   },
   imageContainer: {
     paddingTop : 100,
@@ -63,13 +65,14 @@ const styles = StyleSheet.create({
   },
   username: {
     marginTop: 10,
-    fontSize: 100,
+    fontSize: "90%",
     color: 'white',
-    width: '100%',
+    width: 350,
     padding: 20,
     borderRadius: 15,
     borderWidth: 2,
     borderColor: 'white',
+    overflow: 'hidden',
   },
   bienvenue: {
 fontSize : 30,

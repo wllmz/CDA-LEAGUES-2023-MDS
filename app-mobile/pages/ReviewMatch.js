@@ -24,7 +24,7 @@ const ReviewMatch = ({ route }) => {
         });
     }
   }, [matchId]);
-  // Utilisez l'ID du match pour afficher les détails du match ou effectuer d'autres actions
+ 
   return (
             <ScrollView>
     <View style={styles.container}>
