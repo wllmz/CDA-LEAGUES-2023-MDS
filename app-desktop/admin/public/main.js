@@ -3,7 +3,7 @@
 // Modules de controle du cycle de vie de l'application et de création 
 // de fenêtre native de navigateur
 const { app, BrowserWindow } = require('electron')
-const path = require('path')
+
 
 const createWindow = () => {
   // Création de la fenêtre de navigateur.
@@ -11,12 +11,12 @@ const createWindow = () => {
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js')
+      enableRemoteModule:true,
     }
   })
 
   // et chargement de l'index.html de l'application.
-  mainWindow.loadFile('index.html')
+  mainWindow.loadURL('http://localhost:3000')
 
   // Ouvrir les outils de développement.
   // mainWindow.webContents.openDevTools()
