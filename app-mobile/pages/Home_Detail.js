@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import Button from '../components/Button'; 
 import ImageViewer from '../components/ImageViewer';
-import { text } from "body-parser";
+
 
 
 const PlaceholderImage = require("../assets/img/Jinx-user.png");

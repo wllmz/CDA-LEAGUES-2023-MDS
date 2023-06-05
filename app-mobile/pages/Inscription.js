@@ -52,6 +52,34 @@ const Inscription = () => {
       return;
 
     }
+    var APICallString = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + leagues + "?api_key=" + API_KEY;
+    axios.get(APICallString)
+      .then(function(response) {
+        setLeagues(true);
+        console.log(response);
+
+        AuthService.register(username, email, leagues, password)
+          .then(() => {
+            setUsername("");
+            setEmail("");
+            setLeagues("");
+            setPassword("");
+            navigation.navigate("Home");
+          })
+          .catch((error) => {
+            setError(error.response?.data?.message || "Une erreur s'est produite");
+            console.log(error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      })
+      .catch(function(error) {
+        console.log("error");
+        console.log(error);
+        window.alert("Pas de leagues");
+      });
+    }
 
 
 
