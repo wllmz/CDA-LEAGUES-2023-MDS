@@ -58,7 +58,7 @@ const Inscription = () => {
       .then(function(response) {
         setLeagues(true);
         console.log(response);
-    
+
         AuthService.register(username, email, leagues, password)
           .then(() => {
             setUsername("");
@@ -80,10 +80,7 @@ const Inscription = () => {
         console.log(error);
         window.alert("Pas de leagues");
       });
-      }
-
-
-
+    }
   return (
     <View style={styles.container}>
       <View style={[styles.form, styles.shadowProp]}>
