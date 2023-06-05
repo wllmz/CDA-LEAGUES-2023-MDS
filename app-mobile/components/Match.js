@@ -20,6 +20,10 @@ const Profile = () => {
   const [match, setMatch] = useState([]);
   const COUNT = 2;
   const [puuid, setPuuid] = useState("");
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
   const API_KEY = process.env.REACT_APP_API_KEY;
 
 
