@@ -9,6 +9,10 @@ module.exports = function(api) {
           "path": ".env",
         }]
       ]
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
   };
 };
