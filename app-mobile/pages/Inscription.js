@@ -14,6 +14,7 @@ const Inscription = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigation = useNavigation();
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
  
 
@@ -51,22 +52,35 @@ const Inscription = () => {
     }
 
 
-    AuthService.register(username, email, leagues, password)
-      .then(() => {
-        setUsername("");
-        setEmail("");
-        setLeagues("");
-        setPassword("");
-        navigation.navigate("Home");
+    var APICallString = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" + leagues + "?api_key=" + API_KEY;
+    axios.get(APICallString)
+      .then(function(response) {
+        setLeagues(true);
+        console.log(response);
+    
+        AuthService.register(username, email, leagues, password)
+          .then(() => {
+            setUsername("");
+            setEmail("");
+            setLeagues("");
+            setPassword("");
+            navigation.navigate("Home");
+          })
+          .catch((error) => {
+            setError(error.response?.data?.message || "Une erreur s'est produite");
+            console.log(error);
+          })
+          .finally(() => {
+            setLoading(false);
+          });
       })
-      .catch((error) => {
-        setError(error.response?.data?.message || "Une erreur s'est produite");
+      .catch(function(error) {
+        console.log("error");
         console.log(error);
-      })
-      .finally(() => {
-        setLoading(false);
+        window.alert("Pas de leagues");
       });
-  };
+      }
+    
 
   return (
     <View style={styles.container}>
