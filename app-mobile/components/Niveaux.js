@@ -91,7 +91,7 @@ const Niveaux = () => {
         </View>
       ) : (
         <View>
-          <Text style={styles.txt}>Salut</Text>
+          <Text style={styles.txt}>Pas encore classé</Text>
         </View>
       )}
     </View>
