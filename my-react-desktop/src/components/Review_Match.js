@@ -2,11 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
 
 const Review_Match = () => {
   const { matchIds } = useParams();
   const [matches, setMatches] = useState([]);
+  const { user } = useParams();
 
   useEffect(() => {
     if (matchIds) {
@@ -20,7 +21,7 @@ const Review_Match = () => {
         });
     }
   }, [matchIds]);
-
+console.log(user)
   return (
 
     

@@ -1,6 +1,5 @@
 import React from 'react';
 import Review_Match from '../components/Review_Match'
-import Review_Conseil from '../components/Review_Conseil'
 import Jinx from '../assets/img/Jinx-user.png';
 import AuthService from "../services/auth.service";
 

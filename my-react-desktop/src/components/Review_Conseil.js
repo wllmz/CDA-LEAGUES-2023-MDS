@@ -1,24 +1,24 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import AuthService from "../services/auth.service";
 import CommentServices from "../services/comment.service";
 
-const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
 
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
   const { matchIds } = useParams();
   const [matches, setMatches] = useState([]);
   const [puuid, setPuuid] = useState("");
+  const { user } = useParams();
 
-  const currentUser = AuthService.getCurrentUser();
+
 
   useEffect(() => {
-    if (currentUser.leagues) {
+    if (user) {
       axios
         .get(
-          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentUser.leagues}?api_key=${API_KEY}`
+          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user}?api_key=${API_KEY}`
         )
         .then((response) => {
           setPuuid(response.data.puuid);
@@ -29,7 +29,7 @@ const Review_Conseil = () => {
           console.log(error);
         });
     }
-  }, [currentUser.leagues]);
+  }, [user]);
 
   useEffect(() => {
     if (matchIds) {
@@ -48,9 +48,7 @@ const Review_Conseil = () => {
 
   useEffect(() => {
   if(!comment) {
-    let test3 = CommentServices.getCommentById(currentUser.leagues
-      
-      + `/${matchIds}`)
+    let test3 = CommentServices.getCommentById(user + `/${matchIds}`)
     const promise3 = Promise.resolve(test3);
     promise3.then((value) => {
     setComment(value.data.data);
