@@ -1,8 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import AuthService from "../services/auth.service";
-
-
+import { useParams } from "react-router-dom";
 
 
 
@@ -10,18 +8,18 @@ const App = () => {
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
-  const [slideIndex, setSlideIndex] = useState(1);
-  const COUNT = 5;
+  const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
+  const COUNT = 3;
   const [puuid, setPuuid] = useState("");
+  const { user } = useParams();
 
-  const currentUser = AuthService.getCurrentUser();
+
 
   useEffect(() => {
-    if (currentUser.leagues) {
+    if (user) {
       axios
         .get(
-          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentUser.leagues}?api_key=${API_KEY}`
+          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user}?api_key=${API_KEY}`
         )
         .then((response) => {
           setPuuid(response.data.puuid);
@@ -42,7 +40,7 @@ const App = () => {
           console.log(error);
         });
     }
-  }, [currentUser.leagues]);
+  }, [user]);
 
   useEffect(() => {
     if (matchIds) {
@@ -64,55 +62,28 @@ const App = () => {
     }
   }, [matchIds]);
 
-  useEffect(() => {
-    showDivs(slideIndex);
-  }, [slideIndex]);
 
-  function plusDivs(n) {
-    setSlideIndex(slideIndex + n);
-  }
-
-  function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {
-      setSlideIndex(1);
-    }
-    if (n < 1) {
-      setSlideIndex(x.length);
-    }
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    if (x[slideIndex - 1]) {
-      x[slideIndex - 1].style.display = "block";
-    }
-  }
 
   function handleClick(matchIds) {
-    const url = `match/${matchIds}`;
+    const url = `match/${matchIds}/${user}`;
     window.location.href = url;
   }
   
   function submitClick(matchIds) {
-    const url = `conseil/${matchIds}`;
+    const url = `conseil/${matchIds}/${user}`;
     window.location.href = url;
   }
 
   
   return (
     <div className="container-fluid text-center">
-<div className="slideshow">
- <div className="mySlides">
+
       <h2 id="match">Informations des dernières parties jouées :</h2>
-      <button class="btn btn-primary" onClick={() => plusDivs(1)}> Commencer </button> 
-</div>
-</div>
+
   <div class="">
         {match.map((matchData) => (
-          <div className="slideshow">
-            <div className="mySlides">
-            <h2 id="match">Informations des dernières parties jouées :</h2>
+          <div className="">
+
             <br></br>
               <div className="">
                 {matchData.info.participants
@@ -204,10 +175,6 @@ const App = () => {
                   <div class="col col-lg-6"  >
                   <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
                   <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
-                        </div>
-                        <div class="col">
-                        <button className ="precedent"onClick={() => plusDivs(-1)}>&#10094;</button>
-                        <button className ="suivant"onClick={() => plusDivs(1)}>&#10095;  </button>
                         </div>
                         </div>
                       </div>
@@ -304,10 +271,6 @@ const App = () => {
                   <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
                   <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
                       </div>
-                      <div class="col">  
-                        <button className ="precedent"onClick={() => plusDivs(-1)}>&#10094;</button>
-                        <button className ="suivant"onClick={() => plusDivs(1)}>&#10095;  </button>
-                        </div>
                       </div>
                     </div>
                     </div>
@@ -315,7 +278,7 @@ const App = () => {
                   ))}
               </div>
             </div>
-          </div>
+        
         ))}
       </div>
       </div>

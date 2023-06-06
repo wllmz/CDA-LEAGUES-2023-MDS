@@ -7,8 +7,8 @@ const { app, BrowserWindow } = require('electron')
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1500,
+    height: 1200,
     webPreferences: {
       enableRemoteModules: true
     }

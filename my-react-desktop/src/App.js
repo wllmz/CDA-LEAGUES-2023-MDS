@@ -14,7 +14,6 @@ import Footer from './components/Footer';
 import Review_Match from "./pages/Review_M";
 import Review_Conseil from "./pages/Review_C";
 import Home from "./pages/Home";
-import Test from "./pages/Test";
 import Profile from "./pages/Profile"; 
 
 
@@ -69,11 +68,7 @@ const App = () => {
                 Admin Board
               </NavLink>
             </li>
-                    <li className="nav-item">
-                    <NavLink to={"/test"} className="nav-link">
-                      test
-                    </NavLink>
-                  </li>
+               
     </ul>
           )}
 
@@ -119,9 +114,9 @@ const App = () => {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route path="/admin" element={<BoardAdmin />} />
-          <Route path={`match/:matchIds`} element={<Review_Match />} />
-          <Route path={`conseil/:matchIds`} element={<Review_Conseil />} />     
-          <Route path={"/test"} element={<Test />} />     
+          <Route path={`/profile/match/:matchIds/:user`} element={<Review_Match />} />
+          <Route path={`/profile/conseil/:matchIds/:user`} element={<Review_Conseil />} />     
+       
           <Route path={`profile/:user`} element={<Profile />} />  
         
         </Routes>

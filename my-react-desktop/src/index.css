@@ -93,6 +93,7 @@ padding: 2%;
   .row.justify-content-md-center#section {
     background-color: #1D6ADE;
     animation: section-background 1s;
+    height: 680px;
   }
 
   @media (min-width: 930px){
