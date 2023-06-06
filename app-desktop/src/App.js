@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Routes, Route, NavLink } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -14,12 +14,14 @@ import Footer from './components/Footer';
 import Review_Match from "./pages/Review_M";
 import Review_Conseil from "./pages/Review_C";
 import Home from "./pages/Home";
-
+import Test from "./pages/Test";
+import Profile from "./pages/Profile"; 
 
 
 
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
+
 
 const App = () => {
 
@@ -61,12 +63,18 @@ const App = () => {
 
 
           {showAdminBoard && (
+                  <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink to={"/admin"} className="nav-link">
                 Admin Board
               </NavLink>
             </li>
-    
+                    <li className="nav-item">
+                    <NavLink to={"/test"} className="nav-link">
+                      test
+                    </NavLink>
+                  </li>
+    </ul>
           )}
 
 
@@ -112,7 +120,10 @@ const App = () => {
           <Route exact path="/login" element={<Login />} />
           <Route path="/admin" element={<BoardAdmin />} />
           <Route path={`match/:matchIds`} element={<Review_Match />} />
-          <Route path={`conseil/:matchIds`} element={<Review_Conseil />} />      
+          <Route path={`conseil/:matchIds`} element={<Review_Conseil />} />     
+          <Route path={"/test"} element={<Test />} />     
+          <Route path={`profile/:user`} element={<Profile />} />  
+        
         </Routes>
       
         <Footer/>

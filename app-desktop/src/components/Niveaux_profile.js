@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import axios from 'axios';
 import AuthService from "../services/auth.service";
+import { useParams } from "react-router-dom";
 
 
 
 const Niveaux = () => {
     const [searchText, setSearchText ] =  useState("");
     const [playerData, setPlayerdata ] =  useState({});
+    const { user } = useParams();
+
     const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+
+
     
     const currentUser = AuthService.getCurrentUser();
 
@@ -42,7 +47,7 @@ const Niveaux = () => {
      });}
     },[currentUser.leagues]
     )
-
+    console.log(user);
 
     return (
         
