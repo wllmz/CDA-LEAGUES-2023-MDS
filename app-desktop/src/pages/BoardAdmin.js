@@ -1,44 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import EventBus from "../common/EventBus";
-import CommentServices from "../services/comment.service";
-
+import Home from "./Home";
 
 const BoardAdmin = () => {
-  const currentUser = AuthService.getCurrentUser();
   const [content, setContent] = useState();
-  const [comment, setComment] = useState();
   const [user, setUser] = useState();
 
-  
 
   useEffect(() => {
 
-    if(!comment) {
-      let test = CommentServices.getAllComment()
-      const promise1 = Promise.resolve(test);
-      promise1.then((value) => {
-        setComment(value.data.data);
+    if (!user) {
+      AuthService.getAllUsers().then((value) => {
+        const leagues = value.data.map((u) => u.leagues);
+        setUser(leagues);
       });
     }
-  
-
-
-
     
-    if(!user) {
-      let test2 = AuthService.getAllUsers()
-      const promise2 = Promise.resolve(test2);
-      promise2.then((value) => {
-        setUser(value.data);
-        console.log(user);
-      });
-    }
 
 
-  
+
+
     UserService.getAdminBoard().then(
       (response) => {
         setContent(response.data);
@@ -58,70 +42,61 @@ const BoardAdmin = () => {
         }
       }
     );
-  }, [comment,user]);
+  }, [user]);
+
+
+  function handleClick(user) {
+    const url = `profile/${user}`;
+    window.location.href = url;
+  }
 
 
   return (
-    <div className="profile">
- <div className="allcomment"> 
+    <div className="container-fluid text-center">
+<div className="home">
+<Home/>
+
+</div>
+    <div className="container text-center" >
+      <div className="admin">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col" id="all">All user</th>
+              <th scope="col" id="all">Profile</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> 
+    {user && user.map((league, index) => (
+            <div className="alluser">
+      <p id="leaguesuser" key={index}>{league}</p>
+      </div>
+    ))}
+
+              </td>
+              <td> 
+               {user && user.map((league, index) => (
+            <div className="bouttonprofile">
+<button type="button" class="btn btn-primary"onClick={() => handleClick(league)}>Voir match </button>
+      </div>
+    ))}
+              </td>
 
 
- {comment && comment.length > 0 ? (
-  comment.map((c) => (
-    <div className="image-type">
-      <p>{c._id} {c.body} utilisateur :  {c.userId}</p>
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>salut</p>
-  </div>
-)}
-
-
- {user && user.length > 0 ? (
-  user.map((u) => (
-    <div className="image-type">
-      <p>{u.username} {u._id}</p>
-    </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>salut</p>
-  </div>
-)}
-    </div>
-
-    <p>
-        <strong>Id:</strong> {currentUser.id}
-      </p>
-
-      {user && user.length > 0 ? (
-  user.map((u) => (
-    <div className="image-type">
-      <p>{u.b} {u._id}</p>
-    </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>salut</p>
-  </div>
-)}
     
-  
- {comment && comment.length > 0 ? (
-  comment.map((c) => (
-    <div className="image-type">
-      <p>{c.body} </p>
     </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>salut</p>
-  </div>
-)}
-  </div>
   );
 };
+
+
 
 export default BoardAdmin;

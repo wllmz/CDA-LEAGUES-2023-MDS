@@ -557,3 +557,31 @@ h2#perso {
   border: 1px solid;
   margin-right: -75px;
 }
+
+
+
+.alluser {
+  border-top: solid;
+  padding: 60px;
+ 
+}
+.bouttonprofile {
+  border-top: solid;
+  padding: 61px;
+}
+.admin {
+  padding: 10%;
+  width: 85%;
+  margin: auto;
+}
+
+p#leaguesuser {
+  color: #000;
+}
+.table>:not(caption)>*>*{
+  padding: 0px !important;
+ border-right: solid;
+}
+th#all {
+  padding: 10px!important;
+}
