@@ -12,7 +12,7 @@ const Review_Conseil = () => {
   const [puuid, setPuuid] = useState("");
   const { user } = useParams();
 
-
+  const API_URL = "http://localhost:3000/api/comment";
 
   useEffect(() => {
     if (user) {
@@ -57,6 +57,28 @@ const Review_Conseil = () => {
   }, );
 
 
+  const deleteComment = (id) => {
+    axios.delete(API_URL + "/" + id)
+      .then(() => {
+        setComment(comment.filter((c) => c._id !== id));
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la suppression du commentaire :", error);
+      });
+  };
+
+  const createComment = () => {
+    axios.post(API_URL)
+      .then((response) => {
+        const createdComment = response.data;
+        setComment([...comment, createdComment]);
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la création du commentaire :", error);
+      });
+  };
+  
+  
 
   return (
     <div className="container text-center">
@@ -214,13 +236,24 @@ const Review_Conseil = () => {
   comment.map((c) => (
     <div className="image-type">
       <p>{c.body} </p>
+      <button onClick={() => deleteComment(c._id)}>Delete</button>
     </div>
   ))
 ) : (
   <div className="image-type">
     <p>Pas encore de commentaire attribué </p>
+    <form onSubmit={createComment}>
+      <input
+        type="text"
+        placeholder="Entrez votre commentaire"
+      />
+      <button type="submit">Créer un commentaire</button>
+    </form>
+
   </div>
 )}
+
+
         
           
                       </div>
