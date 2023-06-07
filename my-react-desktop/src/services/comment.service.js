@@ -18,8 +18,8 @@ const updateComment = () => {
   return axios.update(API_URL);
 };
 
-const deleteComment = () => {
-    return axios.delete(API_URL + "/:id");
+const deleteComment = (id) => {
+    return axios.delete(API_URL + "/" + id);
   };
 
 const CommentServices = {
