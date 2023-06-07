@@ -8,7 +8,7 @@ const App = () => {
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
+  const API_KEY = "RGAPI-67b36c84-af53-4026-a62e-786e0129d1c5"
   const COUNT = 3;
   const [puuid, setPuuid] = useState("");
   const { user } = useParams();
@@ -173,7 +173,6 @@ const App = () => {
                         </div>
                         <div class="row justify-content-md-center" >
                   <div class="col col-lg-6"  >
-                  <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
                   <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
                         </div>
                         </div>
@@ -268,7 +267,6 @@ const App = () => {
                         </div>
                         <div class="row justify-content-md-center" >
                   <div class="col col-lg-6"  >
-                  <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
                   <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
                       </div>
                       </div>

@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import CommentServices from "../services/comment.service";
 import Addcomment from "../components/Add_Comment";
+import { Link } from 'react-router-dom';
 
-
-const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
+const API_KEY = "RGAPI-67b36c84-af53-4026-a62e-786e0129d1c5"
 
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
@@ -75,6 +75,9 @@ const Review_Conseil = () => {
 
   return (
     <div className="container text-center">
+      <Link to= {`/profile/${user}`}>
+  <span>&#8592;</span> Retour
+</Link>
       {matches.map((matchData, index) => (
         <div key={index}>
           <h2 id="match">Informations des dernières parties jouées :</h2>

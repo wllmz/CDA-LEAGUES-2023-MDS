@@ -125,72 +125,6 @@ img.img-champions, img.logo-page {
   width: 65%  !important;
 }
 }
-.section-bleu {
-  margin: 45px;
-  width: 30%;
-  background-color: #1d6ade;
-  border-radius: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 210px ;
-  padding-top: 1%;
-  padding-left: 1%;
-  padding-right: 3%;
-}
-
-@media (max-width: 1000px){
-  .section-bleu {
-    width: 50%;
-    padding: 5%;
-    height: 225px ;
-    padding-top: 3%;
-  }
-}
-
-@media (max-width: 700px){
-  .section-bleu {
-    width: 75%;
-    padding: 5%;
-    height: 200px;
-    padding-top: 3%;
-  }
-
-}
-
-.resulat {
-  width: 30%;
-  background-color: #1d6ade;
-  border-radius: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2%;
-  margin-bottom: 3%;
-  border: solid 1px #fff;
-  border-width: 0px 5px 5px 0px;
-}
-
-@media (max-width: 1000px){
-  .resulat {
-    margin-top: 5%;
-    margin-bottom: 2%;
-    width: 50%;
-    padding: 5%;
-  }
-  }
-
-@media (max-width: 700px){
-.resulat {
-  width: 80%;
-}
-}
-
-.border {
-  border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important;
-  border-radius: 25px;
-  margin-right: -15%;
-  padding: 8%;
-}
-
 
 .btn-outline-primary {
   margin-top: 2%;
@@ -246,104 +180,9 @@ width: 100px;
     margin-bottom: 5%;
     
   }
-/* champion */
-.section-bleu-champ {
-  margin: 45px;
-  width: 50%;
-  background-color: #1d6ade;
-  border-radius: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  height: 175px ;
-  padding-top: 1%;
-  padding-left: 1%;
-  padding-right: 3%;
-}
-
-@media (max-width: 1000px){
-  .section-bleu-champ {
-    width: 80%;
-    padding: 5%;
-    height: 150px ;
-    padding-top: 3%;
-  }
-}
-
-@media (max-width: 700px){
-  .section-bleu-champ {
-    width: 75%;
-    padding: 5%;
-    height: 138px;
-    padding-top: 3%;
-  }
-
-}
-
-.champ-card {
-  padding:6%;
-  background-color: #113366;
-  margin: 10%;
-  border-radius: 20px;
-  text-align: start;
-}
-
-.champ-card:hover {
-  background-color: #1d6ade;
-}
-img.champ {
-  border-radius: 20px;
-  width: 65%;
-  margin-left: 20%;
-}
-
-.champions {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-}
-@media screen and (max-width: 1000px) {
-  .champions {
-  
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-  }
-  }
 
 
-/* Classement*/
 
-.resulat-rank {
-  width: 50%;
-  background-color: #1d6ade;
-  border-radius: 25px;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 2%;
-  margin-bottom: 3%;
-  margin-top: 3%;
-  border: solid 1px #fff;
-  border-width: 0px 5px 5px 0px;
-}
-
-@media (max-width: 1000px){
-  .resulat-rank {
-    margin-top: 5%;
-    margin-bottom: 2%;
-    width: 70%;
-    padding: 5%;
-  }
-  }
-
-@media (max-width: 700px){
-.resulat-rank {
-  width: 80%;
-}
-}
 
 
 /* Inscription */ 
@@ -578,11 +417,26 @@ h2#perso {
 
 p#leaguesuser {
   color: #000;
+  font-size: 20px;
+  font-weight: bold;
 }
 .table>:not(caption)>*>*{
   padding: 0px !important;
- border-right: solid;
+ border-right: 0.5px solid;
 }
 th#all {
   padding: 10px!important;
+}
+
+.table>:not(caption)>*>*{
+  padding: 50px!important;
+}
+
+
+h2#result-team {
+  color: black !important;
+}
+
+h1.classe {
+  text-align: center;
 }
