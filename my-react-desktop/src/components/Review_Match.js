@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
+const API_KEY = "RGAPI-67b36c84-af53-4026-a62e-786e0129d1c5"
 
 const Review_Match = () => {
   const { matchIds } = useParams();
@@ -31,10 +31,7 @@ console.log(user)
    
             {matches.map((matchData, index) => (
                 <div key={index}>
-    
-    <h2 id="match">Informations des dernières parties jouées :</h2>
-                <p id='match'>Match ID: {matchData.metadata.matchId}</p>
-          <p id='match'>Durée: {matchData.info.gameDuration}</p>
+
                 <br></br>
        
               
@@ -44,7 +41,7 @@ console.log(user)
   <div class="row align-items-start">
     <div class="col">
 
-    <h2 id="result"> {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</h2>
+    <h2 id="result-team"> {matchData.info.teams[0].win ? "Victoire" : "Défaite"}</h2>
   
    
                     {matchData.info.participants
@@ -133,7 +130,7 @@ console.log(user)
                       </div>
                       <div class="col">
                            
-                      <h2 id="result">{matchData.info.teams[1].win ? "Victoire" : "Défaite"} </h2>
+                      <h2 id="result-team">{matchData.info.teams[1].win ? "Victoire" : "Défaite"} </h2>
                       
                     {matchData.info.participants
   

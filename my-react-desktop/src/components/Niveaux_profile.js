@@ -7,8 +7,7 @@ import { useParams } from "react-router-dom";
 const Niveaux = () => {
     const [playerData, setPlayerdata ] =  useState({});
     const { user } = useParams();
-
-    const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
+    const API_KEY = "RGAPI-67b36c84-af53-4026-a62e-786e0129d1c5"
 
 
     

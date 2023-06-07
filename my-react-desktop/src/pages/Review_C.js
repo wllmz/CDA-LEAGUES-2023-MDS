@@ -2,11 +2,16 @@ import React from 'react';
 import Review_Conseil from '../components/Review_Conseil'
 import Jinx from '../assets/img/Jinx-user.png';
 import AuthService from "../services/auth.service";
+import Review_Match from '../components/Review_Match';
+
+
+
 
 
 const Review_C = () => {
   const currentUser = AuthService.getCurrentUser();
 
+  
     return (
         <div>
                <div className="container-fluid text-center">
@@ -21,9 +26,14 @@ const Review_C = () => {
       </div>
       </div>
       <div className="page-profile">
+   
             <Review_Conseil/>
             </div>
             </div>
+
+            <div className="page-profile">
+              <Review_Match/>
+              </div>
         </div>
     );
 };

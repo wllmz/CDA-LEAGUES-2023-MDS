@@ -4,6 +4,7 @@ import Niveaux_profile from '../components/Niveaux_profile'
 import Match from '../components/Match';
 import Jinx from '../assets/img/Jinx-user.png';
 import AuthService from "../services/auth.service";
+import { Link } from 'react-router-dom';
 
 
 const Profile = () => {
@@ -22,9 +23,14 @@ const Profile = () => {
       </div>
     
     </div> 
+  
     <div className="page-profile">
+    <Link to= "/">
+  <span>&#8592;</span> Retour
+</Link>
     <div className='section-bleu-profile'>
             <div className="border-profile">
+
     <Niveaux_profile/>
 
       <Ranks_profile/>
