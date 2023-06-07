@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import CommentServices from "../services/comment.service";
+import Addcomment from "../components/Add_Comment";
+
 
 const API_KEY = "RGAPI-f25dcfa5-b7b2-4f47-a643-367cc7d6bc46"
 
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
-  const { matchIds } = useParams();
   const [matches, setMatches] = useState([]);
   const [puuid, setPuuid] = useState("");
   const { user } = useParams();
+  const { matchIds } = useParams();
 
   const API_URL = "http://localhost:3000/api/comment";
 
@@ -67,18 +69,9 @@ const Review_Conseil = () => {
       });
   };
 
-  const createComment = () => {
-    axios.post(API_URL)
-      .then((response) => {
-        const createdComment = response.data;
-        setComment([...comment, createdComment]);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la création du commentaire :", error);
-      });
-  };
   
-  
+ 
+
 
   return (
     <div className="container text-center">
@@ -237,19 +230,13 @@ const Review_Conseil = () => {
     <div className="image-type">
       <p>{c.body} </p>
       <button onClick={() => deleteComment(c._id)}>Delete</button>
+
     </div>
   ))
 ) : (
   <div className="image-type">
     <p>Pas encore de commentaire attribué </p>
-    <form onSubmit={createComment}>
-      <input
-        type="text"
-        placeholder="Entrez votre commentaire"
-      />
-      <button type="submit">Créer un commentaire</button>
-    </form>
-
+    <Addcomment/>
   </div>
 )}
 
@@ -410,11 +397,14 @@ const Review_Conseil = () => {
   comment.map((c) => (
     <div className="image-type">
       <p>{c.body} </p>
+      <button onClick={() => deleteComment(c._id)}>Delete</button>
+
     </div>
   ))
 ) : (
   <div className="image-type">
     <p>Pas encore de commentaire attribué</p>
+    <Addcomment/>
   </div>
 )}
                       </div>
