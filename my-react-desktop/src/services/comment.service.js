@@ -14,8 +14,8 @@ const createComment = () => {
   return axios.post(API_URL);
 };  
 
-const updateComment = () => {
-  return axios.update(API_URL);
+const updateComment = (id) => {
+  return axios.put(API_URL + "/" + id);
 };
 
 const deleteComment = (id) => {
