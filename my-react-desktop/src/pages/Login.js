@@ -46,7 +46,7 @@ const Login = () => {
     setPassword(password);
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     setMessage("");
@@ -55,25 +55,35 @@ const Login = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      AuthService.login(username,leagues, password).then(
-      AuthServiceRole.getAdminBoard().then(
-        () => {
-          navigate("/");
-          window.location.reload();
-        },
+     const test = await  AuthService.login(username,leagues, password);
+     console.log(test.roles);
+     if(test.roles== "ROLE_ADMIN") {
+      navigate("/");
+     }
+     else{
+      setLoading(false);
+      setMessage("accés non autorisé");
+     }
+     
+      // .then(
+      // AuthServiceRole.getAdminBoard().then(
+      //   () => {
+      //     navigate("/");
+      //     window.location.reload();
+      //   },
     
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
+      //   (error) => {
+      //     const resMessage =
+      //       (error.response &&
+      //         error.response.data &&
+      //         error.response.data.message) ||
+      //       error.message ||
+      //       error.toString();
 
-          setLoading(false);
-          setMessage(resMessage);
-        }
-      ));
+      //     setLoading(false);
+      //     setMessage(resMessage);
+      //   }
+      // ));
     } else {
       setLoading(false);
     }

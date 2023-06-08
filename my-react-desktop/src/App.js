@@ -49,13 +49,20 @@ const App = () => {
   };
 
   return (
+    
+    
     <div class="container-fluid text-align-center">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
+{showAdminBoard ? (
+  <div>
 <NavLink to={"/"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
+    </div>
+    ) : (   
+      <div>
+<NavLink to={"/login"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
+    </div>
+
+    )}
        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
 
