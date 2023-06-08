@@ -4,8 +4,6 @@ import CommentServices from "../services/comment.service";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
   const { matchId } = route.params;
@@ -62,24 +60,21 @@ const ReviewConseil = ({ route }) => {
         });
     }
   }, [matchId]);
- 
-  
-    useEffect(() => {
-      if (!comment) {
-        let test3 = CommentServices.getCommentById(leagues + `/${matchId}`);
-        const promise3 = Promise.resolve(test3);
-        promise3
-          .then((value) => {
-            setComment(value.data.data);
-            console.log(value);
-          })
-          .catch((error) => {
-            console.log("Erreur lors de l'appel à l'API :", error);
-          });
-      }
-    }, [comment, leagues, matchId]);
-    
 
+  useEffect(() => {
+    if (!comment) {
+      let test3 = CommentServices.getCommentById(leagues + `/${matchId}`);
+      const promise3 = Promise.resolve(test3);
+      promise3
+        .then((value) => {
+          setComment(value.data.data);
+          console.log(value);
+        })
+        .catch((error) => {
+          console.log("Erreur lors de l'appel à l'API :", error);
+        });
+    }
+  }, [comment, leagues, matchId]);
 
   return (
     <ScrollView>
@@ -100,7 +95,8 @@ const ReviewConseil = ({ route }) => {
                         styles.reviewContainer,
                         matchData.info.teams[0].win
                           ? styles.victory
-                          : styles.defeat, styles.shadowProp
+                          : styles.defeat,
+                        styles.shadowProp,
                       ]}
                     >
                       <Text style={styles.resultText}>
@@ -127,7 +123,7 @@ const ReviewConseil = ({ route }) => {
                           matchData.info.teams[0].win
                             ? styles.victory
                             : styles.defeat,
-                            styles.shadowProp
+                          styles.shadowProp,
                         ]}
                       >
                         <Text style={styles.kdaTitle}>KDA :</Text>
@@ -143,7 +139,7 @@ const ReviewConseil = ({ route }) => {
                           matchData.info.teams[0].win
                             ? styles.victory
                             : styles.defeat,
-                            styles.shadowProp
+                          styles.shadowProp,
                         ]}
                       >
                         <Text style={styles.itemTitle}>OBJET :</Text>
@@ -199,7 +195,7 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[0].win
                           ? styles.victory
                           : styles.defeat,
-                          styles.shadowProp
+                        styles.shadowProp,
                       ]}
                     >
                       <Text style={styles.recapTitle}>RECAP :</Text>
@@ -222,25 +218,21 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[0].win
                           ? styles.victory
                           : styles.defeat,
-                          styles.shadowProp
+                        styles.shadowProp,
                       ]}
                     >
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
                       <View style={styles.container}>
-                      {comment && comment.length > 0 ? (
-  comment.map((c) => (
-  
-      <Text  style={styles.recapText}>{c.body} </Text>
-
-  ))
-) : (
-
-    <Text  style={styles.recapText}>Pas encore de commentaire attribué </Text>
-
-)}
-          
-  </View>
-
+                        {comment && comment.length > 0 ? (
+                          comment.map((c) => (
+                            <Text style={styles.recapText}>{c.body} </Text>
+                          ))
+                        ) : (
+                          <Text style={styles.recapText}>
+                            Pas encore de commentaire attribué{" "}
+                          </Text>
+                        )}
+                      </View>
                     </View>
                   </View>
                 ))}
@@ -260,7 +252,7 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[1].win
                           ? styles.victory
                           : styles.defeat,
-                          styles.shadowProp
+                        styles.shadowProp,
                       ]}
                     >
                       <Text style={styles.resultText}>
@@ -287,7 +279,7 @@ const ReviewConseil = ({ route }) => {
                           matchData.info.teams[1].win
                             ? styles.victory
                             : styles.defeat,
-                            styles.shadowProp
+                          styles.shadowProp,
                         ]}
                       >
                         <Text style={styles.kdaTitle}>KDA :</Text>
@@ -303,7 +295,7 @@ const ReviewConseil = ({ route }) => {
                           matchData.info.teams[1].win
                             ? styles.victory
                             : styles.defeat,
-                            styles.shadowProp
+                          styles.shadowProp,
                         ]}
                       >
                         <Text style={styles.itemTitle}>OBJET :</Text>
@@ -359,7 +351,7 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[1].win
                           ? styles.victory
                           : styles.defeat,
-                          styles.shadowProp
+                        styles.shadowProp,
                       ]}
                     >
                       <Text style={styles.recapTitle}>RECAP :</Text>
@@ -382,23 +374,21 @@ const ReviewConseil = ({ route }) => {
                         matchData.info.teams[1].win
                           ? styles.victory
                           : styles.defeat,
-                          styles.shadowProp
+                        styles.shadowProp,
                       ]}
                     >
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
                       <View style={styles.container}>
-                      {comment && comment.length > 0 ? (
-  comment.map((c) => (
-  
-      <Text  style={styles.recapText}>{c.body} </Text>
-
-  ))
-) : (
-
-    <Text  style={styles.recapText}>Pas encore de commentaire attribué </Text>
-
-)}
-</View>
+                        {comment && comment.length > 0 ? (
+                          comment.map((c) => (
+                            <Text style={styles.recapText}>{c.body} </Text>
+                          ))
+                        ) : (
+                          <Text style={styles.recapText}>
+                            Pas encore de commentaire attribué{" "}
+                          </Text>
+                        )}
+                      </View>
                     </View>
                   </View>
                 ))}
@@ -435,7 +425,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 16,
     width: "100%",
-
   },
   victory: {
     backgroundColor: "#1D6ADE",
@@ -448,7 +437,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
     marginBottom: 8,
-
   },
   personalText: {
     fontSize: 16,
@@ -470,21 +458,19 @@ const styles = StyleSheet.create({
     color: "white",
     marginBottom: 8,
     width: "100%",
-    
   },
   kdaInfoContainer: {
- width: "100%",
- padding: 16,
- marginBottom: 10,
- borderRadius: 20,
- alignItems: "center",
+    width: "100%",
+    padding: 16,
+    marginBottom: 10,
+    borderRadius: 20,
+    alignItems: "center",
   },
   kdaTitle: {
     fontSize: 24,
     color: "white",
     marginBottom: 8,
     textAlign: "center",
-
   },
   kdaText: {
     fontSize: 16,
@@ -494,7 +480,7 @@ const styles = StyleSheet.create({
   },
   itemInfoContainer: {
     borderRadius: 20,
-    width: "100%", 
+    width: "100%",
     alignItems: "center",
     padding: 16,
   },
@@ -510,7 +496,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginBottom: 16,
     flexDirection: "row",
-    
   },
   itemImage: {
     width: 40,
@@ -559,8 +544,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   shadowProp: {
-    shadowColor: '#AFAFAF',
-    shadowOffset: {width: 5, height: 5},
+    shadowColor: "#AFAFAF",
+    shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 1,
     shadowRadius: 1,
   },

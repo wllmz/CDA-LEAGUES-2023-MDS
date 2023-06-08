@@ -2,10 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AuthService from "../services/auth.service";
 
-
-
-
-
 const App = () => {
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
@@ -93,33 +89,34 @@ const App = () => {
     const url = `match/${matchIds}`;
     window.location.href = url;
   }
-  
+
   function submitClick(matchIds) {
     const url = `conseil/${matchIds}`;
     window.location.href = url;
   }
 
-  
   return (
     <div className="container-fluid text-center">
-<div className="slideshow">
- <div className="mySlides">
-      <h2 id="match">Informations des dernières parties jouées :</h2>
-      <button class="btn btn-primary" onClick={() => plusDivs(1)}> Commencer </button> 
-</div>
-</div>
-  <div class="">
+      <div className="slideshow">
+        <div className="mySlides">
+          <h2 id="match">Informations des dernières parties jouées :</h2>
+          <button class="btn btn-primary" onClick={() => plusDivs(1)}>
+            {" "}
+            Commencer{" "}
+          </button>
+        </div>
+      </div>
+      <div class="">
         {match.map((matchData) => (
           <div className="slideshow">
             <div className="mySlides">
-            <h2 id="match">Informations des dernières parties jouées :</h2>
-            <br></br>
+              <h2 id="match">Informations des dernières parties jouées :</h2>
+              <br></br>
               <div className="">
                 {matchData.info.participants
                   .filter((participant) => participant.puuid === puuid)
                   .filter((participant) => participant.teamId === 100)
                   .map((participant) => (
-                    
                     <div
                       className={
                         matchData.info.teams[0].win
@@ -127,91 +124,108 @@ const App = () => {
                           : "Défaite-perso"
                       }
                     >
-            
                       <h2 id="result">
-                         {" "}
+                        {" "}
                         {matchData.info.teams[0].win ? "Victoire" : "Défaite"}
                       </h2>
 
-                      <div
-                        className={
-                          participant.puuid ? "2" : "none"
-                        }
-                      >
-
-                  <div className="container-fluid text-center">
-                  <div class="row justify-content-md-center" id="recap">
-                  <div class="col col-lg-4"  id="recap-kda" >
-                  <p id="perso">
-                         Champions : {participant.championName}{"   "} <br></br>
-                         Roles :    {participant.teamPosition}{" "}
-                          </p>
-                          <p id="perso">
-                            {" "}
-                            Kill : {participant.kills} / Death :{" "}
-                            {participant.deaths} / Assists :{" "}
-                            {participant.assists}{" "}
-                          </p>
-                      </div>
-                      <div class="col-md-auto">
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
-                            alt={``}
-                          ></img>
-                          <br></br>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
-                            alt={``}
-                          ></img>
+                      <div className={participant.puuid ? "2" : "none"}>
+                        <div className="container-fluid text-center">
+                          <div class="row justify-content-md-center" id="recap">
+                            <div class="col col-lg-4" id="recap-kda">
+                              <p id="perso">
+                                Champions : {participant.championName}
+                                {"   "} <br></br>
+                                Roles : {participant.teamPosition}{" "}
+                              </p>
+                              <p id="perso">
+                                {" "}
+                                Kill : {participant.kills} / Death :{" "}
+                                {participant.deaths} / Assists :{" "}
+                                {participant.assists}{" "}
+                              </p>
+                            </div>
+                            <div class="col-md-auto">
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
+                                alt={``}
+                              ></img>
+                              <br></br>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
+                                alt={``}
+                              ></img>
+                            </div>
+                            <div class="col-md-auto">
+                              <img
+                                className="img-niveaux"
+                                src={
+                                  "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
+                                  participant.championName +
+                                  ".png"
+                                }
+                                alt={`Profile icon of ${participant.championName}`}
+                              ></img>
+                            </div>
                           </div>
-                          <div class="col-md-auto">
-                           <img
-                            className="img-niveaux"
-                            src={
-                              "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
-                              participant.championName +
-                              ".png"
-                            }
-                           
-                            alt={`Profile icon of ${participant.championName}`}
-                          ></img>
-                        </div>
-                         
-                        </div>
-                        <div class="row justify-content-md-center" >
-                  <div class="col col-lg-6"  >
-                  <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
-                  <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
-                        </div>
-                        <div class="col">
-                        <button className ="precedent"onClick={() => plusDivs(-1)}>&#10094;</button>
-                        <button className ="suivant"onClick={() => plusDivs(1)}>&#10095;  </button>
-                        </div>
+                          <div class="row justify-content-md-center">
+                            <div class="col col-lg-6">
+                              <button
+                                class="btn btn-outline-primary"
+                                onClick={() =>
+                                  handleClick(matchData.metadata.matchId)
+                                }
+                              >
+                                Voir match{" "}
+                              </button>
+                              <button
+                                class="btn btn-outline-primary"
+                                onClick={() =>
+                                  submitClick(matchData.metadata.matchId)
+                                }
+                              >
+                                Voir conseil{" "}
+                              </button>
+                            </div>
+                            <div class="col">
+                              <button
+                                className="precedent"
+                                onClick={() => plusDivs(-1)}
+                              >
+                                &#10094;
+                              </button>
+                              <button
+                                className="suivant"
+                                onClick={() => plusDivs(1)}
+                              >
+                                &#10095;{" "}
+                              </button>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
                     </div>
                   ))}
 
@@ -237,80 +251,102 @@ const App = () => {
                             : "none"
                         }
                       >
-                     <div className="container-fluid text-center">
-                  <div class="row justify-content-md-center" id="recap">
-                  <div class="col col-lg-4"  id="recap-kda">
-                  
-
-                          <p id="perso">
-                         Champions : {participant.championName}{"   "} <br></br>
-                         Roles :    {participant.teamPosition}{" "}
-                          </p>
-                          <p id="perso">
-                            {" "}
-                            Kill : {participant.kills} / Death :{" "}
-                            {participant.deaths} / Assists :{" "}
-                            {participant.assists}{" "}
-                          </p>
-</div> 
-<div class="col-md-auto">
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
-                            alt={``}
-                          ></img>
-                          <br></br>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
-                            alt={``}
-                          ></img>
-                          <img
-                            className="object"
-                            src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
-                            alt={``}
-                          ></img>
-</div>
-<div class="col-md-auto">
-                            <img
-                            className="img-niveaux"
-                            src={
-                              "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
-                              participant.championName +
-                              ".png"
-                            }
-                            alt={`Profile icon of ${participant.summonerName}`}
-                          ></img>
+                        <div className="container-fluid text-center">
+                          <div class="row justify-content-md-center" id="recap">
+                            <div class="col col-lg-4" id="recap-kda">
+                              <p id="perso">
+                                Champions : {participant.championName}
+                                {"   "} <br></br>
+                                Roles : {participant.teamPosition}{" "}
+                              </p>
+                              <p id="perso">
+                                {" "}
+                                Kill : {participant.kills} / Death :{" "}
+                                {participant.deaths} / Assists :{" "}
+                                {participant.assists}{" "}
+                              </p>
+                            </div>
+                            <div class="col-md-auto">
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`}
+                                alt={``}
+                              ></img>
+                              <br></br>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`}
+                                alt={``}
+                              ></img>
+                              <img
+                                className="object"
+                                src={`https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`}
+                                alt={``}
+                              ></img>
+                            </div>
+                            <div class="col-md-auto">
+                              <img
+                                className="img-niveaux"
+                                src={
+                                  "https://ddragon.leagueoflegends.com/cdn/13.7.1/img/champion/" +
+                                  participant.championName +
+                                  ".png"
+                                }
+                                alt={`Profile icon of ${participant.summonerName}`}
+                              ></img>
+                            </div>
                           </div>
-                      
+                          <div class="row justify-content-md-center">
+                            <div class="col col-lg-6">
+                              <button
+                                class="btn btn-outline-primary"
+                                onClick={() =>
+                                  handleClick(matchData.metadata.matchId)
+                                }
+                              >
+                                Voir match{" "}
+                              </button>
+                              <button
+                                class="btn btn-outline-primary"
+                                onClick={() =>
+                                  submitClick(matchData.metadata.matchId)
+                                }
+                              >
+                                Voir conseil{" "}
+                              </button>
+                            </div>
+                            <div class="col">
+                              <button
+                                className="precedent"
+                                onClick={() => plusDivs(-1)}
+                              >
+                                &#10094;
+                              </button>
+                              <button
+                                className="suivant"
+                                onClick={() => plusDivs(1)}
+                              >
+                                &#10095;{" "}
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div class="row justify-content-md-center" >
-                  <div class="col col-lg-6"  >
-                  <button class="btn btn-outline-primary"onClick={() => handleClick(matchData.metadata.matchId)}>Voir match </button>
-                  <button class="btn btn-outline-primary" onClick={() => submitClick(matchData.metadata.matchId)}>Voir conseil </button>
                       </div>
-                      <div class="col">  
-                        <button className ="precedent"onClick={() => plusDivs(-1)}>&#10094;</button>
-                        <button className ="suivant"onClick={() => plusDivs(1)}>&#10095;  </button>
-                        </div>
-                      </div>
-                    </div>
-                    </div>
                     </div>
                   ))}
               </div>
@@ -318,7 +354,7 @@ const App = () => {
           </div>
         ))}
       </div>
-      </div>
+    </div>
   );
 };
 

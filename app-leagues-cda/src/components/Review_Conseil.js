@@ -22,8 +22,6 @@ const Review_Conseil = () => {
         )
         .then((response) => {
           setPuuid(response.data.puuid);
-          const puuidId = response.data.puuid;
-          console.log(puuidId);
         })
         .catch((error) => {
           console.log(error);
@@ -47,18 +45,14 @@ const Review_Conseil = () => {
   }, [matchIds]);
 
   useEffect(() => {
-  if(!comment) {
-    let test3 = CommentServices.getCommentById(currentUser.leagues
-      
-      + `/${matchIds}`)
-    const promise3 = Promise.resolve(test3);
-    promise3.then((value) => {
-    setComment(value.data.data);
-    console.log(value);
-    });}
-  }, );
-
-
+    if (!comment) {
+      let commetuser = CommentServices.getCommentById( currentUser.leagues + `/${matchIds}`);
+      const promise = Promise.resolve(commetuser);
+      promise.then((value) => {
+        setComment(value.data.data);
+      });
+    }
+  });
 
   return (
     <div className="container text-center">
@@ -209,29 +203,25 @@ const Review_Conseil = () => {
                       }
                       id="review"
                     >
-        
-                        <h3> CONSEIL : </h3>
+                      <h3> CONSEIL : </h3>
 
-                        {comment && comment.length > 0 ? (
-  comment.map((c) => (
-    <div className="image-type">
-      <p>{c.body} </p>
-    </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>Pas encore de commentaire attribué </p>
-  </div>
-)}
-        
-          
-                      </div>
+                      {comment && comment.length > 0 ? (
+                        comment.map((c) => (
+                          <div className="image-type">
+                            <p>{c.body} </p>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="image-type">
+                          <p>Pas encore de commentaire attribué </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-      
+              </div>
             ))}
- {matchData.info.participants
+          {matchData.info.participants
             .filter((participant) => participant.puuid === puuid)
             .filter((participant) => participant.teamId === 200)
             .map((participant) => (
@@ -283,7 +273,6 @@ const Review_Conseil = () => {
                         Kill : {participant.kills} <br></br>
                         Death : {participant.deaths} <br></br>
                         Assists : {participant.assists} <br></br>
-                        
                       </p>
                     </div>
                   </div>
@@ -372,25 +361,23 @@ const Review_Conseil = () => {
                       }
                       id="review"
                     >
-                     
-                        <h3> CONSEIL : </h3>
+                      <h3> CONSEIL : </h3>
 
-                        {comment && comment.length > 0 ? (
-  comment.map((c) => (
-    <div className="image-type">
-      <p>{c.body} </p>
-    </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>Pas encore de commentaire attribué</p>
-  </div>
-)}
-                      </div>
+                      {comment && comment.length > 0 ? (
+                        comment.map((c) => (
+                          <div className="image-type">
+                            <p>{c.body} </p>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="image-type">
+                          <p>Pas encore de commentaire attribué</p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-          
+              </div>
             ))}
         </div>
       ))}

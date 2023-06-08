@@ -166,6 +166,7 @@ img.img-champions, img.logo-page {
   margin-bottom: 3%;
   border: solid 1px #fff;
   border-width: 0px 5px 5px 0px;
+  margin-top: 25px;
 }
 
 @media (max-width: 1000px){
@@ -187,7 +188,7 @@ img.img-champions, img.logo-page {
   border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important;
   border-radius: 25px;
   margin-right: -15%;
-  padding: 8%;
+  padding: 6%;
 }
 
 
@@ -248,7 +249,7 @@ width: 100px;
 /* champion */
 .section-bleu-champ {
   margin: 45px;
-  width: 50%;
+  width: 30%;
   background-color: #1d6ade;
   border-radius: 25px;
   margin-left: auto;
@@ -259,7 +260,7 @@ width: 100px;
   padding-right: 3%;
 }
 
-@media (max-width: 1000px){
+@media (max-width: 1200px){
   .section-bleu-champ {
     width: 80%;
     padding: 5%;
@@ -556,4 +557,21 @@ h2#perso {
   padding: 5px;
   border: 1px solid;
   margin-right: -75px;
+}
+
+#recap-stat {
+  border: 1px solid #fff;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+h2#result-team {
+  color: #082a69!important;
+}
+
+p.utilisateurleaguematch {
+  text-align: center;
 }

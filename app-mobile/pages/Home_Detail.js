@@ -1,45 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Text, View, StyleSheet } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import Button from '../components/Button'; 
-import ImageViewer from '../components/ImageViewer';
-
+import Button from "../components/Button";
+import ImageViewer from "../components/ImageViewer";
 
 const PlaceholderImage = require("../assets/img/Jinx-user.png");
 
-
-
-
 const Home = () => {
-
   const [leagues, setLeagues] = useState("");
 
   useEffect(() => {
-    AsyncStorage.getItem('leagues')
+    AsyncStorage.getItem("leagues")
       .then((leagues) => {
         if (leagues) {
           setLeagues(leagues);
         }
       })
       .catch((error) => {
-        console.log('Erreur lors de la récupération du nom d\'utilisateur :', error);
+        console.log(
+          "Erreur lors de la récupération du nom d'utilisateur :",
+          error
+        );
       });
   }, []);
 
   return (
     <View style={styles.container}>
-               <View style={styles.imageContainer}>
-                <Text style={styles.bienvenue}>Bienvenue </Text>    
-      <Text style={styles.username }>{leagues}</Text>
-      {/* Autres informations de profil */}
+      <View style={styles.imageContainer}>
+        <Text style={styles.bienvenue}>Bienvenue </Text>
+        <Text style={styles.username}>{leagues}</Text>
+        {/* Autres informations de profil */}
+      </View>
 
-      </View>
-  
       <View style={styles.boutonContainer}>
-        <Button theme="Match" label="VOIR DÉTAIL"  />
+        <Button theme="Match" label="VOIR DÉTAIL" />
       </View>
-      <View style={styles.imageContainer-2}>
+      <View style={styles.imageContainer - 2}>
         <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>
     </View>
@@ -48,38 +45,35 @@ const Home = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1D6ADE',
-    alignItems: 'center',
-    height: '100%',
-    width: '100%',
+    backgroundColor: "#1D6ADE",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
   },
   imageContainer: {
-    paddingTop : 100,
+    paddingTop: 100,
   },
   boutonContainer: {
-    flexDirection: 'row',
-    marginLeft: 115, 
-    width: '100%',
-    margin: 20, 
+    flexDirection: "row",
+    marginLeft: 115,
+    width: "100%",
+    margin: 20,
   },
   username: {
     marginTop: 10,
-    fontSize: "90%",
-    color: 'white',
+    fontSize: 90,
+    color: "white",
     width: 350,
     padding: 20,
     borderRadius: 15,
     borderWidth: 2,
-    borderColor: 'white',
-    overflow: 'hidden',
+    borderColor: "white",
+    overflow: "hidden",
   },
   bienvenue: {
-fontSize : 30,
-color: 'white',
-  }
+    fontSize: 30,
+    color: "white",
+  },
 });
 
-
-  
-  
 export default Home;

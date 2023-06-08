@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
@@ -11,7 +11,6 @@ const BoardAdmin = () => {
   const [test, setTest] = useState();
 
   useEffect(() => {
-
     if (!user) {
       AuthService.getAllUsers().then((value) => {
         const leagues = value.data.map((u) => u.leagues);
@@ -20,26 +19,14 @@ const BoardAdmin = () => {
     }
     console.log(user);
 
-
-
-
     if (!test) {
-      let test2 = AuthService.getAllUsers()
+      let test2 = AuthService.getAllUsers();
       const promise2 = Promise.resolve(test2);
       promise2.then((value) => {
         setTest(value.data);
       });
     }
     console.log(test);
-
-
-
-
-
-
-
-
-
 
     UserService.getAdminBoard().then(
       (response) => {
@@ -62,51 +49,53 @@ const BoardAdmin = () => {
     );
   }, [user]);
 
-
   function handleClick(user) {
     const url = `profile/${user}`;
     window.location.href = url;
   }
 
-
   return (
     <div className="container-fluid text-center">
       <div className="home">
         <Home />
-
       </div>
       <div className="">
-<h1 className="all"> Récap all user :  </h1>
-</div>
+        <h1 className="all"> Récap all user : </h1>
+      </div>
       <table class="table table-striped">
-      <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Leagues username : </th>
-      <th scope="col">Profile :</th>
-    </tr>
-  </thead>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Leagues username : </th>
+            <th scope="col">Profile :</th>
+          </tr>
+        </thead>
 
         <tbody>
-          {user && user.map((league, index) => (
-            <tr className="salut">
-              <td className="salut">
-              <p id="leaguesuser"> {index + 1}</p>
-              </td>
-              <td>
-                <p id="leaguesuser">{league}</p>
-              </td>
-              <td>
-                <button type="button" class="btn btn-primary" onClick={() => handleClick(league)}>Voir match</button>
-              </td>
-            </tr>
-
-          ))}
+          {user &&
+            user.map((league, index) => (
+              <tr className="salut">
+                <td className="salut">
+                  <p id="leaguesuser"> {index + 1}</p>
+                </td>
+                <td>
+                  <p id="leaguesuser">{league}</p>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onClick={() => handleClick(league)}
+                  >
+                    Voir match
+                  </button>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
   );
 };
-
 
 export default BoardAdmin;
