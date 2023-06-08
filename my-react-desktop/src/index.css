@@ -277,7 +277,7 @@ img.object {
 text-align: start;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 1000px) {
   #recap {
 text-align: center;
   }
@@ -340,14 +340,14 @@ img.equipe {
   width: auto;
   height: 240px;
   text-align: center;
-  padding-top: 5%;
+
   border: solid 1px #000;
   border-width: 0px 5px 5px 0px;
+  padding: 2%;
 }
 .img-conseil {
   border-radius: 20px;
   width: 100px;
-  margin-left: 86%;
 }
 
 @media (max-width: 1000px){
@@ -383,7 +383,7 @@ button.perso {
 }
 p#perso {
   font-weight: bold;
-  margin: 0px;
+  margin: 5px;
 }
 
 .particpantpuid {
@@ -439,4 +439,31 @@ h2#result-team {
 
 h1.classe {
   text-align: center;
+}
+
+#conseil {
+  margin: auto;
+  width: 75%;
+  text-align: center;
+  padding: 2%;
+  border: solid 1px #000;
+  border-width: 0px 8px 8px 0px;
+  margin-top: 5%;
+
+}
+p.utilisateurleaguematch {
+  text-align: center;
+  padding: 15px;
+}
+
+#recap-stat {
+  border: 1px solid #fff;
+  border-radius: 20px;
+  margin: 5px;
+  padding: 10px;
+  text-align: center;
+  margin-top: 25px;
+}
+form {
+  margin: 10px;
 }

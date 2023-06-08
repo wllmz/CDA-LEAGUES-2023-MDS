@@ -3,9 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import CommentServices from "../services/comment.service";
 import Addcomment from "../components/Add_Comment";
-import { Link } from 'react-router-dom';
-
-
+import { Link } from "react-router-dom";
 
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
@@ -13,8 +11,8 @@ const Review_Conseil = () => {
   const [puuid, setPuuid] = useState("");
   const { user } = useParams();
   const { matchIds } = useParams();
-  
-  const API_KEY = "RGAPI-a3ae5188-4877-4d42-bf57-8301cebc7267"
+
+  const API_KEY = "RGAPI-a3ae5188-4877-4d42-bf57-8301cebc7267";
 
   const API_URL = "http://localhost:3000/api/comment";
 
@@ -51,18 +49,19 @@ const Review_Conseil = () => {
   }, [matchIds]);
 
   useEffect(() => {
-  if(!comment) {
-    let test3 = CommentServices.getCommentById(user + `/${matchIds}`)
-    const promise3 = Promise.resolve(test3);
-    promise3.then((value) => {
-    setComment(value.data.data);
-    console.log(value);
-    });}
-  }, );
-
+    if (!comment) {
+      let test3 = CommentServices.getCommentById(user + `/${matchIds}`);
+      const promise3 = Promise.resolve(test3);
+      promise3.then((value) => {
+        setComment(value.data.data);
+        console.log(value);
+      });
+    }
+  });
 
   const deleteComment = (id) => {
-    axios.delete(API_URL + "/" + id)
+    axios
+      .delete(API_URL + "/" + id)
       .then(() => {
         setComment(comment.filter((c) => c._id !== id));
       })
@@ -71,15 +70,11 @@ const Review_Conseil = () => {
       });
   };
 
-  
- 
-
-
   return (
     <div className="container text-center">
-      <Link to= {`/profile/${user}`}>
-  <span>&#8592;</span> Retour
-</Link>
+      <Link to={`/profile/${user}`}>
+        <span>&#8592;</span> Retour
+      </Link>
       {matches.map((matchData, index) => (
         <div key={index}>
           <h2 id="match">Informations des dernières parties jouées :</h2>
@@ -93,7 +88,7 @@ const Review_Conseil = () => {
             .map((participant) => (
               <div className="container text-center">
                 <div class="row align-items-center">
-                  <div class="col  col-lg-8 col-sm" id="recap-kda">
+                  <div class="col  col-lg-12 col-sm" id="recap-kda">
                     <div
                       className={
                         matchData.info.teams[0].win
@@ -218,49 +213,47 @@ const Review_Conseil = () => {
                       </p>
                     </div>
                   </div>
-                  <div class="col-sm col-lg-4" id="recap-kda">
+                  <div class="col-sm col-lg-12" id="recap-conseil">
                     <div
                       className={
                         matchData.info.teams[0].win
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="review"
+                      id="conseil"
                     >
-        
-                        <h3> CONSEIL : </h3>
+                      <h3> CONSEIL : </h3>
 
-                        {comment && comment.length > 0 ? (
-  comment.map((c) => (
-    <div className="image-type">
-      <p>{c.body} </p>
-      <button onClick={() => deleteComment(c._id)}>Delete</button>
-
-    </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>Pas encore de commentaire attribué </p>
-    <Addcomment/>
-  </div>
-)}
-
-
-        
-          
-                      </div>
+                      {comment && comment.length > 0 ? (
+                        comment.map((c) => (
+                          <div className="conseil">
+                            <p>{c.body} </p>
+                            <button
+                              class="btn btn-outline-primary"
+                              onClick={() => deleteComment(c._id)}
+                            >
+                              Supprimer
+                            </button>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="conseil">
+                          <p>Pas encore de commentaire attribué </p>
+                          <Addcomment />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-      
+              </div>
             ))}
- {matchData.info.participants
+          {matchData.info.participants
             .filter((participant) => participant.puuid === puuid)
             .filter((participant) => participant.teamId === 200)
             .map((participant) => (
               <div className="container text-center">
                 <div class="row align-items-center">
-                  <div class="col  col-lg-8 col-sm" id="recap-kda">
+                  <div class="col  col-lg-12 col-sm" id="recap-kda">
                     <div
                       className={
                         matchData.info.teams[1].win
@@ -306,7 +299,6 @@ const Review_Conseil = () => {
                         Kill : {participant.kills} <br></br>
                         Death : {participant.deaths} <br></br>
                         Assists : {participant.assists} <br></br>
-                        
                       </p>
                     </div>
                   </div>
@@ -386,37 +378,39 @@ const Review_Conseil = () => {
                       </p>
                     </div>
                   </div>
-                  <div class="col-sm col-lg-4" id="recap-kda">
+                  <div class="col-sm col-lg-12" id="recap-conseil">
                     <div
                       className={
                         matchData.info.teams[1].win
                           ? "Victoire-perso"
                           : "Défaite-perso"
                       }
-                      id="review"
+                      id="conseil"
                     >
-                     
-                        <h3> CONSEIL : </h3>
+                      <h3> CONSEIL : </h3>
 
-                        {comment && comment.length > 0 ? (
-  comment.map((c) => (
-    <div className="image-type">
-      <p>{c.body} </p>
-      <button onClick={() => deleteComment(c._id)}>Delete</button>
-
-    </div>
-  ))
-) : (
-  <div className="image-type">
-    <p>Pas encore de commentaire attribué</p>
-    <Addcomment/>
-  </div>
-)}
-                      </div>
+                      {comment && comment.length > 0 ? (
+                        comment.map((c) => (
+                          <div className="conseil">
+                            <p>{c.body} </p>
+                            <button
+                              class="btn btn-outline-primary"
+                              onClick={() => deleteComment(c._id)}
+                            >
+                              Delete
+                            </button>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="conseil">
+                          <p>Pas encore de commentaire attribué</p>
+                          <Addcomment />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
-          
+              </div>
             ))}
         </div>
       ))}

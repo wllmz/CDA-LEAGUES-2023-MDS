@@ -11,13 +11,10 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import BoardUser from "./pages/BoardUser";
-import BoardModerator from "./pages/BoardModerator";
-import BoardAdmin from "./pages/BoardAdmin";
 import Champions from "./pages/Champions";
 import Logo from './assets/img/Logomobile.png';
 import Ranks from './pages/Ranks';
 import Icon from './assets/img/Icon.png';
-import Test from './pages/Test';
 import Footer from './components/Footer';
 import Review_Match from "./pages/Review_M";
 import Review_Conseil from "./pages/Review_C";
@@ -29,8 +26,6 @@ import Review_Conseil from "./pages/Review_C";
 import EventBus from "./common/EventBus";
 
 const App = () => {
-  const [showModeratorBoard, setShowModeratorBoard] = useState(false);
-  const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   
 
@@ -40,8 +35,6 @@ const App = () => {
 
     if (user) {
       setCurrentUser(user);
-      setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"));
-      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
 
     EventBus.on("logout", () => {
@@ -55,8 +48,6 @@ const App = () => {
 
   const logOut = () => {
     AuthService.logout();
-    setShowModeratorBoard(false);
-    setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
 
@@ -86,22 +77,6 @@ const App = () => {
             Classements  
             </NavLink>
           </li>
-          {showModeratorBoard && (
-            <li className="nav-item">
-              <NavLink to={"/mod"} className="nav-link">
-                Moderator Board
-              </NavLink>
-            </li>
-          )}
-
-          {showAdminBoard && (
-            <li className="nav-item">
-              <NavLink to={"/admin"} className="nav-link">
-                Admin Board
-              </NavLink>
-            </li>
-    
-          )}
 
 
 {currentUser && (
@@ -164,9 +139,6 @@ const App = () => {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route path="/user" element={<BoardUser />} />
-          <Route path="/mod" element={<BoardModerator />} />
-          <Route path="/admin" element={<BoardAdmin />} />
-          <Route path="/test" element={<Test />} />
           <Route path={`match/:matchIds`} element={<Review_Match />} />
           <Route path={`conseil/:matchIds`} element={<Review_Conseil />} />
 
