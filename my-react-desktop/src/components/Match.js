@@ -8,7 +8,7 @@ const App = () => {
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const API_KEY = "RGAPI-67b36c84-af53-4026-a62e-786e0129d1c5"
+  const API_KEY = "RGAPI-a3ae5188-4877-4d42-bf57-8301cebc7267"
   const COUNT = 3;
   const [puuid, setPuuid] = useState("");
   const { user } = useParams();

@@ -5,7 +5,7 @@ import CommentServices from "../services/comment.service";
 import Addcomment from "../components/Add_Comment";
 import { Link } from 'react-router-dom';
 
-const API_KEY = "RGAPI-67b36c84-af53-4026-a62e-786e0129d1c5"
+
 
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
@@ -13,6 +13,8 @@ const Review_Conseil = () => {
   const [puuid, setPuuid] = useState("");
   const { user } = useParams();
   const { matchIds } = useParams();
+  
+  const API_KEY = "RGAPI-a3ae5188-4877-4d42-bf57-8301cebc7267"
 
   const API_URL = "http://localhost:3000/api/comment";
 
