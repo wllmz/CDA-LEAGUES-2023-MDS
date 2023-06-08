@@ -6,6 +6,7 @@ import CheckButton from "react-validation/build/button";
 import Logomobile from '../assets/img/Logomobile.png';
 
 import AuthService from "../services/auth.service";
+import AuthServiceRole from "../services/user.service";
 
 const required = (value) => {
   if (!value) {
@@ -55,10 +56,12 @@ const Login = () => {
 
     if (checkBtn.current.context._errors.length === 0) {
       AuthService.login(username,leagues, password).then(
+      AuthServiceRole.getAdminBoard().then(
         () => {
           navigate("/");
           window.location.reload();
         },
+    
         (error) => {
           const resMessage =
             (error.response &&
@@ -70,7 +73,7 @@ const Login = () => {
           setLoading(false);
           setMessage(resMessage);
         }
-      );
+      ));
     } else {
       setLoading(false);
     }

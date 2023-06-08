@@ -94,14 +94,11 @@ const App = () => {
 
 
         <Routes>
-     
           <Route exact path="/login" element={<Login />} />
           <Route path="/" element={<BoardAdmin />} />
-
           <Route path={`/profile/conseil/:matchIds/:user`} element={<Review_Conseil />} />     
-       
           <Route path={`profile/:user`} element={<Profile />} />  
-        
+  
         </Routes>
       
         <Footer/>
