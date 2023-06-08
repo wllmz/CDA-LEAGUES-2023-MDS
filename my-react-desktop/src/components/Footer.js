@@ -8,12 +8,14 @@ import EventBus from "../common/EventBus";
 
 const Footer = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
+  
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
 
     if (user) {
-      setCurrentUser(user);
+      setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
 
     EventBus.on("logout", () => {
@@ -35,12 +37,21 @@ const Footer = () => {
     <footer class="text-center text-lg-start bg-light text-muted">
 
       <section class="footer">
-        <div class="container text-center text-md-start mt-5">
-          <i class="fas fa-gem me-3"><NavLink to={"/"} className="nav-link">   <img className="logo" src={Logo} /> </NavLink></i>
+     
+       
 
-        </div>
+        
 
+        {showAdminBoard ? (
+     <div class="container text-center text-md-start mt-5">
+<NavLink to={"/"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
+    </div>
+    ) : (   
+      <div class="container text-center text-md-start mt-5">
+<NavLink to={"/login"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
+    </div>
 
+    )}
 
 
 
