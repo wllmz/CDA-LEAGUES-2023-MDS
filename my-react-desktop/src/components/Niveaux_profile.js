@@ -12,7 +12,6 @@ const Niveaux = () => {
 
     
 
-
     console.log(user);
 
 
