@@ -6,7 +6,7 @@ function App() {
   const [summonerName, setSummonerName] = useState("");
   const [rank, setRank] = useState(null);
   const { user } = useParams();
-  const API_KEY = "RGAPI-cfbd808f-b3cb-44d9-a4bd-8e5935fa6694";
+  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
 
   useEffect(() => {
     if (user) {

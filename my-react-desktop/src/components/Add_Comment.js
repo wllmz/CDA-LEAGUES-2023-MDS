@@ -19,7 +19,16 @@ const AddCommentForm = (props) => {
 
   const createComment = async () => {
     try {
-      await axios.post(API_URL, comment);
+      const user = JSON.parse(localStorage.getItem('user'));
+      const token = user ? user.token : '';
+
+      await axios.post(API_URL, comment, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+
+
       props.addComment(comment);
       setComment(initialFormState);
     } catch (error) {

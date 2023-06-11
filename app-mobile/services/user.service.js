@@ -1,6 +1,7 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_URL = "http://192.168.1.126:3000/api/test/";
+const API_URL = "http://192.168.1.126:8080/api/test/";
 
 const getPublicContent = () => {
   return axios.get(API_URL + "all");
@@ -14,14 +15,15 @@ const getModeratorBoard = () => {
   return axios.get(API_URL + "mod");
 };
 
-const getAdminBoard = () => {
-  return axios.get(API_URL + "admin");
-};
+const getAdminBoard = async () => {
+  const user = await AsyncStorage.getItem('user');
+  const parsedUser = JSON.parse(user);
+  const token = parsedUser ? parsedUser.token : '';
 
-const getAllComment  = (username, body ) => {
-  return axios.post(API_URL, {
-    username,
-    body
+  return axios.get(API_URL + 'admin', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
   });
 };
 

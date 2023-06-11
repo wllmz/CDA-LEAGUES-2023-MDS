@@ -46,8 +46,8 @@ const Review_Conseil = () => {
 
   useEffect(() => {
     if (!comment) {
-      let commetuser = CommentServices.getCommentById( currentUser.leagues + `/${matchIds}`);
-      const promise = Promise.resolve(commetuser);
+      let commentuser = CommentServices.getCommentById( currentUser.leagues + `/${matchIds}`);
+      const promise = Promise.resolve(commentuser);
       promise.then((value) => {
         setComment(value.data.data);
       });

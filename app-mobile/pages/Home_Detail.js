@@ -1,6 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import logout from "../services/auth.service"
+
+  
+const handleLogout = async () => {
+  try {
+    await logout();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 import Button from "../components/Button";
 import ImageViewer from "../components/ImageViewer";
@@ -25,6 +36,9 @@ const Home = () => {
       });
   }, []);
 
+
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
@@ -36,6 +50,9 @@ const Home = () => {
       <View style={styles.boutonContainer}>
         <Button theme="Match" label="VOIR DÉTAIL" />
       </View>
+
+      
+
       <View style={styles.imageContainer - 2}>
         <ImageViewer placeholderImageSource={PlaceholderImage} />
       </View>

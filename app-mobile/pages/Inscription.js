@@ -12,6 +12,8 @@ import { useNavigation } from "@react-navigation/native";
 import { isEmail } from "validator";
 import axios from "axios";
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const Inscription = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -21,7 +23,7 @@ const Inscription = () => {
   const [error, setError] = useState(null);
   const navigation = useNavigation();
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
+
 
   const handleRegister = () => {
     setError(null);
