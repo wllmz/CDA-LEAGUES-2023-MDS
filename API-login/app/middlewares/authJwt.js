@@ -5,19 +5,23 @@ const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let token = req.session.token;
+  let split = req.headers['authorization'];
 
-  if (!token) {
-    return res.status(403).send({ message: "No token provided!" });
-  }
-
+  if (split) {
+    let token = split.split(" ")[1]
+    
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized!" });
     }
     req.userId = decoded.id;
     next();
-  });
+    });
+  }else {
+    return res.status(401).json("You are not authenticated!");
+  }
+
+
 };
 
 isAdmin = (req, res, next) => {

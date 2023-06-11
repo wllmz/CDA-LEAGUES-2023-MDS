@@ -8,7 +8,7 @@ import Home from "./Home";
 const BoardAdmin = () => {
   const [content, setContent] = useState();
   const [user, setUser] = useState();
-  const [test, setTest] = useState();
+ 
 
   useEffect(() => {
     if (!user) {
@@ -17,16 +17,9 @@ const BoardAdmin = () => {
         setUser(leagues);
       });
     }
-    console.log(user);
 
-    if (!test) {
-      let test2 = AuthService.getAllUsers();
-      const promise2 = Promise.resolve(test2);
-      promise2.then((value) => {
-        setTest(value.data);
-      });
-    }
-    console.log(test);
+
+
 
     UserService.getAdminBoard().then(
       (response) => {
