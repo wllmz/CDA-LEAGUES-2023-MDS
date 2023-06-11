@@ -1,4 +1,5 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const API_URL = "http://192.168.1.126:8080/api/auth/";
 
@@ -11,6 +12,7 @@ const register = (username, email, leagues, password ) => {
   });
 };
 
+
 const getAllUsers = (username, email, leagues ) => {
   return axios.get(API_URL + "getallusers", {
     username,
@@ -20,31 +22,38 @@ const getAllUsers = (username, email, leagues ) => {
 };
 
 
-const login = (username, leagues, password) => {
+const login = async (username, leagues, password) => {
   console.log(username);
-  return axios
+  const response = await axios
     .post(API_URL + "signin", {
       username,
       leagues,
       password,
-    })
-    .then((response) => {
-      return response.data.username;
     });
+  
+  const user = response.data;
+  console.log(user);
+  await AsyncStorage.setItem("user", JSON.stringify(user));
+  return user.username;
+
 };
 
-const logout = () => {
-  localStorage.removeItem("user");
+const logout = async () => {
+  await AsyncStorage.removeItem("user");
   return axios.post(API_URL + "signout").then((response) => {
     return response.data;
   });
 };
 
 
-
-const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
+const getCurrentUser = async () => {
+  console.log(user);
+  const user = await AsyncStorage.getItem("user");
+  return JSON.parse(user);
 };
+
+
+
 
 const AuthService = {
   register,

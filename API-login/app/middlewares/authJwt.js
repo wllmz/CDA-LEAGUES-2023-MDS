@@ -21,7 +21,6 @@ verifyToken = (req, res, next) => {
     return res.status(401).json("You are not authenticated!");
   }
 
-
 };
 
 isAdmin = (req, res, next) => {

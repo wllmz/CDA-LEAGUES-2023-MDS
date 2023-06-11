@@ -12,7 +12,7 @@ const Review_Conseil = () => {
   const { user } = useParams();
   const { matchIds } = useParams();
 
-  const API_KEY = "RGAPI-cfbd808f-b3cb-44d9-a4bd-8e5935fa6694";
+  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
 
   const API_URL = "http://localhost:3000/api/comment";
 
@@ -60,8 +60,14 @@ const Review_Conseil = () => {
   });
 
   const deleteComment = (id) => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const token = user ? user.token : '';
     axios
-      .delete(API_URL + "/" + id)
+      .delete(API_URL + "/" + id,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      }) 
       .then(() => {
         setComment(comment.filter((c) => c._id !== id));
       })

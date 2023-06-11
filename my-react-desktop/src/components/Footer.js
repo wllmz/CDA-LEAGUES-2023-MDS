@@ -36,14 +36,14 @@ const Footer = () => {
       <section class="footer">
         {showAdminBoard ? (
           <div class="container text-center text-md-start mt-5">
-            <NavLink to={"/"} className="nav-link">
+            <NavLink to={"/admin"} className="nav-link">
               {" "}
               <img className="logo" src={Logo} />{" "}
             </NavLink>
           </div>
         ) : (
           <div class="container text-center text-md-start mt-5">
-            <NavLink to={"/login"} className="nav-link">
+            <NavLink to={"/"} className="nav-link">
               {" "}
               <img className="logo" src={Logo} />{" "}
             </NavLink>

@@ -26,7 +26,7 @@ const Profile = () => {
       </div>
 
       <div className="page-profile">
-        <Link to="/">
+        <Link to="/admin">
           <span>&#8592;</span> Retour
         </Link>
         <div className="section-bleu-profile">

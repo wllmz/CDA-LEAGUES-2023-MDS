@@ -55,7 +55,7 @@ const Login = () => {
       const validate = await AuthService.login(username, leagues, password);
       console.log(validate.roles);
       if (validate && validate.roles == "ROLE_ADMIN") {
-        navigate("/");
+        navigate("/admin");
       } else {
         setLoading(false);
         setMessage("accés non autorisé");

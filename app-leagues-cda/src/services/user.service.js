@@ -15,10 +15,15 @@ const getModeratorBoard = () => {
 };
 
 const getAdminBoard = () => {
-  return axios.get(API_URL + "admin");
+  const user = JSON.parse(localStorage.getItem('user'));
+  const token = user ? user.token : '';
+
+  return axios.get(API_URL + 'admin', {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
 };
-
-
 
 const UserService = {
   getPublicContent,

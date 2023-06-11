@@ -17,6 +17,8 @@ import Profile from "./pages/Profile";
 
 
 
+
+
 // import AuthVerify from "./common/AuthVerify";
 import EventBus from "./common/EventBus";
 
@@ -29,7 +31,6 @@ const App = () => {
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
@@ -55,11 +56,11 @@ const App = () => {
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 {showAdminBoard ? (
   <div>
-<NavLink to={"/"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
+<NavLink to={"/admin"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
     </div>
     ) : (   
       <div>
-<NavLink to={"/login"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
+<NavLink to={"/"} className="nav-link">   <img className="logo" src={Logo}/> </NavLink>
     </div>
 
     )}
@@ -74,7 +75,7 @@ const App = () => {
          <div class="dropdown">
   <img class="btn btn-secondary dropdown-toggle"   data-bs-toggle="dropdown" aria-expanded="false" className="icon" src={Icon}/>
   <ul class="dropdown-menu dropdown-menu-dark">
-      <li className="nav-item"><a href="/login" className="nav-link" onClick={logOut}>Déconnexion </a></li>
+      <li className="nav-item"><a href="/" className="nav-link" onClick={logOut}>Déconnexion </a></li>
       </ul>
       </div>
 </ul>
@@ -101,11 +102,11 @@ const App = () => {
 
 
         <Routes>
+          <Route exact path="/" element={<Login />} />
           <Route exact path="/login" element={<Login />} />
-          <Route path="/" element={<BoardAdmin />} />
+          <Route path="/admin" element={<BoardAdmin />} />
           <Route path={`/profile/conseil/:matchIds/:user`} element={<Review_Conseil />} />     
           <Route path={`profile/:user`} element={<Profile />} />  
-  
         </Routes>
       
         <Footer/>

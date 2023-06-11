@@ -12,6 +12,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
+
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 const Profile = () => {
   const [leagues, setLeagues] = useState("");
   const [playerData, setPlayerdata] = useState({});
@@ -20,7 +23,6 @@ const Profile = () => {
   const COUNT = 2;
   const [puuid, setPuuid] = useState("");
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const navigation = useNavigation();
 
