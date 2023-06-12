@@ -31,7 +31,7 @@ const Home = () => {
   const handleLogout = async () => {
     try {
       await AsyncStorage.removeItem('leagues');
-      nav.navigate('Home')
+      nav.replace('Home')
       console.log('Vous avez bien été déconnecté');
     } catch (error) {
       console.log('Error logging out: ', error);
