@@ -10,6 +10,7 @@ import {
 import AuthService from "../services/auth.service";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Button from "../components/Button";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -19,6 +20,8 @@ const Login = () => {
   const [message, setMessage] = useState("");
 
   const nav = useNavigation();
+
+  
 
   const handleLogin = async () => {
     setMessage("");
@@ -39,7 +42,7 @@ const Login = () => {
           setUsername("");
           setLeagues("");
           setPassword("");
-          nav.navigate("Detail");
+          nav.replace("Detail");
         })
         .catch((error) => {
           Alert.alert("Erreur", error.response.data.message);
@@ -97,6 +100,9 @@ const Login = () => {
             </Text>
           </Pressable>
         </View>
+        <View style={styles.boutonContainer}>
+        <Button theme="Inscription" label="INSCRIPTION" />
+      </View>
       </View>
       {message && <Text>{message}</Text>}
     </View>

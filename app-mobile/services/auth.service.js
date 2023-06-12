@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_URL = "http://192.168.1.126:8080/api/auth/";
+const API_URL = "http://172.20.10.13:8080/api/auth/";
 
 const register = (username, email, leagues, password ) => {
   return axios.post(API_URL + "signup", {

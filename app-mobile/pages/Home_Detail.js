@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import logout from "../services/auth.service"
-
-  
-const handleLogout = async () => {
-  try {
-    await logout();
-  } catch (error) {
-    console.log(error);
-  }
-};
+import { useNavigation } from "@react-navigation/native";
 
 
 import Button from "../components/Button";
@@ -20,6 +11,7 @@ const PlaceholderImage = require("../assets/img/Jinx-user.png");
 
 const Home = () => {
   const [leagues, setLeagues] = useState("");
+  const nav = useNavigation();
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
@@ -36,6 +28,15 @@ const Home = () => {
       });
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem('leagues');
+      nav.navigate('Home')
+      console.log('Vous avez bien été déconnecté');
+    } catch (error) {
+      console.log('Error logging out: ', error);
+    }
+  }
 
   
 
@@ -51,6 +52,18 @@ const Home = () => {
         <Button theme="Match" label="VOIR DÉTAIL" />
       </View>
 
+                <View style={styles.btn}>
+                        <Pressable
+                          style={[styles.button]}
+                          onPress= {handleLogout}
+                          
+                        >
+                          <Text style={[styles.buttonLabel, { color: "#fff" }]}>
+                            {" "}
+                            DECONNEXION{" "}
+                          </Text>
+                        </Pressable>
+                      </View>
       
 
       <View style={styles.imageContainer - 2}>
@@ -91,6 +104,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: "white",
   },
+  btn: {
+    marginTop: 20,
+    margin: 10,
+    padding: 10,
+    borderRadius: 10,
+    borderColor: "#fff",
+    borderWidth: 1,
+  }
 });
 
 export default Home;
