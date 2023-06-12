@@ -13,7 +13,7 @@ export default function Button({ label, theme }) {
       >
         <Pressable
           style={[styles.button, { backgroundColor: "#002465" }]}
-          onPress={() => navigation.navigate("Connexion")}
+          onPress={() => navigation.replace("Connexion")}
         >
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
         </Pressable>
@@ -35,7 +35,7 @@ export default function Button({ label, theme }) {
       >
         <Pressable
           style={[styles.button]}
-          onPress={() => navigation.navigate("Inscription")}
+          onPress={() => navigation.replace("Inscription")}
         >
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
         </Pressable>
@@ -50,7 +50,7 @@ export default function Button({ label, theme }) {
       >
         <Pressable
           style={[styles.button, { backgroundColor: "#002465" }]}
-          onPress={() => navigation.navigate("Inscription")}
+          onPress={() => navigation.replace("Inscription")}
         >
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
         </Pressable>
