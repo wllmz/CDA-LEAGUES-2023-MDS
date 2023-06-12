@@ -4,7 +4,7 @@ import CommentServices from "../services/comment.service";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
@@ -13,7 +13,7 @@ const ReviewConseil = ({ route }) => {
   const [matches, setMatches] = useState([]);
   const [comment, setComment] = useState(null);
 
-  
+  const API_KEY = process.env.REACT_APP_API_KEY;  
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")

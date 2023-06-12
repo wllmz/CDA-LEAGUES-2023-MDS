@@ -13,7 +13,6 @@ import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
 
-const API_KEY = process.env.REACT_APP_API_KEY;
 
 const Profile = () => {
   const [leagues, setLeagues] = useState("");
@@ -22,7 +21,7 @@ const Profile = () => {
   const [match, setMatch] = useState([]);
   const COUNT = 2;
   const [puuid, setPuuid] = useState("");
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const navigation = useNavigation();
 

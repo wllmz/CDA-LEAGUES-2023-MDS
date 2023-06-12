@@ -43,6 +43,21 @@ export default function Button({ label, theme }) {
     );
   }
 
+  if (theme === "Inscription") {
+    return (
+      <View
+        style={[styles.buttonContainer, { color: "#fff", borderRadius: 18, margin : 35 }]}
+      >
+        <Pressable
+          style={[styles.button, { backgroundColor: "#002465" }]}
+          onPress={() => navigation.navigate("Inscription")}
+        >
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
+        </Pressable>
+      </View>
+    );
+  }
+
   if (theme === "Match") {
     return (
       <View

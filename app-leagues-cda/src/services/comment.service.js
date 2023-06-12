@@ -6,7 +6,6 @@ const API_URL = "http://localhost:3000/api/comment";
 
 const user = JSON.parse(localStorage.getItem('user'));
 const token = user ? user.token : '';
-
 const getAllComment  = () => {
   return axios.get(API_URL, {
     headers: {
