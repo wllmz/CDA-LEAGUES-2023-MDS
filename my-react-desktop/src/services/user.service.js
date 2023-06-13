@@ -10,9 +10,6 @@ const getUserBoard = () => {
   return axios.get(API_URL + "user");
 };
 
-const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod");
-};
 
 const getAdminBoard = () => {
   const user = JSON.parse(localStorage.getItem('user'));
@@ -28,7 +25,6 @@ const getAdminBoard = () => {
 const UserService = {
   getPublicContent,
   getUserBoard,
-  getModeratorBoard,
   getAdminBoard,
 }
 
