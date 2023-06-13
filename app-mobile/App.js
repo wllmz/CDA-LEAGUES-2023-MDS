@@ -1,27 +1,24 @@
-import * as React from 'react';
-import { Image, Animated } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import * as React from "react";
+import { Image, Animated } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
-import Home from './pages/Home_connexion'
-import Connexion from './pages/Connexion'
-import Inscription from './pages/Inscription'
-import Profile from './pages/Profile'
-import Detail from './pages/Home_Detail'
-import ReviewMatch from './pages/ReviewMatch'
-import ReviewConseil from './pages/ReviewConseil';
-
+import Home from "./pages/Home_connexion";
+import Connexion from "./pages/Connexion";
+import Inscription from "./pages/Inscription";
+import Profile from "./pages/Profile";
+import Detail from "./pages/Home_Detail";
+import ReviewMatch from "./pages/ReviewMatch";
+import ReviewConseil from "./pages/ReviewConseil";
 
 function LogoTitle() {
   return (
     <Image
       style={{ width: 200 }}
-      source={require('./assets/img/Logomobile.png')}
+      source={require("./assets/img/Logomobile.png")}
     />
   );
 }
-
-
 
 const forFade = ({ current, next }) => {
   const opacity = Animated.add(
@@ -48,85 +45,77 @@ function MyStack() {
       <Stack.Screen
         name="Home"
         component={Home}
-          options={{ 
-            headerTitle: (props) => <LogoTitle {...props}  />,
-            headerStyle: {
-              backgroundColor: '#0C284D',
-            },
-          }}
-         
-        
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
+          headerStyle: {
+            backgroundColor: "#0C284D",
+          },
+        }}
       />
       <Stack.Screen
         name="Connexion"
         component={Connexion}
-        options={{ 
-          headerTitle: (props) => <LogoTitle {...props}  />,
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
-            backgroundColor: '#0C284D',   
+            backgroundColor: "#0C284D",
           },
         }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="Inscription"
         component={Inscription}
-        options={{ 
-          headerTitle: (props) => <LogoTitle {...props}  />,
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
-            backgroundColor: '#0C284D',
+            backgroundColor: "#0C284D",
           },
         }}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="Profile"
         component={Profile}
-        options={{ 
-          headerTitle: (props) => <LogoTitle {...props}  />,
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
-            backgroundColor: '#0C284D',
+            backgroundColor: "#0C284D",
           },
         }}
       />
 
-<Stack.Screen
-         name="ReviewMatch"
+      <Stack.Screen
+        name="ReviewMatch"
         component={ReviewMatch}
-        options={{ 
-          headerTitle: (props) => <LogoTitle {...props}  />,
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
-            backgroundColor: '#0C284D',
+            backgroundColor: "#0C284D",
           },
         }}
       />
-<Stack.Screen
-         name="ReviewConseil"
+      <Stack.Screen
+        name="ReviewConseil"
         component={ReviewConseil}
-        options={{ 
-          headerTitle: (props) => <LogoTitle {...props}  />,
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
-            backgroundColor: '#0C284D',
+            backgroundColor: "#0C284D",
           },
         }}
       />
-      
 
-      
-<Stack.Screen
+      <Stack.Screen
         name="Detail"
         component={Detail}
-        options={{ 
-          headerTitle: (props) => <LogoTitle {...props}  />,
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
           headerStyle: {
-            backgroundColor: '#0C284D',
+            backgroundColor: "#0C284D",
           },
         }}
       />
     </Stack.Navigator>
-
-    
-
-    
   );
 }
 

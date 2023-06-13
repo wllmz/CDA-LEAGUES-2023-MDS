@@ -6,6 +6,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
+
+
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
   const { matchId } = route.params;
@@ -81,8 +83,8 @@ const ReviewConseil = ({ route }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        {matches.map((matchData, index) => (
-          <View key={index}>
+        {matches.map((matchData) => (
+          <View>
             <View>
               {matchData.info.participants
                 .filter((participant) => participant.puuid === puuid)

@@ -35,7 +35,7 @@ export default function Button({ label, theme }) {
       >
         <Pressable
           style={[styles.button]}
-          onPress={() => navigation.replace("Inscription")}
+          onPress={() => navigation.navigate("Inscription")}
         >
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
         </Pressable>
@@ -50,7 +50,7 @@ export default function Button({ label, theme }) {
       >
         <Pressable
           style={[styles.button, { backgroundColor: "#002465" }]}
-          onPress={() => navigation.replace("Inscription")}
+          onPress={() => navigation.navigate("Inscription")}
         >
           <Text style={[styles.buttonLabel, { color: "#fff" }]}>{label}</Text>
         </Pressable>

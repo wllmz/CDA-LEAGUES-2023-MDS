@@ -22,6 +22,7 @@ const Inscription = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigation = useNavigation();
+ 
   const API_KEY = process.env.REACT_APP_API_KEY;
 
 
@@ -188,7 +189,7 @@ const styles = StyleSheet.create({
   },
   Text: {
     fontSize: 15,
-    fontWeigh: "bold",
+    fontWeight: "bold",
     color: "#002465",
     paddingBottom: 5,
   },
