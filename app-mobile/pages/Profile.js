@@ -7,7 +7,7 @@ import Niveaux from "../components/Niveaux";
 const Profile = () => {
 
   return (
-    <ScrollView>
+    <ScrollView>  
       <View>
       <Niveaux/>
         <Match />

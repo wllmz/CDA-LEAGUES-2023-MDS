@@ -21,6 +21,7 @@ const Profile = () => {
   const [match, setMatch] = useState([]);
   const COUNT = 2;
   const [puuid, setPuuid] = useState("");
+  
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   const navigation = useNavigation();
