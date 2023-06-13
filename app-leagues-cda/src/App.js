@@ -19,7 +19,7 @@ import Footer from "./components/Footer";
 import Review_Match from "./pages/Review_M";
 import Review_Conseil from "./pages/Review_C";
 
-// import AuthVerify from "./common/AuthVerify";
+
 import EventBus from "./common/EventBus";
 
 const App = () => {

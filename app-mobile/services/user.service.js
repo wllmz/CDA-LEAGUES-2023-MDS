@@ -11,9 +11,7 @@ const getUserBoard = () => {
   return axios.get(API_URL + "user");
 };
 
-const getModeratorBoard = () => {
-  return axios.get(API_URL + "mod");
-};
+
 
 const getAdminBoard = async () => {
   const user = await AsyncStorage.getItem('user');
@@ -30,7 +28,6 @@ const getAdminBoard = async () => {
 const UserService = {
   getPublicContent,
   getUserBoard,
-  getModeratorBoard,
   getAdminBoard,
 }
 

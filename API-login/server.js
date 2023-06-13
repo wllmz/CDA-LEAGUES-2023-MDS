@@ -1,11 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-
-const dbConfig = require("./app/config/db.config");
-
+const dotenv = require('dotenv')
 const app = express();
 
+dotenv.config();
 
 const corsOpts = {
   origin: '*',
@@ -43,10 +42,7 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-  .connect(`mongodb://${dbConfig.HOST}:${dbConfig.PORT}/${dbConfig.DB}`, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
+.connect(process.env.MONGOURL)
   .then(() => {
     console.log("Successfully connect to MongoDB.");
     initial();
@@ -84,15 +80,6 @@ function initial() {
         console.log("added 'user' to roles collection");
       });
 
-      new Role({
-        name: "moderator"
-      }).save(err => {
-        if (err) {
-          console.log("error", err);
-        }
-
-        console.log("added 'moderator' to roles collection");
-      });
 
       new Role({
         name: "admin"

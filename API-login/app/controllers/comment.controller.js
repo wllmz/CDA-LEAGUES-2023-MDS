@@ -27,15 +27,6 @@ const user = await User.findOne(leagues);
   }
 
 };
- 
-// exports.getCommentByIdComment = async (req, res) => {
-//   try {
-//     const comments = await ComentServices.getCommentByIdComment(req.params.id);
-//     res.json({ data: comments, status: "success" });
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// };
 
 exports.getCommentById = async (req, res) => {
   try {
