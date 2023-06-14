@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import EventBus from "../common/EventBus";
-import Home from "./Home";
+import Home from "../components/Home";
 
 const BoardAdmin = () => {
   const [content, setContent] = useState();
