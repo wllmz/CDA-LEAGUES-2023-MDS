@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AuthService from "../services/auth.service";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
 
 const App = () => {
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
-  const [slideIndex, setSlideIndex] = useState(1);
-  const COUNT = 5;
+  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API 
+  const COUNT = 3;
   const [puuid, setPuuid] = useState("");
 
   const currentUser = AuthService.getCurrentUser();
@@ -60,30 +63,18 @@ const App = () => {
     }
   }, [matchIds]);
 
-  useEffect(() => {
-    showDivs(slideIndex);
-  }, [slideIndex]);
+  const settings = {
+    dots: false, 
+    infinite: true, 
+    speed: 500, 
+    slidesToShow: 1,
+    slidesToScroll: 1 
+  };
+  
 
-  function plusDivs(n) {
-    setSlideIndex(slideIndex + n);
-  }
 
-  function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {
-      setSlideIndex(1);
-    }
-    if (n < 1) {
-      setSlideIndex(x.length);
-    }
-    for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-    }
-    if (x[slideIndex - 1]) {
-      x[slideIndex - 1].style.display = "block";
-    }
-  }
+
+
 
   function handleClick(matchIds) {
     const url = `match/${matchIds}`;
@@ -97,19 +88,10 @@ const App = () => {
 
   return (
     <div className="container-fluid text-center">
-      <div className="slideshow">
-        <div className="mySlides">
-          <h2 id="match">Informations des dernières parties jouées :</h2>
-          <button class="btn btn-primary" onClick={() => plusDivs(1)}>
-            {" "}
-            Commencer{" "}
-          </button>
-        </div>
-      </div>
-      <div class="">
+  
+      <Slider {...settings}>
         {match.map((matchData) => (
-          <div className="slideshow">
-            <div className="mySlides">
+          <div className="">
               <h2 id="match">Informations des dernières parties jouées :</h2>
               <br></br>
               <div className="">
@@ -207,20 +189,6 @@ const App = () => {
                                 }
                               >
                                 Voir conseil{" "}
-                              </button>
-                            </div>
-                            <div class="col">
-                              <button
-                                className="precedent"
-                                onClick={() => plusDivs(-1)}
-                              >
-                                &#10094;
-                              </button>
-                              <button
-                                className="suivant"
-                                onClick={() => plusDivs(1)}
-                              >
-                                &#10095;{" "}
                               </button>
                             </div>
                           </div>
@@ -330,20 +298,6 @@ const App = () => {
                                 Voir conseil{" "}
                               </button>
                             </div>
-                            <div class="col">
-                              <button
-                                className="precedent"
-                                onClick={() => plusDivs(-1)}
-                              >
-                                &#10094;
-                              </button>
-                              <button
-                                className="suivant"
-                                onClick={() => plusDivs(1)}
-                              >
-                                &#10095;{" "}
-                              </button>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -351,10 +305,9 @@ const App = () => {
                   ))}
               </div>
             </div>
-          </div>
         ))}
+      </Slider>
       </div>
-    </div>
   );
 };
 
