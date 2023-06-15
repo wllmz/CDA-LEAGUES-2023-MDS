@@ -468,7 +468,7 @@ button.suivant:hover {
 
 
 .match-profile {
-  margin: 25px;
+  margin: 50px;
 }
 #match {
   color: #082A69 !important;
@@ -574,4 +574,42 @@ h2#result-team {
 
 p.utilisateurleaguematch {
   text-align: center;
+}
+
+.slick-slide > div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.slick-slide img {
+  display: initial !important;
+}
+
+
+.slick-prev, .slick-next {
+  top: 60% !important;
+  width: 50px !important;
+  height: 50px !important;
+  color: red !important;
+  
+  background: #1d6ade !important;
+  border-radius: 102px !important;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .slick-prev, .slick-next {
+    margin-left: 255px !important;
+    margin-right: 255px !important;
+
+}}
+
+
+.slick-prev {
+  left: -52px !important;
+}
+
+.slick-next {
+  right: -55px !important;
 }
