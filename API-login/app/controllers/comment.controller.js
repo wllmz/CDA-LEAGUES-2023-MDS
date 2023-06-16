@@ -1,7 +1,6 @@
 const ComentServices = require("../services/comment.services");
 const db = require("../models");
 const User = db.user;
-var mongoose = require("mongoose");
 
 exports.getAllComment = async (req, res) => {
   try {
