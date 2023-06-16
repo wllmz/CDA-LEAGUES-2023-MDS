@@ -11,9 +11,6 @@ module.exports = function(app) {
   });
 
   app.get("/api/comment",[authJwt.verifyToken, authJwt.isAdmin],controllerComment.getAllComment);
-
-  // app.get("/api/comment/:id", [authJwt.verifyToken], controllerComment.getCommentByIdComment);
-
   
   app.get("/api/comment/:leagues/:gameId", controllerComment.getCommentById);
 

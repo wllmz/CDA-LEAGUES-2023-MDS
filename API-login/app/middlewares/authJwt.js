@@ -5,22 +5,21 @@ const User = db.user;
 const Role = db.role;
 
 verifyToken = (req, res, next) => {
-  let split = req.headers['authorization'];
+  let split = req.headers["authorization"];
 
   if (split) {
-    let token = split.split(" ")[1]
-    
-  jwt.verify(token, config.secret, (err, decoded) => {
-    if (err) {
-      return res.status(401).send({ message: "Unauthorized!" });
-    }
-    req.userId = decoded.id;
-    next();
+    let token = split.split(" ")[1];
+
+    jwt.verify(token, config.secret, (err, decoded) => {
+      if (err) {
+        return res.status(401).send({ message: "Unauthorized!" });
+      }
+      req.userId = decoded.id;
+      next();
     });
-  }else {
+  } else {
     return res.status(401).json("You are not authenticated!");
   }
-
 };
 
 isAdmin = (req, res, next) => {
@@ -53,7 +52,6 @@ isAdmin = (req, res, next) => {
     );
   });
 };
-
 
 const authJwt = {
   verifyToken,
