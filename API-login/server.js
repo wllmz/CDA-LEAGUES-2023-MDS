@@ -1,40 +1,30 @@
 const express = require("express");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
-const dotenv = require('dotenv')
+const dotenv = require("dotenv");
 const app = express();
 
 dotenv.config();
 
 const corsOpts = {
-  origin: '*',
+  origin: "*",
 
-  methods: [
-    'GET',
-    'POST',
-  ],
+  methods: ["GET", "POST"],
 
-  allowedHeaders: [
-    'Content-Type',
-  ],
+  allowedHeaders: ["Content-Type"],
 };
 
 app.use(cors(corsOpts));
 
-
-app.use(cors()) 
-
-
 app.use(express.json());
-
 
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cookieSession({
     name: "league-of-legends",
-    secret: "COOKIE_SECRET", // should use as secret environment variable
-    httpOnly: true
+    secret: "COOKIE_SECRET",
+    httpOnly: true,
   })
 );
 
@@ -42,21 +32,19 @@ const db = require("./app/models");
 const Role = db.role;
 
 db.mongoose
-.connect(process.env.MONGOURL)
+  .connect(process.env.MONGOURL)
   .then(() => {
     console.log("Successfully connect to MongoDB.");
     initial();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error("Connection error", err);
     process.exit();
   });
 
-
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to league-of-legends application." });
 });
-
 
 require("./app/routes/auth.routes")(app);
 require("./app/routes/user.routes")(app);
@@ -71,8 +59,8 @@ function initial() {
   Role.estimatedDocumentCount((err, count) => {
     if (!err && count === 0) {
       new Role({
-        name: "user"
-      }).save(err => {
+        name: "user",
+      }).save((err) => {
         if (err) {
           console.log("error", err);
         }
@@ -80,10 +68,9 @@ function initial() {
         console.log("added 'user' to roles collection");
       });
 
-
       new Role({
-        name: "admin"
-      }).save(err => {
+        name: "admin",
+      }).save((err) => {
         if (err) {
           console.log("error", err);
         }

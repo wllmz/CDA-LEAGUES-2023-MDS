@@ -15,17 +15,16 @@ exports.getAllComment = async (req, res) => {
 exports.createComment = async (req, res) => {
   const leagues = req.params.leagues;
 
-const user = await User.findOne(leagues);
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+  const user = await User.findOne(leagues);
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
   try {
     const comments = await ComentServices.createComment(req.body);
     res.json({ data: comments, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-
 };
 
 exports.getCommentById = async (req, res) => {
@@ -41,12 +40,12 @@ exports.getCommentById = async (req, res) => {
   }
 };
 
-
-
-
 exports.updateComment = async (req, res) => {
   try {
-    const comments = await ComentServices.updateComment(req.params.id, req.body);
+    const comments = await ComentServices.updateComment(
+      req.params.id,
+      req.body
+    );
     res.json({ data: comments, status: "success" });
   } catch (err) {
     res.status(500).json({ error: err.message });

@@ -12,7 +12,6 @@ exports.getCommentById = async (leagues, gameId) => {
   return await CommentModel.find({ leagues: leagues, gameId: gameId });
 };
 
-
 exports.updateComment = async (id, comment) => {
   return await CommentModel.findByIdAndUpdate(id, comment);
 };
