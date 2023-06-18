@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import AuthService from "../services/auth.service";
-import EventBus from "../common/EventBus";
 import Icon from "../assets/img/Icon.png";
 import Logo from "../assets/img/Logomobile.png";
 
@@ -14,14 +13,6 @@ const Menu = () => {
     if (user) {
       setCurrentUser(user);
     }
-
-    EventBus.on("logout", () => {
-      logOut();
-    });
-
-    return () => {
-      EventBus.remove("logout");
-    };
   }, []);
 
   const logOut = () => {
@@ -34,8 +25,7 @@ const Menu = () => {
              <div class="container-fluid text-align-center">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <NavLink to={"/home"} className="nav-link">
-          {" "}
-          <img className="logo" src={Logo} />{" "}
+          <img className="logo" src={Logo} alt="Description" />
         </NavLink>
         <button
           class="navbar-toggler"
@@ -86,15 +76,16 @@ const Menu = () => {
                   aria-expanded="false"
                   className="icon"
                   src={Icon}
+                  alt="Description" 
                 />
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li className="nav-item">
-                    <NavLink to={"/user"} className="nav-link">
+                    <NavLink to={"/mon-profile"} className="nav-link">
                       Mon profil
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <a href="/login" className="nav-link" onClick={logOut}>
+                    <a href="/connexion" className="nav-link" onClick={logOut}>
                       Déconnexion{" "}
                     </a>
                   </li>
@@ -110,15 +101,16 @@ const Menu = () => {
                   aria-expanded="false"
                   className="icon"
                   src={Icon}
+                  alt="Description" 
                 />
                 <ul class="dropdown-menu dropdown-menu-dark">
                   <li className="nav-item">
-                    <NavLink to={"/login"} className="nav-link">
+                    <NavLink to={"/connexion"} className="nav-link">
                       Connexion
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink to={"/register"} className="nav-link">
+                    <NavLink to={"/inscription"} className="nav-link">
                       Inscription
                     </NavLink>
                   </li>
