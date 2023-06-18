@@ -4,7 +4,7 @@ import Logo from "../assets/img/Logomobile.png";
 import AuthService from "../services/auth.service";
 
 // import AuthVerify from "./common/AuthVerify";
-import EventBus from "../common/EventBus";
+
 
 const Footer = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -16,13 +16,6 @@ const Footer = () => {
       setCurrentUser(user);
     }
 
-    EventBus.on("logout", () => {
-      logOut();
-    });
-
-    return () => {
-      EventBus.remove("logout");
-    };
   }, []);
 
   const logOut = () => {
@@ -81,23 +74,23 @@ const Footer = () => {
               {currentUser ? (
                 <div>
                   <p>
-                    <NavLink to={"/user"} className="nav-link">
+                    <NavLink to={"/mon-proile"} className="nav-link">
                       Mon profil
                     </NavLink>
                   </p>
                   <p>
-                    <a href="/login" className="nav-link" onClick={logOut}>
+                    <a href="/connexion" className="nav-link" onClick={logOut}>
                       Déconnexion{" "}
                     </a>
                   </p>
                 </div>
               ) : (
                 <div>
-                  <NavLink to={"/login"} className="nav-link">
+                  <NavLink to={"/connexion"} className="nav-link">
                     <p> Connexion </p>
                   </NavLink>
 
-                  <NavLink to={"/register"} className="nav-link">
+                  <NavLink to={"/inscription"} className="nav-link">
                     <p> Inscription </p>
                   </NavLink>
                 </div>
