@@ -70,7 +70,7 @@ const Register = () => {
   };
 
   const form = useRef();
-  const checkBtn = useRef();
+
 
   const onChangeUsername = (e) => {
     const username = e.target.value;
@@ -108,7 +108,6 @@ const Register = () => {
         setMessage("");
         setSuccessful("false");
         form.current.validateAll();
-        if (checkBtn.current.context._errors.length === 0) {
           AuthService.register(username, email, password, leagues).then(
             (response) => {
               setMessage(response.data.message);
@@ -127,7 +126,7 @@ const Register = () => {
               setSuccessful(false);
             }
           );
-        }
+        
       })
       .catch(function (error) {
         console.log("error");
@@ -210,7 +209,7 @@ const Register = () => {
                 </div>
               </div>
             )}
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            <CheckButton style={{ display: "none" }} onChange={handleRegister} />
           </Form>
         </div>
       </div>
