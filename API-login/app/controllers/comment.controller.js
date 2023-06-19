@@ -16,7 +16,7 @@ exports.createComment = async (req, res) => {
 
   const user = await User.findOne(leagues);
   if (!user) {
-    return res.status(404).json({ message: "User not found" });
+    return res.status(404).json({ message: "Utilisateur non trouvé" });
   }
   try {
     const comments = await ComentServices.createComment(req.body);

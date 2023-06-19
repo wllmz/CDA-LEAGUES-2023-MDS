@@ -18,7 +18,7 @@ verifyToken = (req, res, next) => {
       next();
     });
   } else {
-    return res.status(401).json("You are not authenticated!");
+    return res.status(401).json("Vous n'êtes pas authentifié !");
   }
 };
 
@@ -46,7 +46,7 @@ isAdmin = (req, res, next) => {
           }
         }
 
-        res.status(403).send({ message: "Require Admin Role!" });
+        res.status(403).send({ message: "Vous avez besoin d'un rôle d'administrateur !" });
         return;
       }
     );

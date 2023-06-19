@@ -17,7 +17,7 @@ const required = (value) => {
 
 const Login = () => {
   const form = useRef();
-  const checkBtn = useRef();
+ 
 
   const [username, setUsername] = useState("");
   const [leagues, setLeagues] = useState("");
@@ -50,7 +50,7 @@ const Login = () => {
 
     form.current.validateAll();
 
-    if (checkBtn.current.context._errors.length === 0) {
+    if(form.current.validateAll){
       AuthService.login(username, leagues, password).then(
         () => {
           navigate("/profile");
@@ -132,7 +132,7 @@ const Login = () => {
                 </div>
               </div>
             )}
-            <CheckButton style={{ display: "none" }} ref={checkBtn} />
+            <CheckButton style={{ display: "none" }} onChange= {handleLogin} />
           </Form>
         </div>
       </div>
