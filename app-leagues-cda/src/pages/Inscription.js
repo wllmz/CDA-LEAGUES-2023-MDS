@@ -9,15 +9,16 @@ import axios from "axios";
 import AuthService from "../services/auth.service";
 
 const Register = () => {
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const [username, setUsername] = useState("");
   const [leagues, setLeagues] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
-  const [message, setMessage] = useState("");
   const [leaguesacces, setLeaguesacces] = useState(false);
+  const [message, setMessage] = useState("");
+  
 
   const required = (value) => {
     if (!value) {
@@ -60,79 +61,63 @@ const Register = () => {
   };
 
   const vpassword = (value) => {
-    if (value.length < 6 || value.length > 40) {
+    const upperCaseRegex = /[A-Z]/;
+    const numberRegex = /\d/;
+    const specialCharRegex = /[!@#$%^&*]/;
+    if (value.length < 8 || value.length > 40 || !upperCaseRegex.test(value) || !numberRegex.test(value) || !specialCharRegex.test(value)) {
       return (
         <div className="invalid-feedback d-block">
-          Le mot de passe doit comporter entre 6 et 40 caractères.
+          Le mot de passe doit comporter entre 8 et 40 caractères, contenir au moins une lettre majuscule, au moins un chiffre et un caractères spéciale.
         </div>
       );
     }
-  };
+};
+
 
   const form = useRef();
-
-
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
-  const onChangeLeagues = (e) => {
-    const leagues = e.target.value;
-    setLeagues(leagues);
-  };
-
-  const onChangeEmail = (e) => {
-    const email = e.target.value;
-    setEmail(email);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
+  const checkBtn = useRef();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-
-    var APICallString =
-      "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
-      leagues +
-      "?api_key=" +
-      API_KEY;
-    axios
-      .get(APICallString)
-      .then(function (response) {
-        //si league est ok
-        setLeaguesacces(true);
-        setMessage("");
-        setSuccessful("false");
-        form.current.validateAll();
-          AuthService.register(username, email, password, leagues).then(
-            (response) => {
-              setMessage(response.data.message);
-              setSuccessful(true);
-            },
-            (error) => {
-              //si league et false ou error
-              const resMessage =
-                (error.response &&
-                  error.response.data &&
-                  error.response.data.message) ||
-                error.message ||
-                error.toString();
-
-              setMessage(resMessage);
-              setSuccessful(false);
-            }
-          );
-        
-      })
-      .catch(function (error) {
-        console.log("error");
-        window.alert("Pas de leagues");
-      });
+  
+    try {
+      var APICallString =
+        "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
+        leagues +
+        "?api_key=" +
+        API_KEY;
+      const response = await axios.get(APICallString);
+  
+      setLeaguesacces(true);
+      setMessage("");
+      setSuccessful(false);
+  
+      form.current.validateAll();
+  
+      if (checkBtn.current.context._errors.length === 0) {
+        try {
+          const response = await AuthService.register(username, email, password, leagues);
+          setMessage(response.data.message);
+          setSuccessful(true);
+        } catch (error) {
+          const errorMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          
+          setMessage(errorMessage);
+          setSuccessful(false);
+        }
+      }
+    } catch (error) {
+      console.log("error");
+      console.log(error);
+      window.alert("Pas de leagues");
+    }
   };
+  
   return (
     <div className="col-md-12">
       <div className="inscription">
@@ -141,7 +126,7 @@ const Register = () => {
 
           <Form onSubmit={handleRegister} ref={form}>
             {!successful && (
-              <div>
+              <div className="formulaire">
                 <div className="form-group">
                   <label htmlFor="username">Nom utilisateur :</label>
                   <Input
@@ -149,7 +134,7 @@ const Register = () => {
                     className="form-control"
                     name="username"
                     value={username}
-                    onChange={onChangeUsername}
+                    onChange={e => setUsername(e.target.value)}
                     validations={[required, vusername]}
                   />
                 </div>
@@ -161,7 +146,7 @@ const Register = () => {
                     className="form-control"
                     name="leagues"
                     value={leagues}
-                    onChange={onChangeLeagues}
+                    onChange={e => setLeagues(e.target.value)}
                     validations={[required, vleagues]}
                   />
                 </div>
@@ -173,7 +158,7 @@ const Register = () => {
                     className="form-control"
                     name="email"
                     value={email}
-                    onChange={onChangeEmail}
+                    onChange={e => setEmail(e.target.value)}
                     validations={[required, validEmail]}
                   />
                 </div>
@@ -185,7 +170,7 @@ const Register = () => {
                     className="form-control"
                     name="password"
                     value={password}
-                    onChange={onChangePassword}
+                    onChange={e => setPassword(e.target.value)}
                     validations={[required, vpassword]}
                   />
                 </div>
@@ -200,16 +185,14 @@ const Register = () => {
             {message && (
               <div className="form-group">
                 <div
-                  className={
-                    successful ? "alert alert-success" : "alert alert-danger"
-                  }
+                  className="success" 
                   role="alert"
                 >
                   {message}
                 </div>
               </div>
             )}
-            <CheckButton style={{ display: "none" }} onChange={handleRegister} />
+            <CheckButton style={{ display: "none" }} ref={checkBtn} />
           </Form>
         </div>
       </div>
