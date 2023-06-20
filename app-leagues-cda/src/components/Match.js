@@ -33,12 +33,12 @@ const App = () => {
              setMatchIds(response.data);
             })
             .catch((error) => {
-              console.log(error);
+              console.log("error");
             });
           setPlayerdata(response.data);
         })
         .catch((error) => {
-          console.log(error);
+          console.log("error");
         });
     }
   }, [currentUser.leagues]);
@@ -78,7 +78,7 @@ const App = () => {
   }
 
   function submitClick(matchIds) {
-    const url = `conseil/${matchIds}`;
+    const url = `conseil/${matchIds}/${puuid}/`;
     window.location.href = url;
   }
 
