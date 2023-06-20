@@ -28,6 +28,7 @@ const Home = () => {
         <div class="col col-lg-5" id="home">
           <h1 id="home">Bienvenue sur</h1>
           <img className="logo-page" src={Logo} />
+          <br></br><h1>ADMIN</h1>
         </div>
         <div class="col-md-auto">
           <a>

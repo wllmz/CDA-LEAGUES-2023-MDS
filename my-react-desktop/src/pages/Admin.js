@@ -1,41 +1,22 @@
 import React, { useState, useEffect } from "react";
-
-import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
 import Home from "../components/Home";
 
-const BoardAdmin = () => {
-  const [content, setContent] = useState();
+const Admin = () => {
   const [user, setUser] = useState();
  
-
   useEffect(() => {
     if (!user) {
-      AuthService.getAllUsers().then((value) => {
-        const leagues = value.data.map((u) => u.leagues);
-        setUser(leagues);
-      });
+        AuthService.getAllUsers()
+            .then(response => {
+                const leagues = response.data.map(u => u.leagues);
+                setUser(leagues);
+            })
+            .catch(error => {
+                console.error("Error in getting all users", error);
+            });
     }
-
-
-
-
-    UserService.getAdminBoard().then(
-      (response) => {
-        setContent(response.data);
-      },
-      (error) => {
-        const _content =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setContent(_content);
-      }
-    );
-  }, [user]);
+}, []);
 
   function handleClick(user) {
     const url = `profile/${user}`;
@@ -86,4 +67,4 @@ const BoardAdmin = () => {
   );
 };
 
-export default BoardAdmin;
+export default Admin;
