@@ -4,30 +4,15 @@ import axios from "axios";
 import AuthService from "../services/auth.service";
 import CommentServices from "../services/comment.service";
 
-const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+
 
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
   const { matchIds } = useParams();
+  const { puuid } = useParams();
   const [matches, setMatches] = useState([]);
-  const [puuid, setPuuid] = useState("");
-
+  const API_KEY = process.env.REACT_APP_API_KEY; 
   const currentUser = AuthService.getCurrentUser();
-
-  useEffect(() => {
-    if (currentUser.leagues) {
-      axios
-        .get(
-          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentUser.leagues}?api_key=${API_KEY}`
-        )
-        .then((response) => {
-          setPuuid(response.data.puuid);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [currentUser.leagues]);
 
   useEffect(() => {
     if (matchIds) {
@@ -43,6 +28,7 @@ const Review_Conseil = () => {
         });
     }
   }, [matchIds]);
+
 
   useEffect(() => {
     if (!comment) {

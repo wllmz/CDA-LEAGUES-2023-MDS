@@ -6,7 +6,7 @@ const Review_Match = () => {
   const { matchIds } = useParams();
   const [matches, setMatches] = useState([]);
 
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     if (matchIds) {

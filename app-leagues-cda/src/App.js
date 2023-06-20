@@ -34,7 +34,7 @@ const App = () => {
         <Route exact path="/profile" element={<Profile />} />
         <Route path="/mon-profile" element={<MonProfile />} />
         <Route path={`match/:matchIds`} element={<ReviewMatch />} />
-        <Route path={`conseil/:matchIds`} element={<ReviewConseil />} />
+        <Route path={`conseil/:matchIds/:puuid`} element={<ReviewConseil />} />
       </Routes>
 
       <Footer />
