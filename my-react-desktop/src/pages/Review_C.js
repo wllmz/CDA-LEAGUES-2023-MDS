@@ -1,11 +1,10 @@
 import React from "react";
 import Review_Conseil from "../components/Review_Conseil";
 import Jinx from "../assets/img/Jinx-user.png";
-import AuthService from "../services/auth.service";
+import Logo from "../assets/img/Logo.png";
 import Review_Match from "../components/Review_Match";
 
 const Review_C = () => {
-  const currentUser = AuthService.getCurrentUser();
 
   return (
     <div>
@@ -14,7 +13,8 @@ const Review_C = () => {
           <div class="col col-lg-5" id="home">
             <h1 id="home">Bienvenue sur</h1>
 
-            <span id="user">{currentUser.leagues} </span>
+            <img className="logo-page" src={Logo} />
+            <br></br><h1>ADMIN</h1>
           </div>
           <div class="col-md-auto">
             <a>

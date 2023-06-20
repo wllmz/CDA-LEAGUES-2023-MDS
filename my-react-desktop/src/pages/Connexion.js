@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -8,40 +9,25 @@ import Logomobile from "../assets/img/Logomobile.png";
 import AuthService from "../services/auth.service";
 
 
-const required = (value) => {
-  if (!value) {
-    return (
-      <div className="invalid-feedback d-block">Ce champ est obligatoire !</div>
-    );
-  }
-};
-
-const Login = () => {
-  const form = useRef();
-  const checkBtn = useRef();
-
+const Connexion = () => {
   const [username, setUsername] = useState("");
   const [leagues, setLeagues] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
+  
+  const required = (value) => {
+    if (!value) {
+      return (
+        <div className="invalid-feedback d-block">Ce champ est obligatoire !</div>
+      );
+    }
+  };
+  
+  const form = useRef();
+  const checkBtn = useRef();
   const navigate = useNavigate();
-
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
-  const onChangeLeagues = (e) => {
-    const leagues = e.target.value;
-    setLeagues(leagues);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -52,16 +38,23 @@ const Login = () => {
     form.current.validateAll();
 
     if (checkBtn.current.context._errors.length === 0) {
-      const validate = await AuthService.login(username, leagues, password);
-      console.log(validate.roles);
-      if (validate && validate.roles == "ROLE_ADMIN") {
-        navigate("/admin");
-      } else {
+      try {
+        const validate = await AuthService.login(username, leagues, password);
+        if (validate && validate.roles == "ROLE_ADMIN")  {
+          navigate("/admin");
+        }else {
+          setMessage("Connexion impossible.");
+          setLoading(false);
+        }
+      } catch (error) {
         setLoading(false);
-        setMessage("accés non autorisé");
+        setMessage("Connexion impossible. Veuillez vérifier si tous vos champs sont corrects.");
       }
+    } else {
+      setLoading(false);
     }
-  };
+  }
+    
 
   return (
     <div className="col-md-12">
@@ -76,7 +69,7 @@ const Login = () => {
                 className="form-control"
                 name="username"
                 value={username}
-                onChange={onChangeUsername}
+                onChange={e => setUsername(e.target.value)}
                 validations={[required]}
               />
             </div>
@@ -88,7 +81,7 @@ const Login = () => {
                 className="form-control"
                 name="Leagues"
                 value={leagues}
-                onChange={onChangeLeagues}
+                onChange={e => setLeagues(e.target.value)}
                 validations={[required]}
               />
             </div>
@@ -100,7 +93,7 @@ const Login = () => {
                 className="form-control"
                 name="password"
                 value={password}
-                onChange={onChangePassword}
+                onChange={e => setPassword(e.target.value)}
                 validations={[required]}
               />
             </div>
@@ -114,10 +107,12 @@ const Login = () => {
                 <span>Se connecter</span>
               </button>
             </div>
-
             {message && (
               <div className="form-group">
-                <div className="alert alert-danger" role="alert">
+                <div
+                  className="success" 
+                  role="alert"
+                >
                   {message}
                 </div>
               </div>
@@ -130,4 +125,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Connexion;
