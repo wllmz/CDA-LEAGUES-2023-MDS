@@ -8,30 +8,15 @@ import { Link } from "react-router-dom";
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
   const [matches, setMatches] = useState([]);
-  const [puuid, setPuuid] = useState("");
   const { user } = useParams();
+  const { puuid } = useParams();
   const { matchIds } = useParams();
 
   const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
 
   const API_URL = "http://localhost:3000/api/comment";
 
-  useEffect(() => {
-    if (user) {
-      axios
-        .get(
-          `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user}?api_key=${API_KEY}`
-        )
-        .then((response) => {
-          setPuuid(response.data.puuid);
-          const puuidId = response.data.puuid;
-          console.log(puuidId);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [user]);
+
 
   useEffect(() => {
     if (matchIds) {

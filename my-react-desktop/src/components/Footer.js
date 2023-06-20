@@ -3,8 +3,6 @@ import Logo from "../assets/img/Logomobile.png";
 import { NavLink } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
-// import AuthVerify from "./common/AuthVerify";
-import EventBus from "../common/EventBus";
 
 const Footer = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -18,19 +16,7 @@ const Footer = () => {
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
     }
 
-    EventBus.on("logout", () => {
-      logOut();
-    });
-
-    return () => {
-      EventBus.remove("logout");
-    };
-  }, []);
-
-  const logOut = () => {
-    AuthService.logout();
-    setCurrentUser(undefined);
-  };
+  });
   return (
     <footer class="text-center text-lg-start bg-light text-muted">
       <section class="footer">

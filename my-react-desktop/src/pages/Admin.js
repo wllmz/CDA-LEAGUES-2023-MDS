@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import UserService from "../services/user.service";
 import AuthService from "../services/auth.service";
-import EventBus from "../common/EventBus";
 import Home from "../components/Home";
 
 const BoardAdmin = () => {
@@ -34,10 +33,6 @@ const BoardAdmin = () => {
           error.toString();
 
         setContent(_content);
-
-        if (error.response && error.response.status === 401) {
-          EventBus.dispatch("logout");
-        }
       }
     );
   }, [user]);

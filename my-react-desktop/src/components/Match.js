@@ -58,13 +58,9 @@ const App = () => {
     }
   }, [matchIds]);
 
-  function handleClick(matchIds) {
-    const url = `match/${matchIds}/${user}`;
-    window.location.href = url;
-  }
 
   function submitClick(matchIds) {
-    const url = `conseil/${matchIds}/${user}`;
+    const url = `conseil/${matchIds}/${user}/${puuid}`;
     window.location.href = url;
   }
 
