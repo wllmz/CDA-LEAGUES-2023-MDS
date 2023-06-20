@@ -1,55 +1,52 @@
+
 import React, { useState } from "react";
 import axios from "axios";
 
 const Niveaux = () => {
-  const [searchText, setSearchText] = useState("");
+  const [summonerName, setSummonerName] = useState("");
   const [playerData, setPlayerdata] = useState({});
   const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
 
-  function serachForPlayer(event) {
-    // et up the correct api call
-    var APICallString =
-      "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
-      searchText +
-      "?api_key=" +
-      API_KEY;
+  const handleInputChange = (event) => {
+    setSummonerName(event.target.value);
+  };
 
-    // handle the api call
+  const handleSubmit = (event) => {
+    event.preventDefault();
     axios
-      .get(APICallString)
-      .then(function (response) {
+      .get(
+        `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${API_KEY}`
+      )
+      .then((response) => {
         setPlayerdata(response.data);
-      })
-      .catch(function (error) {
-        console.log("error");
-      });
-  }
+        console.log(playerData);
+  })
+  .catch((error) => {
+    console.error("Une erreur s'est produite lors de la récupération des données :", error);
+  });
+    }
 
   return (
     <div className="component">
+    <form onSubmit={handleSubmit}>
       <div className="section-bleu">
         <div className="border">
-          <h2>Recherche de joueurs :</h2>
-          <p> Veuillez entrer votre nom : </p>
+          <h2>Vérifier le niveaux d'un joueur :</h2>
+          <p>Nom d'invocateur :</p>
+          <label htmlFor="summonerName"></label>
           <input
             id="summonerName"
             type="text"
             placeholder="Entrez un pseudo"
-            onChange={(e) => setSearchText(e.target.value)}
-          ></input>
+            value={summonerName}
+            onChange={handleInputChange}
+          />
         </div>
       </div>
-
-      <div className="bouttons">
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          onClick={(e) => serachForPlayer(e)}
-        >
-          {" "}
-          Rechercher
-        </button>
-      </div>
+      <button class="btn btn-outline-primary" type="submit">
+        Rechercher
+      </button>
+    </form>
 
       {Object.keys(playerData).length !== 0 ? (
         <div className="container">

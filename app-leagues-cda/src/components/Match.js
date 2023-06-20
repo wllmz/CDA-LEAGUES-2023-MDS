@@ -10,7 +10,7 @@ const App = () => {
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API 
+  const API_KEY = process.env.REACT_APP_API_KEY; 
   const COUNT = 3;
   const [puuid, setPuuid] = useState("");
 
@@ -30,7 +30,7 @@ const App = () => {
               `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuidId}/ids?count=${COUNT}&sort=asc&api_key=${API_KEY}`
             )
             .then((response) => {
-              setMatchIds(response.data);
+             setMatchIds(response.data);
             })
             .catch((error) => {
               console.log(error);
@@ -72,10 +72,6 @@ const App = () => {
   };
   
 
-
-
-
-
   function handleClick(matchIds) {
     const url = `match/${matchIds}`;
     window.location.href = url;
@@ -85,6 +81,7 @@ const App = () => {
     const url = `conseil/${matchIds}`;
     window.location.href = url;
   }
+
 
   return (
     <div className="container-fluid text-center">

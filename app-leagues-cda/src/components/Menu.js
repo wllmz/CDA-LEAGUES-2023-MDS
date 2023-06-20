@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import AuthService from "../services/auth.service";
@@ -22,7 +23,7 @@ const Menu = () => {
 
     return (
         <div>
-             <div class="container-fluid text-align-center">
+             <div class="container-fluid text-align-ceSnter">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <NavLink to={"/home"} className="nav-link">
           <img className="logo" src={Logo} alt="Description" />
