@@ -45,7 +45,6 @@ const Home = () => {
       <View style={styles.imageContainer}>
         <Text style={styles.bienvenue}>Bienvenue </Text>
         <Text style={styles.username}>{leagues}</Text>
-        {/* Autres informations de profil */}
       </View>
 
       <View style={styles.boutonContainer}>
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   },
   username: {
     marginTop: 10,
-    fontSize: 90,
+    fontSize: 80,
     color: "white",
     width: 350,
     padding: 20,
