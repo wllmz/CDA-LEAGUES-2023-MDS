@@ -36,7 +36,6 @@ const Login = () => {
     try {
       await AsyncStorage.setItem("username", username);
       await AsyncStorage.setItem("leagues", leagues);
-      await AsyncStorage.setItem("password", password);
       AuthService.login(username, leagues, password)
         .then(() => {
           setUsername("");
