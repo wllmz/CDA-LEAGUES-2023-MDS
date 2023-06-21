@@ -1,35 +1,28 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
+import CommentServices from "../services/comment.service";
 
-const AddCommentForm = (props) => {
+const AddCommentForm = () => {
   const initialFormState = { gameId: "", leagues: "", body: "" };
   const [comment, setComment] = useState(initialFormState);
   const { matchIds } = useParams();
   const { user } = useParams();
-
-  console.log(matchIds);
-
-  const API_URL = "http://localhost:3000/api/comment";
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setComment({ ...comment, [name]: value });
   };
 
-  const createComment = async () => {
+  const createComment = () => {
     try {
-      const user = JSON.parse(localStorage.getItem('user'));
-      const token = user ? user.token : '';
-        console.log(token);
-      await axios.post(API_URL, comment, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
+      CommentServices.createComment(comment)
+      .then(() => {
+        setComment(initialFormState);
+        window.location.reload(false); 
+      }) 
+      .catch (error => {
+        console.error('Une erreur s\'est produite lors de la création du commentaire :', error);
       });
-
-      props.addComment(comment);
-      setComment(initialFormState);
     } catch (error) {
       console.error(
         "Une erreur s'est produite lors de la création du commentaire:",
@@ -38,9 +31,8 @@ const AddCommentForm = (props) => {
     }
   };
 
-  function refreshPage() {
-    window.location.reload(false);
-  }
+  
+
 
   return (
     <form
@@ -83,7 +75,7 @@ const AddCommentForm = (props) => {
         onChange={handleInputChange}
       />
       <br></br>
-      <button className="btn btn-outline-primary" onClick={refreshPage}>
+      <button className="btn btn-outline-primary" >
         Ajouter un commentaire
       </button>
     </form>

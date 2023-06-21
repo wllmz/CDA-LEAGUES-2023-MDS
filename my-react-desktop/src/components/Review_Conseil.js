@@ -5,6 +5,7 @@ import CommentServices from "../services/comment.service";
 import Addcomment from "../components/Add_Comment";
 import { Link } from "react-router-dom";
 
+
 const Review_Conseil = () => {
   const [comment, setComment] = useState();
   const [matches, setMatches] = useState([]);
@@ -12,11 +13,7 @@ const Review_Conseil = () => {
   const { puuid } = useParams();
   const { matchIds } = useParams();
 
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
-
-  const API_URL = "http://localhost:3000/api/comment";
-
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     if (matchIds) {
@@ -44,22 +41,16 @@ const Review_Conseil = () => {
     }
   });
 
-  const deleteComment = (id) => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const token = user ? user.token : '';
-    axios
-      .delete(API_URL + "/" + id,{
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      }) 
-      .then(() => {
-        setComment(comment.filter((c) => c._id !== id));
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la suppression du commentaire :", error);
-      });
-  };
+  const handleDelete = (id) => {
+    CommentServices.deleteComment(id)
+    .then(() => {
+      setComment(comment.filter((c) => c._id !== id));
+    })
+    .catch(error => {
+      console.log("An error occurred while deleting the comment:", error);
+    });
+  }
+
 
   return (
     <div className="container text-center">
@@ -219,12 +210,8 @@ const Review_Conseil = () => {
                         comment.map((c) => (
                           <div className="conseil">
                             <p>{c.body} </p>
-                            <button
-                              class="btn btn-outline-primary"
-                              onClick={() => deleteComment(c._id)}
-                            >
-                              Supprimer
-                            </button>
+  
+                            <button class="btn btn-outline-primary" onClick={() => handleDelete(c._id)}>Supprimer le commentaire</button>
                           </div>
                         ))
                       ) : (
@@ -383,13 +370,8 @@ const Review_Conseil = () => {
                       {comment && comment.length > 0 ? (
                         comment.map((c) => (
                           <div className="conseil">
-                            <p>{c.body} </p>
-                            <button
-                              class="btn btn-outline-primary"
-                              onClick={() => deleteComment(c._id)}
-                            >
-                              Delete
-                            </button>
+                            <p>{c.body} </p>  
+                            <button  class="btn btn-outline-primary" onClick={() => handleDelete(c._id)}>Supprimer le commentaire</button>
                           </div>
                         ))
                       ) : (
