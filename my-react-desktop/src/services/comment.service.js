@@ -20,8 +20,8 @@ const getCommentById = (id) => {
   return axios.get(API_URL + "/" + id);
 };
 
-const createComment = () => {
-  return axios.post(API_URL, {}, {
+const createComment = (comment)  => {
+  return axios.post(API_URL, comment, {
     headers: {
       'Authorization': `Bearer ${token}`
     }
