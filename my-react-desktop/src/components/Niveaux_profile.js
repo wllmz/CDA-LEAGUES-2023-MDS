@@ -6,7 +6,7 @@ const Niveaux = () => {
   const [playerData, setPlayerdata] = useState({});
   const { user } = useParams();
 
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+  const API_KEY = process.env.REACT_APP_API_KEY; 
 
   console.log(user);
 
