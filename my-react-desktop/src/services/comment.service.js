@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const API_URL = "http://localhost:3000/api/comment";
+const API_URL = "https://api.wllmz.fr/api/comment";
 
 
 const user = JSON.parse(localStorage.getItem('user'));

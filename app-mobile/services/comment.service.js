@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-const API_URL = "http://172.20.10.13:8080/api/comment";
+const API_URL = "https://api.wllmz.fr/api/comment";
 
 
 

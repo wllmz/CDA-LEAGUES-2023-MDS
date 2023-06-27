@@ -4,12 +4,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
 
+const API_KEY = process.env.REACT_APP_API_KEY; 
+
 const Niveaux = () => {
   const [leagues, setLeagues] = useState("");
   const [playerData, setPlayerData] = useState({});
   const [rank, setRank] = useState(null);
 
-  const API_KEY = process.env.REACT_APP_API_KEY; 
+  
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
