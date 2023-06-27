@@ -1,7 +1,8 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const API_URL = "http://172.20.10.13:8080/api/test/";
+const API_URL = "https://api.wllmz.fr/api/test/";
+
 
 const getPublicContent = () => {
   return axios.get(API_URL + "all");

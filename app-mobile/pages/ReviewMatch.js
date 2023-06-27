@@ -4,12 +4,13 @@ import axios from "axios";
 import Swiper from "react-native-swiper";
 
 
+const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 const ReviewMatch = ({ route }) => {
   const { matchId } = route.params;
   const [matches, setMatches] = useState([]);
 
-  const API_KEY = process.env.REACT_APP_API_KEY;
 
 
   useEffect(() => {
