@@ -9,8 +9,8 @@ WLLMZ est un site qui offre aux utilisateurs la possibilité de progresser gratu
 ```
 npm install
 ```
-Créer le fichier .env
+- Créer le fichier .env
 - Lancer le serveur
 ```
-npm run electron:serve
+npm start 
 ```
