@@ -4,14 +4,14 @@ import axios from "axios";
 import Swiper from "react-native-swiper";
 
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 
 const ReviewMatch = ({ route }) => {
   const { matchId } = route.params;
   const [matches, setMatches] = useState([]);
 
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     if (matchId) {
@@ -83,37 +83,37 @@ const ReviewMatch = ({ route }) => {
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item0}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item1}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item2}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item3}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item4}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item5}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item5}.png`,
                             }}
                           />
                         </View>
@@ -184,31 +184,31 @@ const ReviewMatch = ({ route }) => {
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item0}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item0}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item1}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item1}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item2}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item2}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item3}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item3}.png`,
                             }}
                           />
                           <Image
                             style={styles.itemImage}
                             source={{
-                              uri: `https://ddragon.leagueoflegends.com/cdn/13.7.1/img/item/${participant.item4}.png`,
+                              uri: `https://ddragon.leagueoflegends.com/cdn/13.9.1/img/item/${participant.item4}.png`,
                             }}
                           />
                           <Image

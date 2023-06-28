@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, ScrollView } from "react-native";
 
 import Match from "../components/Match";
 import Niveaux from "../components/Niveaux";
@@ -16,6 +16,5 @@ const Profile = () => {
   );
 };
 
-const styles = StyleSheet.create({});
 
 export default Profile;

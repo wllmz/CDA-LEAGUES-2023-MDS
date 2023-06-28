@@ -19,10 +19,9 @@ const Niveaux = () => {
       )
       .then((response) => {
         setPlayerdata(response.data);
-        console.log(playerData);
   })
   .catch((error) => {
-    console.error("Une erreur s'est produite lors de la récupération des données :", error);
+    console.error("Une erreur s'est produite lors de la récupération des données :");
   });
     }
 
