@@ -16,7 +16,7 @@ WLLMZ est un site qui offre aux utilisateurs la possibilité de progresser gratu
 Pour installer ce projet sur votre machine locale, suivez ces étapes :
 
 1. Clonez ce repository : `git clone   https://github.com/wllmz/CDA-LEAGUES-2023-MDS.git
-2. Accédez au dossier du projet : `cd wllmz`
+2. Accédez au dossier du projet : `cd CDA-LEAGUES-2023-MDS`
 3. Installez les dépendances : `npm install`
 
 ## Usage
