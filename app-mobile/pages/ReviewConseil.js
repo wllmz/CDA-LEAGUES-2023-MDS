@@ -4,17 +4,13 @@ import CommentServices from "../services/comment.service";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-
-
-
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
   const { matchId } = route.params;
   const [puuid, setPuuid] = useState("");
   const [matches, setMatches] = useState([]);
   const [comment, setComment] = useState(null);
-  const API_KEY = process.env.REACT_APP_API_KEY;  
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
@@ -46,8 +42,7 @@ const ReviewConseil = ({ route }) => {
           console.log(error);
         });
     }
-  }, [leagues]); 
-
+  }, [leagues]);
 
   useEffect(() => {
     if (matchId) {
@@ -63,7 +58,7 @@ const ReviewConseil = ({ route }) => {
           console.log(error);
         });
     }
-  }, [matchId]); 
+  }, [matchId]);
 
   useEffect(() => {
     if (!comment) {
@@ -74,7 +69,7 @@ const ReviewConseil = ({ route }) => {
           setComment(value.data.data);
         })
         .catch((error) => {
-         error
+          error;
         });
     }
   }, [comment, leagues, matchId]);
@@ -82,8 +77,8 @@ const ReviewConseil = ({ route }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-      {matches.map((matchData, index) => (
-  <View key={`match_${index}`} style={{ marginVertical: 10 }}>
+        {matches.map((matchData, index) => (
+          <View key={`match_${index}`} style={{ marginVertical: 10 }}>
             <View>
               {matchData.info.participants
                 .filter((participant) => participant.puuid === puuid)
@@ -227,12 +222,14 @@ const ReviewConseil = ({ route }) => {
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
                       <View style={styles.container}>
                         {comment && comment.length > 0 ? (
-                          comment.map((c) => (
-                            <Text style={styles.recapText}>{c.body} </Text>
+                          comment.map((c, index) => (
+                            <Text key={index} style={styles.recapText}>
+                              {c.body}
+                            </Text>
                           ))
                         ) : (
                           <Text style={styles.recapText}>
-                            Pas encore de commentaire attribué{" "}
+                            Pas encore de commentaire attribué
                           </Text>
                         )}
                       </View>
@@ -383,12 +380,14 @@ const ReviewConseil = ({ route }) => {
                       <Text style={styles.conseilTitle}>CONSEIL :</Text>
                       <View style={styles.container}>
                         {comment && comment.length > 0 ? (
-                          comment.map((c) => (
-                            <Text style={styles.recapText}>{c.body} </Text>
+                          comment.map((c, index) => (
+                            <Text key={index} style={styles.recapText}>
+                              {c.body}
+                            </Text>
                           ))
                         ) : (
                           <Text style={styles.recapText}>
-                            Pas encore de commentaire attribué{" "}
+                            Pas encore de commentaire attribué
                           </Text>
                         )}
                       </View>

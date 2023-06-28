@@ -31,22 +31,18 @@ const Connexion = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-  
+
     setMessage("");
     setLoading(true);
-  
+
     form.current.validateAll();
-  
+
     if (checkBtn.current.context._errors.length === 0) {
       try {
-        // Appel à AuthService.login() pour tenter la connexion avec les informations fournies
         const validate = await AuthService.login(username, leagues, password);
-        // Vérification du rôle de l'utilisateur connecté
-        if (validate && validate.roles === "ROLE_ADMIN") {
-          // Redirection vers la page d'administration pour les utilisateurs avec le rôle "ROLE_ADMIN"
+        if (validate && validate.roles == "ROLE_ADMIN")  {
           navigate("/admin");
-        } else {
-          // Affichage d'un message d'erreur en cas de connexion impossible
+        }else {
           setMessage("Connexion impossible.");
           setLoading(false);
         }
@@ -58,6 +54,8 @@ const Connexion = () => {
       setLoading(false);
     }
   }
+
+    
     
 
   return (
