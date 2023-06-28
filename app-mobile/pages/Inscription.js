@@ -45,14 +45,16 @@ const Inscription = () => {
       setLoading(false);
       return;
     }
-    if (password.length < 6 || password.length > 40) {
-      Alert.alert(
-        "Erreur",
-        "Le mot de passe doit comporter entre 6 et 40 caractères"
-      );
-      setLoading(false);
-      return;
-    }
+  if (password.length < 8 || password.length > 40 ||
+    !/[A-Z]/.test(password) || !/\d/.test(password) || !/[!@#$%^&*]/.test(password)) {
+  Alert.alert(
+    "Erreur",
+    "Le mot de passe doit comporter entre 8 et 40 caractères, contenir au moins une lettre majuscule, au moins un chiffre et un caractère spécial"
+  );
+  setLoading(false);
+  return;
+}
+
     if (!isEmail(email)) {
       Alert.alert("Erreur", "L'e-mail n'est pas valide");
       setLoading(false);
@@ -69,7 +71,6 @@ const Inscription = () => {
       .get(APICallString)
       .then(function (response) {
         setLeagues(true);
-        console.log(response);
   
         // Appel à la méthode AuthService.register() pour effectuer l'inscription
         AuthService.register(username, email, leagues, password)
