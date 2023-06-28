@@ -453,23 +453,6 @@ button.btn.btn-outline-primary {
   display: none;
 }
 
-button.suivant,
-button.precedent {
-  margin: 4px;
-  border-radius: 100%;
-  color: #fff;
-  background-color: #ffffff00;
-  border: 1px solid;
-  width: 40px;
-  height: 40px;
-}
-button.precedent:hover {
-  color: #25f809;
-}
-button.suivant:hover {
-  color: #25f809;
-}
-
 .match-profile {
   margin: 50px;
 }
