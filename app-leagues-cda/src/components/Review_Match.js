@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 const Review_Match = () => {
@@ -15,6 +15,7 @@ const Review_Match = () => {
           `https://europe.api.riotgames.com/lol/match/v5/matches/${matchIds}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état des matchs en ajoutant les nouvelles données de match à l'ancien contenu
           setMatches((prevMatches) => [...prevMatches, response.data]);
         })
         .catch((error) => {
@@ -25,6 +26,10 @@ const Review_Match = () => {
 
   return (
     <div className="container text-center">
+      
+<Link to={"/profile"}>
+        <span>&#8592;</span> Retour
+      </Link>
       <div class="row align-items-start">
         {matches.map((matchData, index) => (
           <div key={index}>

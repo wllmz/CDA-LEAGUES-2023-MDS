@@ -38,6 +38,7 @@ const ReviewConseil = ({ route }) => {
           `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${leagues}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état du puuid avec la valeur de 'response.data.puuid'
           setPuuid(response.data.puuid);
           const puuidId = response.data.puuid;
         })
@@ -45,7 +46,8 @@ const ReviewConseil = ({ route }) => {
           console.log(error);
         });
     }
-  }, [leagues]);
+  }, [leagues]); 
+
 
   useEffect(() => {
     if (matchId) {
@@ -54,13 +56,14 @@ const ReviewConseil = ({ route }) => {
           `https://europe.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état des matchs en ajoutant les nouvelles données de match à l'ancien contenu
           setMatches((prevMatches) => [...prevMatches, response.data]);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [matchId]);
+  }, [matchId]); 
 
   useEffect(() => {
     if (!comment) {

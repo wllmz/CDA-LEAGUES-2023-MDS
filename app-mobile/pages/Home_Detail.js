@@ -3,7 +3,6 @@ import { Text, View, StyleSheet, Pressable } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
-
 import Button from "../components/Button";
 import ImageViewer from "../components/ImageViewer";
 
@@ -30,15 +29,13 @@ const Home = () => {
 
   const handleLogout = async () => {
     try {
-      await AsyncStorage.removeItem('leagues');
-      nav.replace('Home')
-      console.log('Vous avez bien été déconnecté');
+      await AsyncStorage.removeItem("leagues");
+      nav.replace("Home");
+      console.log("Vous avez bien été déconnecté");
     } catch (error) {
-      console.log('Error logging out: ', error);
+      console.log("Error logging out: ", error);
     }
-  }
-
-  
+  };
 
   return (
     <View style={styles.container}>
@@ -51,19 +48,14 @@ const Home = () => {
         <Button theme="Match" label="VOIR DÉTAIL" />
       </View>
 
-                <View style={styles.btn}>
-                        <Pressable
-                          style={[styles.button]}
-                          onPress= {handleLogout}
-                          
-                        >
-                          <Text style={[styles.buttonLabel, { color: "#fff" }]}>
-                            {" "}
-                            DECONNEXION{" "}
-                          </Text>
-                        </Pressable>
-                      </View>
-      
+      <View style={styles.btn}>
+        <Pressable style={[styles.button]} onPress={handleLogout}>
+          <Text style={[styles.buttonLabel, { color: "#fff" }]}>
+            {" "}
+            DECONNEXION{" "}
+          </Text>
+        </Pressable>
+      </View>
 
       <View style={styles.imageContainer - 2}>
         <ImageViewer placeholderImageSource={PlaceholderImage} />
@@ -110,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: "#fff",
     borderWidth: 1,
-  }
+  },
 });
 
 export default Home;

@@ -10,7 +10,6 @@ const Menu = () => {
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
       setCurrentUser(user);
     }
@@ -25,7 +24,7 @@ const Menu = () => {
         <div>
              <div class="container-fluid text-align-ceSnter">
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <NavLink to={"/home"} className="nav-link">
+        <NavLink to={"/"} className="nav-link">
           <img className="logo" src={Logo} alt="Description" />
         </NavLink>
         <button
@@ -43,7 +42,7 @@ const Menu = () => {
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <NavLink to={"/home"} className="nav-link">
+              <NavLink to={"/"} className="nav-link">
                 Accueil
               </NavLink>
             </li>

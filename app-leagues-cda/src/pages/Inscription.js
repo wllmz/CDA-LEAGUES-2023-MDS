@@ -18,7 +18,6 @@ const Register = () => {
   const [successful, setSuccessful] = useState(false);
   const [leaguesacces, setLeaguesacces] = useState(false);
   const [message, setMessage] = useState("");
-  
 
   const required = (value) => {
     if (!value) {
@@ -64,22 +63,29 @@ const Register = () => {
     const upperCaseRegex = /[A-Z]/;
     const numberRegex = /\d/;
     const specialCharRegex = /[!@#$%^&*]/;
-    if (value.length < 8 || value.length > 40 || !upperCaseRegex.test(value) || !numberRegex.test(value) || !specialCharRegex.test(value)) {
+    if (
+      value.length < 8 ||
+      value.length > 40 ||
+      !upperCaseRegex.test(value) ||
+      !numberRegex.test(value) ||
+      !specialCharRegex.test(value)
+    ) {
       return (
         <div className="invalid-feedback d-block">
-          Le mot de passe doit comporter entre 8 et 40 caractères, contenir au moins une lettre majuscule, au moins un chiffre et un caractères spéciale.
+          Le mot de passe doit comporter entre 8 et 40 caractères, contenir au
+          moins une lettre majuscule, au moins un chiffre et un caractères
+          spéciale.
         </div>
       );
     }
-};
-
+  };
 
   const form = useRef();
   const checkBtn = useRef();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-  
+
     try {
       var APICallString =
         "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
@@ -87,28 +93,35 @@ const Register = () => {
         "?api_key=" +
         API_KEY;
       const response = await axios.get(APICallString);
-  
       setLeaguesacces(true);
-      setMessage("");
-      setSuccessful(false);
-  
-      form.current.validateAll();
-  
+      setMessage(""); // Réinitialisation du message
+      setSuccessful(false); // Réinitialisation du succès
+
+      form.current.validateAll(); // Validation de tous les champs du formulaire
+
       if (checkBtn.current.context._errors.length === 0) {
+        // Vérification si aucun message d'erreur n'a été généré lors de la validation des champs du formulaire
         try {
-          const response = await AuthService.register(username, email, password, leagues);
-          setMessage(response.data.message);
-          setSuccessful(true);
+          // Appel à la méthode AuthService.register() pour effectuer l'inscription
+          const response = await AuthService.register(
+            username,
+            email,
+            password,
+            leagues
+          );
+          setMessage(response.data.message); // Mise à jour du message avec la réponse de l'inscription
+          setSuccessful(true); // Indication de succès de l'inscription
         } catch (error) {
+          // Gestion des erreurs lors de l'inscription
           const errorMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
-          
-          setMessage(errorMessage);
-          setSuccessful(false);
+
+          setMessage(errorMessage); // Mise à jour du message avec le message d'erreur
+          setSuccessful(false); // Indication d'échec de l'inscription
         }
       }
     } catch (error) {
@@ -117,7 +130,7 @@ const Register = () => {
       window.alert("Pas de leagues");
     }
   };
-  
+
   return (
     <div className="col-md-12">
       <div className="inscription">
@@ -134,7 +147,7 @@ const Register = () => {
                     className="form-control"
                     name="username"
                     value={username}
-                    onChange={e => setUsername(e.target.value)}
+                    onChange={(e) => setUsername(e.target.value)}
                     validations={[required, vusername]}
                   />
                 </div>
@@ -146,7 +159,7 @@ const Register = () => {
                     className="form-control"
                     name="leagues"
                     value={leagues}
-                    onChange={e => setLeagues(e.target.value)}
+                    onChange={(e) => setLeagues(e.target.value)}
                     validations={[required, vleagues]}
                   />
                 </div>
@@ -158,7 +171,7 @@ const Register = () => {
                     className="form-control"
                     name="email"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     validations={[required, validEmail]}
                   />
                 </div>
@@ -170,7 +183,7 @@ const Register = () => {
                     className="form-control"
                     name="password"
                     value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                     validations={[required, vpassword]}
                   />
                 </div>
@@ -184,10 +197,7 @@ const Register = () => {
 
             {message && (
               <div className="form-group">
-                <div
-                  className="success" 
-                  role="alert"
-                >
+                <div className="success" role="alert">
                   {message}
                 </div>
               </div>

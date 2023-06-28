@@ -12,36 +12,33 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 
-
-
-
-
 const Profile = () => {
   const [leagues, setLeagues] = useState("");
   const [playerData, setPlayerdata] = useState({});
   const [matchIds, setMatchIds] = useState([]);
   const [match, setMatch] = useState([]);
-  const COUNT = 2;
+  const COUNT = 3;
   const [puuid, setPuuid] = useState("");
-  const API_KEY = process.env.REACT_APP_API_KEY;  
-
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   const navigation = useNavigation();
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
-      .then((leagues) => {
-        if (leagues) {
-          setLeagues(leagues);
-        }
-      })
-      .catch((error) => {
-        console.log(
-          "Erreur lors de la récupération du nom d'utilisateur :",
-          error
-        );
-      });
-  }, []);
+    .then((leagues) => {
+      // Vérification si 'leagues' existe dans AsyncStorage
+      if (leagues) {
+        // Mise à jour de l'état 'leagues' avec la valeur récupérée
+        setLeagues(leagues);
+      }
+    })
+    .catch((error) => {
+      console.log(
+        "Erreur lors de la récupération du nom d'utilisateur :",
+        error
+      );
+    });
+}, []);
 
   useEffect(() => {
     if (leagues) {
@@ -50,7 +47,10 @@ const Profile = () => {
           `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${leagues}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état du puuid avec la valeur de 'response.data.puuid'
           setPuuid(response.data.puuid);
+
+          // Récupération de l'ID du puuid depuis la réponse
           const puuidId = response.data.puuid;
           axios
             .get(
@@ -72,16 +72,16 @@ const Profile = () => {
 
   useEffect(() => {
     if (matchIds) {
-      const matches = [];
-
       matchIds.forEach((element) => {
         axios
           .get(
             `https://europe.api.riotgames.com/lol/match/v5/matches/${element}?api_key=${API_KEY}`
           )
           .then((response) => {
-            matches.push(response.data);
-            setMatch((prevState) => prevState.concat(matches));
+            // Filtrer pour n'inclure que les parties classées
+            if (response.data.info.queueId === 420) {
+              setMatch((prevState) => prevState.concat(response.data));
+            }
           })
           .catch((error) => {
             console.log(error);
@@ -114,12 +114,13 @@ const Profile = () => {
         </View>
 
         {match.map((matchData, index) => (
-  <View key={`match_${index}`} style={{ marginVertical: 10 }}>
+          <View key={`match_${index}`} style={{ marginVertical: 10 }}>
             {matchData.info.participants
               .filter((participant) => participant.puuid === puuid)
               .filter((participant) => participant.teamId === 100)
               .map((participant, index) => (
-                <View key={index}
+                <View
+                  key={index}
                   style={[
                     matchData.info.teams[0].win
                       ? styles.victoryPlayer
@@ -193,7 +194,8 @@ const Profile = () => {
               .filter((participant) => participant.puuid === puuid)
               .filter((participant) => participant.teamId === 200)
               .map((participant, index) => (
-                <View key={index}
+                <View
+                  key={index}
                   style={[
                     matchData.info.teams[1].win
                       ? styles.victoryPlayer

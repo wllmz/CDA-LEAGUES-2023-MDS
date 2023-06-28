@@ -21,29 +21,32 @@ const Login = () => {
 
   const nav = useNavigation();
 
-  
-
   const handleLogin = async () => {
     setMessage("");
     setLoading(true);
 
     if (!username || !password || !leagues) {
+      // Vérification si les champs requis sont vides
       Alert.alert("Erreur", "Veuillez remplir tous les champs");
       setLoading(false);
       return;
     }
 
     try {
+      // Stockage des données dans AsyncStorage
       await AsyncStorage.setItem("username", username);
       await AsyncStorage.setItem("leagues", leagues);
+      // Appel à la méthode AuthService.login() pour effectuer la connexion
       AuthService.login(username, leagues, password)
         .then(() => {
+          // Réinitialisation des champs après une connexion réussie
           setUsername("");
           setLeagues("");
           setPassword("");
-          nav.replace("Detail");
+          nav.replace("Detail"); // Redirection vers la page "Detail"
         })
         .catch((error) => {
+          // Gestion des erreurs lors de la tentative de connexion
           Alert.alert("Erreur", error.response.data.message);
         });
     } catch (error) {
@@ -100,8 +103,8 @@ const Login = () => {
           </Pressable>
         </View>
         <View style={styles.boutonContainer}>
-        <Button theme="Inscription" label="INSCRIPTION" />
-      </View>
+          <Button theme="Inscription" label="INSCRIPTION" />
+        </View>
       </View>
       {message && <Text>{message}</Text>}
     </View>

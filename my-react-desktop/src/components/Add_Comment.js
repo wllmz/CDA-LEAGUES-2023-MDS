@@ -10,27 +10,25 @@ const AddCommentForm = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    // Mise à jour de l'état 'comment' en utilisant le spread operator pour copier les propriétés existantes et mettre à jour la propriété spécifiée
     setComment({ ...comment, [name]: value });
   };
 
   const createComment = () => {
     try {
       CommentServices.createComment(comment)
-      .then(() => {
-        setComment(initialFormState);
-        window.location.reload(false); 
-      }) 
-      .catch (error => {
-        console.error('Une erreur s\'est produite lors de la création du commentaire :', error);
-      });
+        .then(() => {
+          // Réinitialisation du formulaire de commentaire
+          setComment(initialFormState);
+          window.location.reload(false); // Rechargement de la page pour afficher les nouveaux commentaires
+        })
+        .catch((error) => {
+          console.error("Une erreur s'est produite lors de la création du commentaire :", error);
+        });
     } catch (error) {
-      console.error(
-        "Une erreur s'est produite lors de la création du commentaire:",
-        error
-      );
+      console.error("Une erreur s'est produite lors de la création du commentaire :", error);
     }
   };
-
   
 
 

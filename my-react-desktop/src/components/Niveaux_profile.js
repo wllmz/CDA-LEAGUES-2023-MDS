@@ -17,16 +17,14 @@ const Niveaux = () => {
           `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user}?api_key=${API_KEY}`
         )
         .then((response) => {
-          console.log(response);
+          // Mise à jour de l'état des données du joueur avec la réponse
           setPlayerdata(response.data);
-          console.log(playerData);
         })
-
         .catch((error) => {
           console.log(error); // Gérer les erreurs de récupération de l'ID d'invocateur
         });
     }
-  }, [user]);
+  }, [user]); 
 
   return (
     <div className="">

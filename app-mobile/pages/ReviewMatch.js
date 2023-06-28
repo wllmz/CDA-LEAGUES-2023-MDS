@@ -3,10 +3,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Swiper from "react-native-swiper";
 
-
-
-
-
 const ReviewMatch = ({ route }) => {
   const { matchId } = route.params;
   const [matches, setMatches] = useState([]);
@@ -20,8 +16,8 @@ const ReviewMatch = ({ route }) => {
           `https://europe.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état des matchs en ajoutant les nouvelles données de match à l'ancien contenu
           setMatches((prevMatches) => [...prevMatches, response.data]);
-          console.log;
         })
         .catch((error) => {
           console.log(error);

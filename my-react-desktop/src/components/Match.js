@@ -18,8 +18,10 @@ const App = () => {
           `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${user}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état du puuid avec la valeur de 'response.data.puuid'
           setPuuid(response.data.puuid);
           const puuidId = response.data.puuid;
+          // Requête pour obtenir les IDs des matchs du joueur via l'API de Riot Games
           axios
             .get(
               `https://europe.api.riotgames.com/lol/match/v5/matches/by-puuid/${puuidId}/ids?count=${COUNT}&sort=asc&api_key=${API_KEY}`
@@ -36,20 +38,21 @@ const App = () => {
           console.log(error);
         });
     }
-  }, [user]);
+  }, [user]); 
 
   useEffect(() => {
     if (matchIds) {
-      const matches = [];
-
       matchIds.forEach((element) => {
         axios
           .get(
             `https://europe.api.riotgames.com/lol/match/v5/matches/${element}?api_key=${API_KEY}`
           )
           .then((response) => {
-            matches.push(response.data);
-            setMatch((prevState) => prevState.concat(matches));
+            // Filtrer pour n'inclure que les parties classées (queueId 420)
+            if (response.data.info.queueId === 420) {
+              // Mise à jour de l'état des matchs avec la réponse
+              setMatch((prevState) => prevState.concat(response.data));
+            }
           })
           .catch((error) => {
             console.log(error);

@@ -3,15 +3,11 @@ import { View, Text, Image, StyleSheet } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-
-
-
 const Niveaux = () => {
   const [leagues, setLeagues] = useState("");
   const [playerData, setPlayerData] = useState({});
   const [rank, setRank] = useState(null);
-  const API_KEY = process.env.REACT_APP_API_KEY; 
-  
+  const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     AsyncStorage.getItem("leagues")
@@ -51,7 +47,7 @@ const Niveaux = () => {
         )
 
         .then((response) => {
-          const summonerId = response.data.id; // Récupérer l'ID d'invocateur à partir de la réponse de l'API
+          const summonerId = response.data.id;
           axios
             .get(
               `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${API_KEY}`
@@ -64,11 +60,11 @@ const Niveaux = () => {
               setLeagues(response.data[0].leagues);
             })
             .catch((error) => {
-              console.log(error); // Gérer les erreurs de récupération des informations de rang
+              console.log(error);
             });
         })
         .catch((error) => {
-          console.log(error); // Gérer les erreurs de récupération de l'ID d'invocateur
+          console.log(error);
         });
     }
   }, [leagues]);

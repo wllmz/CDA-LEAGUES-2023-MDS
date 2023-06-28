@@ -14,34 +14,32 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Effectuer une requête GET à l'API de Riot Games avec le nom du 'summoner' entré par l'utilisateur
     axios
       .get(
         `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}?api_key=${API_KEY}`
       )
       .then((response) => {
         setPlayerdata(response.data);
-        console.log(playerData);
+        // Récupération de l'ID de l'invocateur à partir de la réponse
         const summonerId = response.data.id;
         axios
           .get(
             `https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}?api_key=${API_KEY}`
           )
           .then((response) => {
+            // Recherche de l'entrée de rang correspondant au mode "RANKED_SOLO_5x5"
             const soloRank = response.data.find(
               (entry) => entry.queueType === "RANKED_SOLO_5x5"
             );
+            // Mettre à jour l'état du rang avec les informations de rang solo
             setRank(soloRank);
           })
           .catch((error) => {
             console.log(error);
           });
       })
-      .catch((error) => {
-        console.log(error);
-      });
   };
-  // handle the api call
-  console.log(playerData);
 
   return (
     <div className="component">
