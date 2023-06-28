@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import AuthService from "../services/auth.service";
 import CommentServices from "../services/comment.service";
@@ -21,6 +21,7 @@ const Review_Conseil = () => {
           `https://europe.api.riotgames.com/lol/match/v5/matches/${matchIds}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état des matchs en ajoutant les nouvelles données de match à l'ancien contenu
           setMatches((prevMatches) => [...prevMatches, response.data]);
         })
         .catch((error) => {
@@ -28,7 +29,6 @@ const Review_Conseil = () => {
         });
     }
   }, [matchIds]);
-
 
   useEffect(() => {
     if (!comment) {
@@ -40,8 +40,26 @@ const Review_Conseil = () => {
     }
   });
 
+  
+  useEffect(() => {
+    if (!comment) {
+      CommentServices.getCommentById( currentUser.leagues + `/${matchIds}`)
+        .then((value) => {
+          setComment(value.data.data);
+          console.log(value);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [comment, matchIds]);
+
   return (
     <div className="container text-center">
+
+<Link to={"/profile"}>
+        <span>&#8592;</span> Retour
+      </Link>
       {matches.map((matchData, index) => (
         <div key={index}>
           <h2 id="match">Informations des dernières parties jouées :</h2>

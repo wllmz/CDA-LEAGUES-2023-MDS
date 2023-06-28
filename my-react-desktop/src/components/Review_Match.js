@@ -16,6 +16,7 @@ const Review_Match = () => {
           `https://europe.api.riotgames.com/lol/match/v5/matches/${matchIds}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état des matchs en ajoutant les nouvelles données de match à l'ancien contenu
           setMatches((prevMatches) => [...prevMatches, response.data]);
         })
         .catch((error) => {
@@ -23,7 +24,8 @@ const Review_Match = () => {
         });
     }
   }, [matchIds]);
-  console.log(user);
+
+
   return (
     <div className="container text-center">
       <div class="row align-items-start">

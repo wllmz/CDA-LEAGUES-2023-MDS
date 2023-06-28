@@ -4,7 +4,7 @@ import AuthService from "../services/auth.service";
 
 const Niveaux = () => {
   const [playerData, setPlayerdata] = useState({});
-  const API_KEY = process.env.REACT_APP_API_KEY; // Votre clé API
+  const API_KEY = process.env.REACT_APP_API_KEY; 
 
   const currentUser = AuthService.getCurrentUser();
 
@@ -14,10 +14,11 @@ const Niveaux = () => {
         .get(
           `https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${currentUser.leagues}?api_key=${API_KEY}`
         )
+        // Si la requête réussit, utiliser la réponse pour mettre à jour les données du joueur
         .then((response) => {
           setPlayerdata(response.data);
         })
-
+        // Si la requête échoue, mettre à jour les données du joueur avec le message d'erreur
         .catch((error) => {
           setPlayerdata(error.message);
         });

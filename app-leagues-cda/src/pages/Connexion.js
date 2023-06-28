@@ -44,32 +44,35 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-
-    setMessage("");
-    setLoading(true);
-
-    form.current.validateAll();
-
-    if(form.current.validateAll){
+  
+    setMessage(""); // Réinitialisation du message
+    setLoading(true); // Activation du chargement
+  
+    form.current.validateAll(); 
+    if (form.current.validateAll) {
+      // Vérification de la validation de tous les champs du formulaire
+      // Si tous les champs sont valides, procéder à la connexion via le service d'authentification
       AuthService.login(username, leagues, password).then(
         () => {
+          // Redirection vers la page de profil après une connexion réussie
           navigate("/profile");
-          window.location.reload();
+          window.location.reload(); // Rechargement de la page pour mettre à jour l'état de connexion
         },
         (error) => {
+          // Gestion des erreurs lors de la tentative de connexion
           const resMessage =
             (error.response &&
               error.response.data &&
               error.response.data.message) ||
             error.message ||
             error.toString();
-
-          setLoading(false);
-          setMessage(resMessage);
+  
+          setLoading(false); // Désactivation du chargement
+          setMessage(resMessage); // Mise à jour du message d'erreur
         }
       );
     } else {
-      setLoading(false);
+      setLoading(false); 
     }
   };
 

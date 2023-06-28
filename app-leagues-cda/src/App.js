@@ -7,7 +7,7 @@ import "bootstrap/dist/js/bootstrap.min.js";
 
 import Connexion from "./pages/Connexion";
 import Inscription from "./pages/Inscription";
-import Home from "./pages/Accueil";
+import Accueil from "./pages/Accueil";
 import Profile from "./pages/Profile";
 import MonProfile from "./pages/MonProfile";
 import Champions from "./pages/Champions";
@@ -25,8 +25,8 @@ const App = () => {
    <div className="app">
 <Menu/>
       <Routes>
-        <Route exact path={"/"} element={<Home />} />
-        <Route exact path={"/home"} element={<Home />} />
+        <Route exact path={"/"} element={<Accueil />} />
+        <Route exact path={"/Accueil"} element={<Accueil />} />
         <Route exact path={"/ranks"} element={<Ranks />} />
         <Route exact path="/connexion" element={<Connexion />} />
         <Route exact path="/champions" element={<Champions />} />

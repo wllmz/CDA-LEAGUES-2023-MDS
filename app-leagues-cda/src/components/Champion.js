@@ -3,7 +3,7 @@ import axios from "axios";
 
 function Champion() {
   const [champions, setChampions] = useState([]);
-  const [championsSort, setChampionsSort] = useState([]); // championSort, setChampionsSort
+  const [championsSort, setChampionsSort] = useState([]);
 
   useEffect(() => {
     axios
@@ -12,6 +12,7 @@ function Champion() {
       )
       .then((response) => {
         const championsData = response.data.data;
+        // Convertir l'objet des champions en un tableau
         const championList = Object.keys(championsData).map(
           (key) => championsData[key]
         );
@@ -22,12 +23,16 @@ function Champion() {
       });
   }, []);
 
+  // Définir une fonction pour trier les champions en fonction de leur catégorie
   const sort = () => {
+    // Mettre à jour l'état des champions triés avec ceux qui correspondent à la catégorie sélectionnée
     setChampionsSort(
+      // Filtrer les champions basé sur leurs tags
       champions.filter((champion) =>
+        // Vérifier si le tag du champion correspond à la valeur de l'élément sélectionné dans le document
         champion.tags.includes(document.getElementById("mySelect").value)
       )
-    ); // results championSort
+    );
   };
 
   return (

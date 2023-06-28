@@ -31,7 +31,7 @@ const Inscription = () => {
   const handleRegister = () => {
     setError(null);
     setLoading(true);
-
+  
     if (!username || !email || !leagues || !password) {
       Alert.alert("Erreur", "Veuillez remplir tous les champs");
       setLoading(false);
@@ -42,7 +42,6 @@ const Inscription = () => {
         "Erreur",
         "Le nom d'utilisateur doit comporter entre 3 et 20 caractères"
       );
-
       setLoading(false);
       return;
     }
@@ -59,26 +58,31 @@ const Inscription = () => {
       setLoading(false);
       return;
     }
+  
     var APICallString =
       "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
       leagues +
       "?api_key=" +
       API_KEY;
+  
     axios
       .get(APICallString)
       .then(function (response) {
         setLeagues(true);
         console.log(response);
-
+  
+        // Appel à la méthode AuthService.register() pour effectuer l'inscription
         AuthService.register(username, email, leagues, password)
           .then(() => {
+            // Réinitialisation des champs après une inscription réussie
             setUsername("");
             setEmail("");
             setLeagues("");
             setPassword("");
-            navigation.replace("Home");
+            navigation.replace("Home"); // Redirection vers la page "Home"
           })
           .catch((error) => {
+            // Gestion des erreurs lors de la tentative d'inscription
             setError(
               error.response?.data?.message || "Une erreur s'est produite"
             );
@@ -89,6 +93,7 @@ const Inscription = () => {
           });
       })
       .catch(function (error) {
+        // Gestion des erreurs lors de la récupération des informations de la ligue
         console.log("error");
         console.log(error);
         window.alert("Pas de leagues");

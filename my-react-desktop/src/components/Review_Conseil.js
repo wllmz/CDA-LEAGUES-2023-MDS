@@ -22,18 +22,20 @@ const Review_Conseil = () => {
           `https://europe.api.riotgames.com/lol/match/v5/matches/${matchIds}?api_key=${API_KEY}`
         )
         .then((response) => {
+          // Mise à jour de l'état des matchs en ajoutant les nouvelles données de match à l'ancien contenu
           setMatches((prevMatches) => [...prevMatches, response.data]);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [matchIds]);
-
+  }, [matchIds]); 
+  
   useEffect(() => {
     if (!comment) {
       CommentServices.getCommentById(user + `/${matchIds}`)
         .then((value) => {
+          // Mise à jour de l'état 'comment' avec la valeur du commentaire
           setComment(value.data.data);
           console.log(value);
         })
@@ -41,17 +43,18 @@ const Review_Conseil = () => {
           console.error(error);
         });
     }
-  }, [comment, user, matchIds]);
+  }, [comment, user, matchIds]); 
   
   const handleDelete = (id) => {
     CommentServices.deleteComment(id)
-    .then(() => {
-      setComment(comment.filter((c) => c._id !== id));
-    })
-    .catch(error => {
-      console.log("An error occurred while deleting the comment:", error);
-    });
-  }
+      .then(() => {
+        // Mise à jour de l'état 'comment' en filtrant les commentaires pour exclure celui avec l'ID supprimé
+        setComment(comment.filter((c) => c._id !== id));
+      })
+      .catch((error) => {
+        console.log("An error occurred while deleting the comment:", error);
+      });
+  };
 
 
   return (
