@@ -32,15 +32,17 @@ const Review_Conseil = () => {
 
   useEffect(() => {
     if (!comment) {
-      let test3 = CommentServices.getCommentById(user + `/${matchIds}`);
-      const promise3 = Promise.resolve(test3);
-      promise3.then((value) => {
-        setComment(value.data.data);
-        console.log(value);
-      });
+      CommentServices.getCommentById(user + `/${matchIds}`)
+        .then((value) => {
+          setComment(value.data.data);
+          console.log(value);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
-  });
-
+  }, [comment, user, matchIds]);
+  
   const handleDelete = (id) => {
     CommentServices.deleteComment(id)
     .then(() => {

@@ -14,7 +14,7 @@ import axios from "axios";
 
 
 
-const API_KEY = process.env.REACT_APP_API_KEY;
+
 
 const Profile = () => {
   const [leagues, setLeagues] = useState("");
@@ -23,7 +23,7 @@ const Profile = () => {
   const [match, setMatch] = useState([]);
   const COUNT = 2;
   const [puuid, setPuuid] = useState("");
-  
+  const API_KEY = process.env.REACT_APP_API_KEY;  
 
 
   const navigation = useNavigation();
@@ -113,13 +113,13 @@ const Profile = () => {
           </Text>
         </View>
 
-        {match.map((matchData) => (
-          <View style={{ marginVertical: 10 }}>
+        {match.map((matchData, index) => (
+  <View key={`match_${index}`} style={{ marginVertical: 10 }}>
             {matchData.info.participants
               .filter((participant) => participant.puuid === puuid)
               .filter((participant) => participant.teamId === 100)
-              .map((participant) => (
-                <View
+              .map((participant, index) => (
+                <View key={index}
                   style={[
                     matchData.info.teams[0].win
                       ? styles.victoryPlayer
@@ -192,8 +192,8 @@ const Profile = () => {
             {matchData.info.participants
               .filter((participant) => participant.puuid === puuid)
               .filter((participant) => participant.teamId === 200)
-              .map((participant) => (
-                <View
+              .map((participant, index) => (
+                <View key={index}
                   style={[
                     matchData.info.teams[1].win
                       ? styles.victoryPlayer

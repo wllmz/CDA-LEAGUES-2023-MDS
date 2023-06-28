@@ -6,13 +6,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
+
 const ReviewConseil = ({ route }) => {
   const [leagues, setLeagues] = useState("");
   const { matchId } = route.params;
   const [puuid, setPuuid] = useState("");
   const [matches, setMatches] = useState([]);
   const [comment, setComment] = useState(null);
-
   const API_KEY = process.env.REACT_APP_API_KEY;  
 
 
@@ -40,7 +40,6 @@ const ReviewConseil = ({ route }) => {
         .then((response) => {
           setPuuid(response.data.puuid);
           const puuidId = response.data.puuid;
-          console.log(puuidId);
         })
         .catch((error) => {
           console.log(error);
@@ -56,7 +55,6 @@ const ReviewConseil = ({ route }) => {
         )
         .then((response) => {
           setMatches((prevMatches) => [...prevMatches, response.data]);
-          console.log;
         })
         .catch((error) => {
           console.log(error);
@@ -71,10 +69,9 @@ const ReviewConseil = ({ route }) => {
       promise
         .then((value) => {
           setComment(value.data.data);
-          console.log(value);
         })
         .catch((error) => {
-          console.log("Erreur lors de l'appel à l'API :", error);
+         error
         });
     }
   }, [comment, leagues, matchId]);
@@ -82,8 +79,8 @@ const ReviewConseil = ({ route }) => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        {matches.map((matchData) => (
-          <View>
+      {matches.map((matchData, index) => (
+  <View key={`match_${index}`} style={{ marginVertical: 10 }}>
             <View>
               {matchData.info.participants
                 .filter((participant) => participant.puuid === puuid)
