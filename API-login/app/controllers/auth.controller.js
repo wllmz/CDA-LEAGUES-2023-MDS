@@ -6,6 +6,8 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+
+  // Crée une nouvelle instance de User avec les informations fournies dans le corps de la requête.
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -14,12 +16,16 @@ exports.signup = (req, res) => {
     roles: "64450f55d482a55bd81b49bf"
   });
 
+  // Enregistre le nouvel utilisateur dans la base de données.
   user.save((err, user) => {
+
+    // Si une erreur se produit lors de l'enregistrement, envoie un message d'erreur et un statut 500.
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
     
+    // Si l'utilisateur est enregistré avec succès, envoie un message de succès et un statut 200.
     res.status(200).send({ message: "L'utilisateur a été enregistré avec succès !" });
   });
 };
