@@ -16,10 +16,13 @@ const Home = () => {
     AsyncStorage.getItem("leagues")
       .then((leagues) => {
         if (leagues) {
+          // Si elle existe, nous utilisons la fonction setLeagues pour mettre à jour l'état local "leagues" avec la valeur récupérée.
           setLeagues(leagues);
         }
       })
       .catch((error) => {
+        // Si une erreur se produit lors de la récupération de la valeur, nous affichons 
+        // cette erreur dans la console.
         console.log(
           "Erreur lors de la récupération du nom d'utilisateur :",
           error

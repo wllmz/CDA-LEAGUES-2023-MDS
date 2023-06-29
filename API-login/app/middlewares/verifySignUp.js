@@ -3,34 +3,39 @@ const ROLES = db.ROLES;
 const User = db.user;
 
 checkDuplicateUsernameOrEmail = (req, res, next) => {
-  // Username
+
+  // Recherche un utilisateur avec le nom d'utilisateur spécifié dans le corps de la requête.
   User.findOne({
     username: req.body.username,
   }).exec((err, user) => {
+    // Si une erreur se produit lors de la recherche, envoie un message d'erreur et un statut 500.
     if (err) {
       res.status(500).send({ message: err });
       return;
     }
-
+    // Si un utilisateur avec ce nom d'utilisateur est trouvé dans la bdd, envoie un message d'erreur et un statut 400.
     if (user) {
       res.status(400).send({ message: "Échec ! Le nom d'utilisateur est déjà utilisé !" });
       return;
     }
 
-    // Email
+    // Si aucun utilisateur avec ce nom d'utilisateur n'est trouvé, passe à la vérification de l'email.
+
+    // Recherche un utilisateur avec l'email spécifié dans le corps de la requête.
     User.findOne({
       email: req.body.email,
     }).exec((err, user) => {
+      // Si une erreur se produit lors de la recherche, envoie un message d'erreur et un statut 500.
       if (err) {
         res.status(500).send({ message: err });
         return;
       }
 
+      // Si un utilisateur avec cet email est trouvé dans la bdd, envoie un message d'erreur et un statut 400.
       if (user) {
         res.status(400).send({ message: "Échec ! L'email est déjà utilisé !" });
         return;
       }
-
       next();
     });
   });
